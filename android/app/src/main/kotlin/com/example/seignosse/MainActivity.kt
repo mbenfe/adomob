@@ -1,4 +1,4 @@
-package com.example.adomob
+package com.example.seignosse
 
 import io.flutter.embedding.android.FlutterActivity
 
