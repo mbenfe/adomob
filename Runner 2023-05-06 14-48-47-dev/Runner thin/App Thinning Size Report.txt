@@ -1,0 +1,246 @@
+
+App Thinning Size Report for All Variants of Runner
+
+Variant: adomob-09607B8D-5136-47C0-9FCB-8B55EFFA4380.ipa
+Supported variant descriptors: [device: iPad6,3, os-version: 12.0], [device: iPad8,1, os-version: 12.0], [device: iPad7,2, os-version: 12.0], [device: iPad8,3, os-version: 12.0], [device: iPad8,6, os-version: 12.0], [device: iPad8,2, os-version: 12.0], [device: iPad8,8, os-version: 12.0], [device: iPad6,4, os-version: 12.0], [device: iPad7,3, os-version: 12.0], [device: iPad8,4, os-version: 12.0], [device: iPad7,4, os-version: 12.0], [device: iPad8,7, os-version: 12.0], [device: iPad7,1, os-version: 12.0], and [device: iPad8,5, os-version: 12.0]
+App + On Demand Resources size: 11,2 MB compressed, 28 MB uncompressed
+App size: 11,2 MB compressed, 28 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-0A73497C-CE68-4250-8809-B34B2376BAD6.ipa
+Supported variant descriptors: [device: iPad7,2, os-version: 12.2], [device: iPad8,5, os-version: 12.2], [device: iPad8,8, os-version: 12.2], [device: iPad8,6, os-version: 12.2], [device: iPad6,4, os-version: 12.2], [device: iPad6,3, os-version: 12.2], [device: iPad7,4, os-version: 12.2], [device: iPad11,1, os-version: 12.2], [device: iPad11,2, os-version: 12.2], [device: iPad7,1, os-version: 12.2], [device: iPad8,2, os-version: 12.2], [device: iPad8,1, os-version: 12.2], [device: iPad8,7, os-version: 12.2], [device: iPad11,3, os-version: 12.2], [device: iPad7,3, os-version: 12.2], [device: iPad8,3, os-version: 12.2], [device: iPad11,4, os-version: 12.2], and [device: iPad8,4, os-version: 12.2]
+App + On Demand Resources size: 8,7 MB compressed, 20,4 MB uncompressed
+App size: 8,7 MB compressed, 20,4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-1D406C40-4895-40D7-B19E-825489454309.ipa
+Supported variant descriptors: [device: iPhone6,1, os-version: 12.0], [device: iPhone8,4, os-version: 12.0], [device: iPod7,1, os-version: 12.0], [device: iPhone8,1, os-version: 12.0], [device: iPhone6,2, os-version: 12.0], and [device: iPhone7,2, os-version: 12.0]
+App + On Demand Resources size: 11,2 MB compressed, 28 MB uncompressed
+App size: 11,2 MB compressed, 28 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-2DC9C50C-E5CF-4B65-A5C0-2B22E47435FE.ipa
+Supported variant descriptors: [device: iPhone12,1, os-version: 13.0], [device: iPhone11,8, os-version: 14.0], [device: iPhone11,8, os-version: 13.0], and [device: iPhone12,1, os-version: 14.0]
+App + On Demand Resources size: 8,7 MB compressed, 20,4 MB uncompressed
+App size: 8,7 MB compressed, 20,4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-376FAE97-1D12-42AF-9811-1E56C6E23C05.ipa
+Supported variant descriptors: [device: iPad6,7, os-version: 12.2], [device: iPad5,3, os-version: 12.2], [device: iPad4,1, os-version: 12.2], [device: iPad5,2, os-version: 12.2], [device: iPad5,4, os-version: 12.2], [device: iPad6,11, os-version: 12.2], [device: iPad5,1, os-version: 12.2], [device: iPad4,6, os-version: 12.2], [device: iPad4,9, os-version: 12.2], [device: iPad4,7, os-version: 12.2], [device: iPad4,3, os-version: 12.2], [device: iPad4,4, os-version: 12.2], [device: iPad6,12, os-version: 12.2], [device: iPad4,8, os-version: 12.2], [device: iPad7,5, os-version: 12.2], [device: iPad7,6, os-version: 12.2], [device: iPad6,8, os-version: 12.2], [device: iPad4,2, os-version: 12.2], and [device: iPad4,5, os-version: 12.2]
+App + On Demand Resources size: 8,7 MB compressed, 20,4 MB uncompressed
+App size: 8,7 MB compressed, 20,4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-394446D0-6000-43FD-B4EA-6181EB3B1765.ipa
+Supported variant descriptors: [device: iPhone9,1, os-version: 14.0], [device: iPhone12,8, os-version: 13.0], [device: iPhone10,1, os-version: 13.0], [device: iPhone9,3, os-version: 13.0], [device: iPhone9,1, os-version: 13.0], [device: iPhone10,4, os-version: 14.0], [device: iPhone12,8, os-version: 14.0], [device: iPhone9,3, os-version: 14.0], [device: iPhone10,4, os-version: 13.0], and [device: iPhone10,1, os-version: 14.0]
+App + On Demand Resources size: 8,7 MB compressed, 20,4 MB uncompressed
+App size: 8,7 MB compressed, 20,4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-4309C3E9-719E-4EEC-B798-58C12AC87A53.ipa
+Supported variant descriptors: [device: iPhone10,6, os-version: 11.0], [device: iPhone10,2, os-version: 11.0], [device: iPhone9,2, os-version: 11.0], [device: iPhone10,5, os-version: 11.0], [device: iPhone10,3, os-version: 11.0], and [device: iPhone9,4, os-version: 11.0]
+App + On Demand Resources size: 11,2 MB compressed, 28 MB uncompressed
+App size: 11,2 MB compressed, 28 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-495B1B1D-4C69-44BD-84FD-B49F9AB0EA37.ipa
+Supported variant descriptors: [device: iPhone8,1, os-version: 13.0], [device: iPod9,1, os-version: 13.0], [device: iPhone8,4, os-version: 13.0], [device: iPhone8,4, os-version: 14.0], [device: iPhone8,1, os-version: 14.0], and [device: iPod9,1, os-version: 14.0]
+App + On Demand Resources size: 8,7 MB compressed, 20,4 MB uncompressed
+App size: 8,7 MB compressed, 20,4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-4D595D16-32E8-4C58-AA39-F49DB8F72776.ipa
+Supported variant descriptors: [device: iPhone11,4, os-version: 12.0], [device: iPhone11,2, os-version: 12.0], [device: iPhone10,3, os-version: 12.0], [device: iPhone10,2, os-version: 12.0], [device: iPhone11,6, os-version: 12.0], [device: iPhone10,5, os-version: 12.0], [device: iPhone9,4, os-version: 12.0], [device: iPhone10,6, os-version: 12.0], and [device: iPhone9,2, os-version: 12.0]
+App + On Demand Resources size: 11,2 MB compressed, 28 MB uncompressed
+App size: 11,2 MB compressed, 28 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-538E597C-A8D9-453E-8A5E-089A2DDCE6C5.ipa
+Supported variant descriptors: [device: iPad11,1, os-version: 15.0], [device: iPad14,2, os-version: 15.0], [device: iPad13,6, os-version: 16.0], [device: MacFamily20,1, os-version: 15.0], [device: iPad6,3, os-version: 15.0], [device: MacFamily20,1, os-version: 16.0], [device: iPad13,9, os-version: 16.0], [device: iPad6,3, os-version: 16.0], [device: iPad8,2, os-version: 15.0], [device: iPad13,2, os-version: 16.0], [device: iPad8,10, os-version: 16.0], [device: iPad8,7, os-version: 16.0], [device: iPad8,2, os-version: 16.0], [device: iPad13,16, os-version: 15.0], [device: iPad14,4-A, os-version: 16.0], [device: iPad6,4, os-version: 16.0], [device: iPad11,4, os-version: 15.0], [device: iPad11,3, os-version: 15.0], [device: iPad7,1, os-version: 16.0], [device: iPad14,6-B, os-version: 16.0], [device: iPad8,5, os-version: 16.0], [device: iPad8,10, os-version: 15.0], [device: iPad11,3, os-version: 16.0], [device: iPad14,6-A, os-version: 16.0], [device: iPad8,3, os-version: 15.0], [device: iPad7,4, os-version: 15.0], [device: iPad13,10, os-version: 15.0], [device: iPad8,7, os-version: 15.0], [device: iPad13,11, os-version: 16.0], [device: iPad8,1, os-version: 15.0], [device: iPad14,4-B, os-version: 16.0], [device: iPad8,9, os-version: 16.0], [device: iPad13,17, os-version: 16.0], [device: iPad8,11, os-version: 15.0], [device: iPad13,5, os-version: 16.0], [device: iPad14,5-A, os-version: 16.0], [device: iPad8,8, os-version: 15.0], [device: iPad13,11, os-version: 15.0], [device: iPad13,7, os-version: 16.0], [device: iPad7,2, os-version: 15.0], [device: iPad11,4, os-version: 16.0], [device: iPad13,10, os-version: 16.0], [device: iPad7,1, os-version: 15.0], [device: iPad13,16, os-version: 16.0], [device: iPad8,9, os-version: 15.0], [device: iPad8,1, os-version: 16.0], [device: iPad13,4, os-version: 15.0], [device: iPad14,2, os-version: 16.0], [device: iPad13,5, os-version: 15.0], [device: iPad13,9, os-version: 15.0], [device: iPad8,8, os-version: 16.0], [device: iPad13,4, os-version: 16.0], [device: iPad13,1, os-version: 16.0], [device: iPad13,8, os-version: 15.0], [device: iPad14,1, os-version: 15.0], [device: iPad8,11, os-version: 16.0], [device: iPad8,4, os-version: 15.0], [device: iPad7,2, os-version: 16.0], [device: iPad14,1, os-version: 16.0], [device: iPad8,12, os-version: 15.0], [device: iPad8,4, os-version: 16.0], [device: iPad13,6, os-version: 15.0], [device: iPad13,1, os-version: 15.0], [device: iPad13,2, os-version: 15.0], [device: iPad7,3, os-version: 16.0], [device: iPad7,4, os-version: 16.0], [device: iPad14,5-B, os-version: 16.0], [device: iPad11,2, os-version: 16.0], [device: iPad8,6, os-version: 15.0], [device: iPad13,8, os-version: 16.0], [device: iPad8,5, os-version: 15.0], [device: iPad13,17, os-version: 15.0], [device: iPad14,3-B, os-version: 16.0], [device: iPad8,6, os-version: 16.0], [device: iPad13,7, os-version: 15.0], [device: iPad11,2, os-version: 15.0], [device: iPad8,12, os-version: 16.0], [device: iPad11,1, os-version: 16.0], [device: iPad6,4, os-version: 15.0], [device: iPad7,3, os-version: 15.0], [device: iPad14,3-A, os-version: 16.0], and [device: iPad8,3, os-version: 16.0]
+App + On Demand Resources size: 8,7 MB compressed, 20,4 MB uncompressed
+App size: 8,7 MB compressed, 20,4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-569EB9F0-70B0-44C9-BBFD-2A48E907C0EE.ipa
+Supported variant descriptors: [device: iPad11,7, os-version: 16.0], [device: iPad6,12, os-version: 16.0], [device: iPad7,11, os-version: 15.0], [device: iPad5,1, os-version: 15.0], [device: iPad7,5, os-version: 15.0], [device: iPad6,8, os-version: 15.0], [device: iPad6,11, os-version: 16.0], [device: iPad7,12, os-version: 15.0], [device: iPad13,18, os-version: 16.0], [device: iPad11,6, os-version: 16.0], [device: iPad12,2, os-version: 16.0], [device: iPad6,7, os-version: 16.0], [device: iPad11,7, os-version: 15.0], [device: iPad7,12, os-version: 16.0], [device: iPad5,2, os-version: 15.0], [device: iPad5,4, os-version: 15.0], [device: iPad7,6, os-version: 15.0], [device: iPad13,19, os-version: 16.0], [device: iPad6,7, os-version: 15.0], [device: iPad7,5, os-version: 16.0], [device: iPad12,1, os-version: 16.0], [device: iPad5,3, os-version: 15.0], [device: iPad6,11, os-version: 15.0], [device: iPad12,1, os-version: 15.0], [device: iPad11,6, os-version: 15.0], [device: iPad6,12, os-version: 15.0], [device: iPad12,2, os-version: 15.0], [device: iPad7,6, os-version: 16.0], [device: iPad6,8, os-version: 16.0], and [device: iPad7,11, os-version: 16.0]
+App + On Demand Resources size: 8,7 MB compressed, 20,4 MB uncompressed
+App size: 8,7 MB compressed, 20,4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-58E33A38-C1AA-48A8-9AC0-8ADB1E2EE01F.ipa
+Supported variant descriptors: [device: iPad7,1, os-version: 11.0], [device: iPad7,2, os-version: 11.0], [device: iPad7,3, os-version: 11.0], [device: iPad6,4, os-version: 11.0], [device: iPad7,4, os-version: 11.0], and [device: iPad6,3, os-version: 11.0]
+App + On Demand Resources size: 11,2 MB compressed, 28 MB uncompressed
+App size: 11,2 MB compressed, 28 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-641BDBD9-DD06-4B47-9674-AFB7E130C97D.ipa
+Supported variant descriptors: [device: iPhone15,3, os-version: 16.0], [device: iPhone13,3, os-version: 16.0], [device: iPhone13,1, os-version: 16.0], [device: iPhone10,2, os-version: 16.0], [device: iPhone10,3, os-version: 15.0], [device: iPhone11,2, os-version: 16.0], [device: iPhone14,4, os-version: 15.0], [device: iPhone14,5, os-version: 15.0], [device: iPhone13,2, os-version: 16.0], [device: iPhone14,8, os-version: 16.0], [device: iPhone14,3, os-version: 16.0], [device: iPhone12,3, os-version: 15.0], [device: iPhone13,2, os-version: 15.0], [device: iPhone15,2, os-version: 16.0], [device: iPhone10,6, os-version: 15.0], [device: iPhone12,5, os-version: 15.0], [device: iPhone12,5, os-version: 16.0], [device: iPhone14,4, os-version: 16.0], [device: iPhone11,6, os-version: 15.0], [device: iPhone10,5, os-version: 15.0], [device: iPhone10,5, os-version: 16.0], [device: iPhone14,2, os-version: 15.0], [device: iPhone10,6, os-version: 16.0], [device: iPhone9,4, os-version: 15.0], [device: iPhone14,3, os-version: 15.0], [device: iPhone11,4, os-version: 16.0], [device: iPhone12,3, os-version: 16.0], [device: iPhone13,4, os-version: 15.0], [device: iPhone14,5, os-version: 16.0], [device: iPhone13,3, os-version: 15.0], [device: iPhone13,1, os-version: 15.0], [device: iPhone11,2, os-version: 15.0], [device: iPhone14,2, os-version: 16.0], [device: iPhone10,3, os-version: 16.0], [device: iPhone11,4, os-version: 15.0], [device: iPhone11,6, os-version: 16.0], [device: iPhone10,2, os-version: 15.0], [device: iPhone14,7, os-version: 16.0], [device: iPhone13,4, os-version: 16.0], and [device: iPhone9,2, os-version: 15.0]
+App + On Demand Resources size: 8,7 MB compressed, 20,4 MB uncompressed
+App size: 8,7 MB compressed, 20,4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-65F3ED0E-6C05-4F15-A3CF-1CB0FCD88102.ipa
+Supported variant descriptors: [device: iPhone10,1, os-version: 12.0], [device: iPhone9,1, os-version: 12.0], [device: iPhone10,4, os-version: 12.0], and [device: iPhone9,3, os-version: 12.0]
+App + On Demand Resources size: 11,2 MB compressed, 28 MB uncompressed
+App size: 11,2 MB compressed, 28 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-79F5065A-596A-46AA-AE0F-8C2C9B0B10B0.ipa
+Supported variant descriptors: [device: iPad7,5, os-version: 12.0], [device: iPad7,6, os-version: 12.0], [device: iPad4,3, os-version: 12.0], [device: iPad5,3, os-version: 12.0], [device: iPad4,8, os-version: 12.0], [device: iPad4,1, os-version: 12.0], [device: iPad4,2, os-version: 12.0], [device: iPad4,7, os-version: 12.0], [device: iPad4,5, os-version: 12.0], [device: iPad4,6, os-version: 12.0], [device: iPad4,4, os-version: 12.0], [device: iPad5,1, os-version: 12.0], [device: iPad6,7, os-version: 12.0], [device: iPad6,11, os-version: 12.0], [device: iPad6,8, os-version: 12.0], [device: iPad5,4, os-version: 12.0], [device: iPad4,9, os-version: 12.0], [device: iPad5,2, os-version: 12.0], and [device: iPad6,12, os-version: 12.0]
+App + On Demand Resources size: 11,2 MB compressed, 28 MB uncompressed
+App size: 11,2 MB compressed, 28 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-815EF545-E4CD-496B-8AAE-B65F80B46305.ipa
+Supported variant descriptors: [device: iPhone7,1, os-version: 11.0] and [device: iPhone8,2, os-version: 11.0]
+App + On Demand Resources size: 11,2 MB compressed, 28 MB uncompressed
+App size: 11,2 MB compressed, 28 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-830E789C-688B-401A-8907-40343640C5B6.ipa
+Supported variant descriptors: [device: iPhone11,6, os-version: 12.2], [device: iPhone9,2, os-version: 12.2], [device: iPhone9,4, os-version: 12.2], [device: iPhone10,3, os-version: 12.2], [device: iPhone10,2, os-version: 12.2], [device: iPhone10,6, os-version: 12.2], [device: iPhone10,5, os-version: 12.2], [device: iPhone11,2, os-version: 12.2], and [device: iPhone11,4, os-version: 12.2]
+App + On Demand Resources size: 8,7 MB compressed, 20,4 MB uncompressed
+App size: 8,7 MB compressed, 20,4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-8881F1AA-FAFD-4D6F-AC97-49665BCCA8C3.ipa
+Supported variant descriptors: [device: iPhone11,8, os-version: 12.0]
+App + On Demand Resources size: 11,2 MB compressed, 28 MB uncompressed
+App size: 11,2 MB compressed, 28 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-8A084180-3E75-45DF-AFE1-43881B1787E2.ipa
+Supported variant descriptors: [device: iPhone11,8, os-version: 12.2]
+App + On Demand Resources size: 8,7 MB compressed, 20,4 MB uncompressed
+App size: 8,7 MB compressed, 20,4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-A4E343FA-3521-4F47-932C-82FDD62B544C.ipa
+Supported variant descriptors: [device: iPad11,7, os-version: 14.0], [device: iPad6,11, os-version: 14.0], [device: iPad7,5, os-version: 13.0], [device: iPad6,8, os-version: 14.0], [device: iPad5,3, os-version: 13.0], [device: iPad5,4, os-version: 14.0], [device: iPad6,12, os-version: 14.0], [device: iPad7,11, os-version: 14.0], [device: iPad5,2, os-version: 14.0], [device: iPad5,2, os-version: 13.0], [device: iPad5,3, os-version: 14.0], [device: iPad5,1, os-version: 14.0], [device: iPad7,12, os-version: 14.0], [device: iPad6,7, os-version: 13.0], [device: iPad7,6, os-version: 14.0], [device: iPad7,6, os-version: 13.0], [device: iPad6,12, os-version: 13.0], [device: iPad5,4, os-version: 13.0], [device: iPad6,8, os-version: 13.0], [device: iPad5,1, os-version: 13.0], [device: iPad6,11, os-version: 13.0], [device: iPad7,11, os-version: 13.0], [device: iPad11,6, os-version: 14.0], [device: iPad7,12, os-version: 13.0], [device: iPad7,5, os-version: 14.0], and [device: iPad6,7, os-version: 14.0]
+App + On Demand Resources size: 8,7 MB compressed, 20,4 MB uncompressed
+App size: 8,7 MB compressed, 20,4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-AD6BE581-AF50-4984-A945-E24ABAD4160D.ipa
+Supported variant descriptors: [device: iPhone8,2, os-version: 12.2] and [device: iPhone7,1, os-version: 12.2]
+App + On Demand Resources size: 8,7 MB compressed, 20,4 MB uncompressed
+App size: 8,7 MB compressed, 20,4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-B2FB9921-8527-43FB-85DE-ED14E6B52252.ipa
+Supported variant descriptors: [device: iPhone6,2, os-version: 11.0], [device: iPhone8,4, os-version: 11.0], [device: iPhone6,1, os-version: 11.0], [device: iPhone7,2, os-version: 11.0], [device: iPhone8,1, os-version: 11.0], and [device: iPod7,1, os-version: 11.0]
+App + On Demand Resources size: 11,2 MB compressed, 28 MB uncompressed
+App size: 11,2 MB compressed, 28 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-B78D81DF-7B6C-4A4F-95F5-58CCB1142B59.ipa
+Supported variant descriptors: [device: iPhone7,1, os-version: 12.0] and [device: iPhone8,2, os-version: 12.0]
+App + On Demand Resources size: 11,2 MB compressed, 28 MB uncompressed
+App size: 11,2 MB compressed, 28 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-BDE7F9BB-F049-486A-BC5C-161CB9A7777D.ipa
+Supported variant descriptors: [device: iPad4,9, os-version: 11.0], [device: iPad4,2, os-version: 11.0], [device: iPad4,7, os-version: 11.0], [device: iPad6,11, os-version: 11.0], [device: iPad4,1, os-version: 11.0], [device: iPad6,12, os-version: 11.0], [device: iPad6,7, os-version: 11.0], [device: iPad5,3, os-version: 11.0], [device: iPad4,3, os-version: 11.0], [device: iPad7,5, os-version: 11.0], [device: iPad5,4, os-version: 11.0], [device: iPad4,8, os-version: 11.0], [device: iPad7,6, os-version: 11.0], [device: iPad4,4, os-version: 11.0], [device: iPad5,2, os-version: 11.0], [device: iPad6,8, os-version: 11.0], [device: iPad4,5, os-version: 11.0], [device: iPad4,6, os-version: 11.0], and [device: iPad5,1, os-version: 11.0]
+App + On Demand Resources size: 11,2 MB compressed, 28 MB uncompressed
+App size: 11,2 MB compressed, 28 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-C145C61C-B3A7-458C-A92F-E2C24307ABCA.ipa
+Supported variant descriptors: [device: iPhone14,6, os-version: 16.0], [device: iPhone10,1, os-version: 16.0], [device: iPhone9,1, os-version: 15.0], [device: iPhone12,8, os-version: 15.0], [device: iPhone12,8, os-version: 16.0], [device: iPhone10,1, os-version: 15.0], [device: iPhone14,6, os-version: 15.0], [device: iPhone10,4, os-version: 15.0], [device: iPhone9,3, os-version: 15.0], and [device: iPhone10,4, os-version: 16.0]
+App + On Demand Resources size: 8,7 MB compressed, 20,4 MB uncompressed
+App size: 8,7 MB compressed, 20,4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-C2A6F12C-8761-4A9D-BA37-9FC6A88E408C.ipa
+Supported variant descriptors: [device: iPhone12,5, os-version: 14.0], [device: iPhone13,4, os-version: 14.0], [device: iPhone9,2, os-version: 13.0], [device: iPhone10,3, os-version: 13.0], [device: iPhone10,5, os-version: 14.0], [device: iPhone13,2, os-version: 14.0], [device: iPhone10,3, os-version: 14.0], [device: iPhone11,4, os-version: 13.0], [device: iPhone12,5, os-version: 13.0], [device: iPhone10,2, os-version: 14.0], [device: iPhone13,1, os-version: 14.0], [device: iPhone10,6, os-version: 14.0], [device: iPhone12,3, os-version: 13.0], [device: iPhone13,3, os-version: 14.0], [device: iPhone10,6, os-version: 13.0], [device: iPhone11,4, os-version: 14.0], [device: iPhone9,2, os-version: 14.0], [device: iPhone9,4, os-version: 14.0], [device: iPhone11,2, os-version: 14.0], [device: iPhone11,6, os-version: 14.0], [device: iPhone11,6, os-version: 13.0], [device: iPhone12,3, os-version: 14.0], [device: iPhone9,4, os-version: 13.0], [device: iPhone10,5, os-version: 13.0], [device: iPhone10,2, os-version: 13.0], and [device: iPhone11,2, os-version: 13.0]
+App + On Demand Resources size: 8,7 MB compressed, 20,4 MB uncompressed
+App size: 8,7 MB compressed, 20,4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-D118E907-2516-422F-B613-8EBFB4D6A161.ipa
+Supported variant descriptors: [device: iPhone9,1, os-version: 11.0], [device: iPhone10,1, os-version: 11.0], [device: iPhone9,3, os-version: 11.0], and [device: iPhone10,4, os-version: 11.0]
+App + On Demand Resources size: 11,2 MB compressed, 28 MB uncompressed
+App size: 11,2 MB compressed, 28 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-D5E3CF7C-A7DF-4806-9D9B-536AB064A6FE.ipa
+Supported variant descriptors: [device: iPhone6,1, os-version: 12.2], [device: iPhone8,1, os-version: 12.2], [device: iPod7,1, os-version: 12.2], [device: iPhone8,4, os-version: 12.2], [device: iPhone6,2, os-version: 12.2], [device: iPhone7,2, os-version: 12.2], and [device: iPod9,1, os-version: 12.2]
+App + On Demand Resources size: 8,7 MB compressed, 20,4 MB uncompressed
+App size: 8,7 MB compressed, 20,4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-D8BB248A-3052-4E45-920E-F9BF94238FAD.ipa
+Supported variant descriptors: [device: iPad11,4, os-version: 14.0], [device: iPad7,2, os-version: 13.0], [device: iPad6,4, os-version: 14.0], [device: iPad8,7, os-version: 14.0], [device: iPad7,1, os-version: 13.0], [device: iPad8,11, os-version: 14.0], [device: iPad8,9, os-version: 14.0], [device: iPad8,8, os-version: 13.0], [device: iPad8,2, os-version: 14.0], [device: iPad8,10, os-version: 14.0], [device: iPad8,12, os-version: 13.0], [device: iPad8,5, os-version: 14.0], [device: iPad13,5, os-version: 14.0], [device: iPad8,6, os-version: 14.0], [device: iPad7,3, os-version: 13.0], [device: iPad8,12, os-version: 14.0], [device: iPad8,4, os-version: 14.0], [device: iPad6,3, os-version: 13.0], [device: iPad6,3, os-version: 14.0], [device: iPad7,3, os-version: 14.0], [device: iPad11,3, os-version: 13.0], [device: iPad7,2, os-version: 14.0], [device: MacFamily20,1, os-version: 14.0], [device: iPad13,4, os-version: 14.0], [device: iPad6,4, os-version: 13.0], [device: iPad13,11, os-version: 14.0], [device: iPad8,8, os-version: 14.0], [device: iPad8,1, os-version: 13.0], [device: iPad13,2, os-version: 14.0], [device: iPad8,3, os-version: 13.0], [device: iPad8,6, os-version: 13.0], [device: iPad13,7, os-version: 14.0], [device: iPad7,1, os-version: 14.0], [device: iPad13,1, os-version: 14.0], [device: iPad8,2, os-version: 13.0], [device: iPad13,8, os-version: 14.0], [device: iPad11,2, os-version: 13.0], [device: iPad11,1, os-version: 14.0], [device: iPad13,6, os-version: 14.0], [device: iPad8,5, os-version: 13.0], [device: iPad8,10, os-version: 13.0], [device: iPad8,11, os-version: 13.0], [device: iPad11,2, os-version: 14.0], [device: iPad13,9, os-version: 14.0], [device: iPad8,1, os-version: 14.0], [device: iPad8,9, os-version: 13.0], [device: iPad8,3, os-version: 14.0], [device: iPad8,4, os-version: 13.0], [device: iPad11,3, os-version: 14.0], [device: iPad8,7, os-version: 13.0], [device: iPad7,4, os-version: 13.0], [device: iPad11,1, os-version: 13.0], [device: iPad13,10, os-version: 14.0], [device: iPad7,4, os-version: 14.0], and [device: iPad11,4, os-version: 13.0]
+App + On Demand Resources size: 8,7 MB compressed, 20,4 MB uncompressed
+App size: 8,7 MB compressed, 20,4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-D8EF50FF-7178-4707-A2E5-83AD0757C48A.ipa
+Supported variant descriptors: [device: iPhone12,1, os-version: 16.0], [device: iPhone11,8, os-version: 15.0], [device: iPhone12,1, os-version: 15.0], and [device: iPhone11,8, os-version: 16.0]
+App + On Demand Resources size: 8,7 MB compressed, 20,4 MB uncompressed
+App size: 8,7 MB compressed, 20,4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-E2D3AD37-5287-4BE4-B4DE-A25A3BF695CD.ipa
+Supported variant descriptors: [device: iPhone9,3, os-version: 12.2], [device: iPhone10,4, os-version: 12.2], [device: iPhone10,1, os-version: 12.2], and [device: iPhone9,1, os-version: 12.2]
+App + On Demand Resources size: 8,7 MB compressed, 20,4 MB uncompressed
+App size: 8,7 MB compressed, 20,4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-F0B1DBF7-73CE-4FBF-9D73-DEE9FDD9B229.ipa
+Supported variant descriptors: [device: iPhone8,2, os-version: 13.0] and [device: iPhone8,2, os-version: 14.0]
+App + On Demand Resources size: 8,7 MB compressed, 20,4 MB uncompressed
+App size: 8,7 MB compressed, 20,4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-F166240C-98FE-4A86-9ED7-E4235804CAC0.ipa
+Supported variant descriptors: [device: iPhone8,2, os-version: 15.0]
+App + On Demand Resources size: 8,7 MB compressed, 20,4 MB uncompressed
+App size: 8,7 MB compressed, 20,4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob-F67102DD-E09A-4FB1-BED5-F0FBBD417B92.ipa
+Supported variant descriptors: [device: iPhone8,1, os-version: 15.0], [device: iPhone8,4, os-version: 15.0], and [device: iPod9,1, os-version: 15.0]
+App + On Demand Resources size: 8,7 MB compressed, 20,4 MB uncompressed
+App size: 8,7 MB compressed, 20,4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: adomob.ipa
+Supported variant descriptors: Universal
+App + On Demand Resources size: 18,3 MB compressed, 50,7 MB uncompressed
+App size: 18,3 MB compressed, 50,7 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed

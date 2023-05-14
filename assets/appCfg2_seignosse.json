@@ -1,0 +1,32 @@
+[
+     {"type" : "Chauffage",
+     "data":[ 
+        {"location":"1er Suite"    ,"column":1,"row":1,"master":"th1erSuite","slave":["sw1erSuite"],"color":0},
+        {"location":"1er Dressing" ,"column":2,"row":1,"master":"th1erDressing","slave":["sw1erDressing"],"color":0},
+        {"location":"1er Rouge"    ,"column":3,"row":1,"master":"th1erRouge","slave":["sw1erRouge"],"color":0},
+
+        {"location":"1er Sdb"      ,"column":1,"row":2,"master":"th1erSdb","slave":["sw1erSdb"],"color":0},
+        {"location":"1er Wc"       ,"column":2,"row":2,"master":"th1erWc","slave":["sw1erWc"],"color":0},
+ 
+        {"location":"Rdc Bleue"    ,"column":1,"row":3,"master":"thRdcBleue","slave":["swRdcBleue"],"color":0},
+        {"location":"Rdc Marron"   ,"column":2,"row":3,"master":"thRdcMarron","slave":["swRdcMarron"],"color":0},
+        {"location":"Rdc Verte"    ,"column":3,"row":3,"master":"thRdcVerte","slave":["swRdcVerte"],"color":0},
+
+        {"location":"Rdc Sdb"      ,"column":1,"row":4,"master":"thRdcSdb","slave":["swRdcSdb"],"color":0},
+        {"location":"Rdc Wc"       ,"column":2,"row":4,"master":"thRdcWc","slave":["swRdcWc"],"color":0},
+
+        {"location":"Rdc Buanderie","column":1,"row":5,"master":"thRdcBuanderie","slave":["swRdcBuanderie"],"color":0},
+        {"location":"Salon"        ,"column":2,"row":5,"master":"thRdcSalon","slave":["swRdcSalonPiscine","swRdcSalonFront","swRdcSalonCouloir","swRdcEntree","swRdcCuisine"],"color":0}
+        ]},
+    {"type":"Consommation",
+    "data":[
+        {"location":"MAISON","column":1,"row":1,"master":"pwPrincipale","slave":[],"color":0},
+        {"location":"SPA","column":1,"row":2,"master":"pwSecondaire","slave":[],"color":0}
+       ]},
+    {"type":"Thermostat",
+    "data":[
+        {"location":"salon"    ,"column":1,"row":1,"master":"gateway","slave":["sw1erSuite","sw1erDressing","sw1erRouge","sw1erSdb","sw1erWc","swRdcBleue","swRdcMarron","swRdcVerte","swRdcSdb","swRdcWc","swRdcBuanderie","swRdcSalonPiscine","swRdcSalonFront","swRdcSalonCouloir","swRdcEntree","swRdcCuisine"],"color":0}
+        ]}
+]
+
+// a envoyer sur        app_config/bauduin/seignosse/dummy/appCfg2

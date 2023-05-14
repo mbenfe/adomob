@@ -1,0 +1,38 @@
+name: adomob
+description: Application mobile Adomelec
+publish_to: 'none'
+version: 0.1.0
+repository: https://github.com/mbenfe/adomob.git
+
+environment:
+  sdk: '>=2.19.0 <4.0.0'
+
+dependencies:
+  dartdoc: ^6.2.2
+  dhttpd: ^4.0.1
+  flutter:
+    sdk: flutter
+  flutter_launcher_icons: ^0.13.1
+  flutter_riverpod: ^2.3.6
+  material_design_icons_flutter: ^6.0.7096
+  my_adomob:
+    path: ./packages/my_adomob
+#    path: "./packages/my_adomob"
+  my_models:
+    path: ./packages/my_models
+  
+  
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/AppIcon.png"
+  remove_alpha_ios: true
+  adaptive_icon_background: "#ed1e79"
