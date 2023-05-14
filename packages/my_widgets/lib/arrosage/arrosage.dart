@@ -29,9 +29,9 @@ class RootArrosageWidget extends ConsumerWidget {
                 bottomLeft: Radius.circular(60 / 2),
               )),
           // gauge
-          child: Stack(
+          child: const Stack(
             alignment: Alignment.center,
-            children: const <Widget>[
+            children: <Widget>[
               Text('Arrosage', style: TextStyle(fontSize: 20)),
               // text temperature
             ],
