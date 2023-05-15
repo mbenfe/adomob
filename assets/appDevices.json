@@ -1,0 +1,5 @@
+{
+    "gateway":{"location":"Garage","profile":"PW-01","function":"Consommation"}
+}
+
+// envoyer sur app_config/benfeghoul/marcq/dummy/devicesCfg

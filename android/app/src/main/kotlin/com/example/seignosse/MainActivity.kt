@@ -1,4 +1,4 @@
-package com.example.seignosse
+package com.example.marcq
 
 import io.flutter.embedding.android.FlutterActivity
 
