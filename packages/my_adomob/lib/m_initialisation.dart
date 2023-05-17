@@ -3,15 +3,16 @@ import 'package:mqtt_client/mqtt_client.dart';
 import 'package:my_mqtt/mqtt_handler.dart';
 
 import 'm_analyse_mqtt.dart';
+import 'm_define.dart';
 import 'm_json.dart';
 
 MQTTClientManager appMqttClientManager = MQTTClientManager(server: '82.64.178.10', name: 'admob', port: 1883);
 // mqtt topic for configuring mobile application
-const String subscribConfigTopic = "app_config/benfeghoul/marcq/#";
-const String publishConfigTopic = "app_config/benfeghoul/marcq";
+const String subscribConfigTopic = "app_config/$client/$lieu/#";
+const String publishConfigTopic = "app_config/$client/$lieu";
 // mqtt topic when running application
-const String subscribGatewayTopic = "gw/benfeghoul/marcq/#";
-const String publishGatewayTopic = "gw/benfeghoul/marcq";
+const String subscribGatewayTopic = "gw/$client/$lieu/#";
+const String publishGatewayTopic = "gw/$client/$lieu";
 
 /// ************************************root initialisation gestor ****************************
 void app_initialisation() {

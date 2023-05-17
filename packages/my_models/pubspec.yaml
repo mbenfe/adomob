@@ -20,6 +20,8 @@ dependencies:
   freezed_annotation: ^2.2.0
   my_mqtt:
     path: ../my_mqtt
+  my_adomob:
+    path: ../my_adomob
 
 
 dev_dependencies:

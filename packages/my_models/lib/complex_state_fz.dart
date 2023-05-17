@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:my_mqtt/mqtt_handler.dart';
+import 'package:my_adomob/m_define.dart';
 
 part 'complex_state_fz.freezed.dart';
 
@@ -30,14 +31,14 @@ class JsonForMqtt with _$JsonForMqtt {
 
   //* commande allumage chauffage (mode manuel)
   void classSwitchToggle() {
-    String topic = "gw/benfeghoul/marcq/cmnd/GW/ZbSend";
+    String topic = "gw/$client/$lieu/cmnd/GW/ZbSend";
     String payload = '{"Device":"$deviceId","send":{"Power":"Toggle"}}';
     publishMqtt(topic, payload);
   }
 
   //* envoi du setup thermostat: away, semaine, week-end
   void classSendThermostat(String targetDevice, String period, Map<String, dynamic> tab) {
-    String topic = "gw/benfeghoul/marcq/$targetDevice/tele/$period";
+    String topic = "gw/$client/$lieu/$targetDevice/tele/$period";
     String payload = tab.toString();
     payload = jsonEncode(tab);
     publishMqtt(topic, payload);
@@ -76,7 +77,7 @@ class ThermostatAway with _$ThermostatAway {
   factory ThermostatAway({
     required int temperature,
     required int humidity,
-    String? Name,
+    String? name,
   }) = _ThermostatAway;
 
 //  factory ThermostatAway.fromJson(Map<String, dynamic> json) => _$ThermostatAwayFromJson(json);

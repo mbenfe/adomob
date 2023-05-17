@@ -1,0 +1,57 @@
+[
+    {
+        "type": "Home",
+        "data": [
+            {
+                "location": "MAISON",
+                "column": 1,
+                "row": 1,
+                "master": "",
+                "slave": [],
+                "color": 0
+            }
+        ]
+    },
+    {
+        "type": "Consommation",
+        "data": [
+            {
+                "location": "MAISON",
+                "column": 1,
+                "row": 1,
+                "master": "gateway",
+                "slave": [],
+                "color": 0
+            }
+        ]
+    },
+    {
+        "type": "Climatisation",
+        "data": [
+            {
+                "location": "SALON",
+                "column": 1,
+                "row": 1,
+                "master": "thMarcq1",
+                "slave": [
+                    "irClim"
+                ],
+                "color": 0
+            }
+        ]
+    },
+    {
+        "type": "Setup",
+        "data": [
+            {
+                "location": "MAISON",
+                "column": 1,
+                "row": 1,
+                "master": "",
+                "slave": [],
+                "color": 0
+            }
+        ]
+    }
+]
+// a envoyer sur        app_config/benfeghoul/marcq/dummy/appCfg2

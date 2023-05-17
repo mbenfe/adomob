@@ -28,7 +28,9 @@ void appAnalyseReceivedMqtt(String topic, String payload) {
 
   //print('$countTeleMessages + $countOtherMessages : $countMqttMessages - Buffer:$countBufferMqtt');
   //! filter print
-  // if (kDebugMode) print("topic: $topic: payload : ${message.payload}");
+  //if (kDebugMode) print("topic: $topic: payload : ${message.payload}");
+  // filtre
+  if (payload == "") return;
 
   switch (message.topicType) {
     case "appCfg": // client/lieu/dummy/appCfg
@@ -80,6 +82,10 @@ void appAnalyseReceivedMqtt(String topic, String payload) {
 void analyseTeleJsonPayload(String jsonText) {
 //  var mesure = ref.watch(mapWidgetMqtt[payload.Name]!.notifier);
   Map<String, dynamic> jsonMap = json.decode(jsonText);
+  if (jsonMap['Device'] == null) {
+    return;
+  }
+
   countTeleMessages++;
   if (checkSonoffTemperature(jsonMap) == true) return;
 
@@ -101,6 +107,9 @@ void analyseTeleJsonPayload(String jsonText) {
 void analyseOtherJsonPayload(String jsonText) {
   Map<String, dynamic> jsonMap = json.decode(jsonText);
   WidgetMqttStateNotifier? myStateNotifier = mapAllDevicesSubStateNotifier[jsonMap['Name']];
+  if (jsonMap['Device'] == null) {
+    return;
+  }
 
   countOtherMessages++;
 //  WidgetMqttChangeNotifier? notifier2 = mapWidgetMqtt[jsonMap['Name']] as WidgetMqttChangeNotifier?;

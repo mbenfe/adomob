@@ -375,7 +375,7 @@ abstract class _JsonForMqtt extends JsonForMqtt {
 mixin _$ThermostatAway {
   int get temperature => throw _privateConstructorUsedError;
   int get humidity => throw _privateConstructorUsedError;
-  String? get Name => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ThermostatAwayCopyWith<ThermostatAway> get copyWith =>
@@ -388,7 +388,7 @@ abstract class $ThermostatAwayCopyWith<$Res> {
           ThermostatAway value, $Res Function(ThermostatAway) then) =
       _$ThermostatAwayCopyWithImpl<$Res, ThermostatAway>;
   @useResult
-  $Res call({int temperature, int humidity, String? Name});
+  $Res call({int temperature, int humidity, String? name});
 }
 
 /// @nodoc
@@ -406,7 +406,7 @@ class _$ThermostatAwayCopyWithImpl<$Res, $Val extends ThermostatAway>
   $Res call({
     Object? temperature = null,
     Object? humidity = null,
-    Object? Name = freezed,
+    Object? name = freezed,
   }) {
     return _then(_value.copyWith(
       temperature: null == temperature
@@ -417,9 +417,9 @@ class _$ThermostatAwayCopyWithImpl<$Res, $Val extends ThermostatAway>
           ? _value.humidity
           : humidity // ignore: cast_nullable_to_non_nullable
               as int,
-      Name: freezed == Name
-          ? _value.Name
-          : Name // ignore: cast_nullable_to_non_nullable
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -433,7 +433,7 @@ abstract class _$$_ThermostatAwayCopyWith<$Res>
       __$$_ThermostatAwayCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int temperature, int humidity, String? Name});
+  $Res call({int temperature, int humidity, String? name});
 }
 
 /// @nodoc
@@ -449,7 +449,7 @@ class __$$_ThermostatAwayCopyWithImpl<$Res>
   $Res call({
     Object? temperature = null,
     Object? humidity = null,
-    Object? Name = freezed,
+    Object? name = freezed,
   }) {
     return _then(_$_ThermostatAway(
       temperature: null == temperature
@@ -460,9 +460,9 @@ class __$$_ThermostatAwayCopyWithImpl<$Res>
           ? _value.humidity
           : humidity // ignore: cast_nullable_to_non_nullable
               as int,
-      Name: freezed == Name
-          ? _value.Name
-          : Name // ignore: cast_nullable_to_non_nullable
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -472,18 +472,18 @@ class __$$_ThermostatAwayCopyWithImpl<$Res>
 
 class _$_ThermostatAway implements _ThermostatAway {
   _$_ThermostatAway(
-      {required this.temperature, required this.humidity, this.Name});
+      {required this.temperature, required this.humidity, this.name});
 
   @override
   final int temperature;
   @override
   final int humidity;
   @override
-  final String? Name;
+  final String? name;
 
   @override
   String toString() {
-    return 'ThermostatAway(temperature: $temperature, humidity: $humidity, Name: $Name)';
+    return 'ThermostatAway(temperature: $temperature, humidity: $humidity, name: $name)';
   }
 
   @override
@@ -495,11 +495,11 @@ class _$_ThermostatAway implements _ThermostatAway {
                 other.temperature == temperature) &&
             (identical(other.humidity, humidity) ||
                 other.humidity == humidity) &&
-            (identical(other.Name, Name) || other.Name == Name));
+            (identical(other.name, name) || other.name == name));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, temperature, humidity, Name);
+  int get hashCode => Object.hash(runtimeType, temperature, humidity, name);
 
   @JsonKey(ignore: true)
   @override
@@ -512,14 +512,14 @@ abstract class _ThermostatAway implements ThermostatAway {
   factory _ThermostatAway(
       {required final int temperature,
       required final int humidity,
-      final String? Name}) = _$_ThermostatAway;
+      final String? name}) = _$_ThermostatAway;
 
   @override
   int get temperature;
   @override
   int get humidity;
   @override
-  String? get Name;
+  String? get name;
   @override
   @JsonKey(ignore: true)
   _$$_ThermostatAwayCopyWith<_$_ThermostatAway> get copyWith =>
