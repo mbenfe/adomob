@@ -28,13 +28,13 @@ class RootHomeWidget extends ConsumerWidget {
                 controller: webController1,
               ),
             ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: 300,
-              child: WebViewWidget(
-                controller: webController2,
-              ),
-            )
+            // SizedBox(
+            //   width: MediaQuery.of(context).size.width,
+            //   height: 300,
+            //   child: WebViewWidget(
+            //     controller: webController2,
+            //   ),
+            // )
           ],
         );
       },
