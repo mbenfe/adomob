@@ -20,6 +20,7 @@ dependencies:
 #    path: "./packages/my_adomob"
   my_models:
     path: ./packages/my_models
+  webview_flutter: ^4.2.0
   
   
 dev_dependencies:
