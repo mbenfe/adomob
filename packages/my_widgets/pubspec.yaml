@@ -34,6 +34,7 @@ dependencies:
   material_design_icons_flutter: ^6.0.7096
   dartdoc: ^6.2.2
   dhttpd: ^4.0.1
+  sleek_circular_slider: ^2.0.1
  
 dev_dependencies:
   flutter_test:

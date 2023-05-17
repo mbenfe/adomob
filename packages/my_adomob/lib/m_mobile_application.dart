@@ -19,6 +19,7 @@ import 'package:my_widgets/state_notifier.dart';
 import 'package:my_widgets/switch/switch.dart';
 import 'package:my_widgets/temperature/temperature.dart';
 import 'package:my_widgets/thermostat/thermostat.dart';
+import 'package:my_widgets/climatisation/climatisation.dart';
 
 import 'm_define.dart';
 import 'm_json.dart';
@@ -48,6 +49,7 @@ class AppWidgetLayout extends ConsumerWidget {
       appBuildSelectedView('Temperature'),
       appBuildSelectedView('Thermostat'),
       appBuildSelectedView('Consommation'),
+      appBuildSelectedView('Climatisation'),
     ];
     return Scaffold(
       body: screens[appGetPageIndex(appIndex)],
@@ -180,6 +182,8 @@ class GeneratedWidget extends ConsumerWidget {
         return RootThermostatWidget(master: master, listSlaves: listSlaves, listStateProviders: listStateProviders, location: location);
       case 'CONSOMMATION':
         return RootCourantWidget(master: master, listSlaves: listSlaves, listStateProviders: listStateProviders, location: location);
+      case 'CLIMATISATION':
+        return RootClimatisationWidget(master: master, listSlaves: listSlaves, listStateProviders: listStateProviders, location: location);
       default:
         return Container();
     }

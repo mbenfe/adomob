@@ -1,5 +1,6 @@
 {
-    "gateway":{"location":"Garage","profile":"PW-01","function":"Consommation"}
+    "gateway":{"location":"Garage","profile":"PW-01","function":"Consommation"},
+    "irClim":{"location":"Garage","profile":"PW-01","function":"Climatisation"}
 }
 
 // envoyer sur app_config/benfeghoul/marcq/dummy/devicesCfg

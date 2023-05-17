@@ -23,4 +23,9 @@ List<AppGroups> preDefinedAppBar = [
   // not from database/ json
   AppGroups(10, MdiIcons.homeThermometerOutline, 'Thermostat'),
   AppGroups(11, MdiIcons.lightningBoltOutline, 'Consommation'),
+  AppGroups(12, MdiIcons.airConditioner, 'Climatisation'),
+  AppGroups(13, Icons.settings, 'Setup'),
 ];
+
+const String client = "benfeghoul";
+const String lieu = "marcq";

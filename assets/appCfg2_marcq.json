@@ -2,7 +2,11 @@
     {"type":"Consommation",
     "data":[
         {"location":"MAISON","column":1,"row":1,"master":"gateway","slave":[],"color":0}
-       ]}
-]
+       ]},
+       {"type":"Climatisation",
+       "data":[
+           {"location":"SALON","column":1,"row":1,"master":"irClim","slave":[],"color":0}
+          ]}
+   ]
 
 // a envoyer sur        app_config/benfeghoul/marcq/dummy/appCfg2
