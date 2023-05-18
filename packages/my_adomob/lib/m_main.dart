@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:my_widgets/meteo/open_weather_map.dart';
+import 'package:weather/weather.dart';
 
 import 'm_initialisation.dart';
 import 'm_mobile_application.dart';
@@ -12,34 +13,12 @@ class AppHomePage extends StatefulWidget {
   State<AppHomePage> createState() => _AppHomePageState();
 }
 
-late final WebViewController webController1;
-late final WebViewController webController2;
-
 class _AppHomePageState extends State<AppHomePage> {
   @override
   void initState() {
     super.initState();
     WidgetsFlutterBinding.ensureInitialized();
     app_initialisation();
-    webController1 = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..loadRequest(
-        Uri.dataFromString('''<html>
-              <head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
-              <body><iframe id="widget_autocomplete_preview"  width="300" height="150" frameborder="1" src="https://meteofrance.com/widget/prevision/402960##03A9F4B3"> </iframe></body></html>''',
-            mimeType: 'text/html'),
-      );
-    webController2 = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..loadRequest(
-        Uri.dataFromString(
-            '<html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body><iframe width="300" height="150" frameborder="1" src="https://meteofrance.com/widget/prevision/402960##03A9F4B3"></iframe></body></html>',
-            mimeType: 'text/html'),
-      );
-    // Uri.dataFromString('''<html>
-    //   <head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
-    //   <body><iframe src="https://www.youtube.com/embed/PAOAjOR6K_Q"
-    //   title="YouTube video player" frameborder="0"></iframe></body></html>''', mimeType: 'text/html'));
   }
 
   @override

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_adomob/m_main.dart';
 import 'package:my_models/complex_state_fz.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
+import '../meteo/meteo.dart';
 import '../state_notifier.dart';
 
 /// ConsumerWidget for riverpod
@@ -24,9 +23,7 @@ class RootHomeWidget extends ConsumerWidget {
             SizedBox(
               width: MediaQuery.of(context).size.width,
               height: 300,
-              child: WebViewWidget(
-                controller: webController1,
-              ),
+              child: const SubMeteoWidget(),
             ),
             // SizedBox(
             //   width: MediaQuery.of(context).size.width,

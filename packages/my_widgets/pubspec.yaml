@@ -38,7 +38,7 @@ dependencies:
   flutter_xlider: ^3.5.0
   syncfusion_flutter_sliders: ^21.2.4
   flutter_switch: ^0.3.2
-  webview_flutter: ^4.2.0
+  weather: ^2.0.1
  
 dev_dependencies:
   flutter_test:
