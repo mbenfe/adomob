@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather/weather.dart';
+import 'package:weather_icons/weather_icons.dart';
 
 import 'open_weather_map.dart';
 
@@ -74,7 +75,7 @@ class JourWidgetState extends State<JourWidget> {
       height: 100,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [Text(textDirection: TextDirection.ltr, donneesJour.temperature.toString())],
+        children: [const BoxedIcon(WeatherIcons.day_sunny), Text(textDirection: TextDirection.ltr, donneesJour.temperature.toString())],
       ),
     );
   }

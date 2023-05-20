@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_widgets/meteo/open_weather_map.dart';
-import 'package:weather/weather.dart';
 
 import 'm_initialisation.dart';
 import 'm_mobile_application.dart';
