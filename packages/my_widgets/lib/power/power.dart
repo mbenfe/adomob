@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_circular_text/circular_text.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_animations/my_animations.dart';
 import 'package:my_models/complex_state_fz.dart';
@@ -122,7 +123,7 @@ class TempCharts extends StatelessWidget {
   }
 }
 
-class PowerGauge extends StatefulWidget {
+class PowerGauge extends StatelessWidget {
   const PowerGauge({
     Key? key,
     required this.jsonMap,
@@ -131,25 +132,20 @@ class PowerGauge extends StatefulWidget {
   final Map jsonMap;
 
   @override
-  State<PowerGauge> createState() => _PowerGaugeState();
-}
-
-class _PowerGaugeState extends State<PowerGauge> {
-  @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 180,
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
-          PowerGaugeInterior(jsonMap: widget.jsonMap),
-          PowerGaugeExterior(jsonMap: widget.jsonMap),
+          //  PowerGaugeInterior(jsonMap: jsonMap),
+          PowerGaugeExterior(jsonMap: jsonMap),
           Positioned(
               width: 50,
               height: 50,
               right: 20,
               top: 20,
-              child: widget.jsonMap['ActivePower'] != null ? AnimationRipplePower(widget.jsonMap['ActivePower']!.toDouble()) : const Placeholder())
+              child: jsonMap['ActivePower'] != null ? AnimationRipplePower(jsonMap['ActivePower']!.toDouble()) : const Placeholder())
         ],
       ),
     );
@@ -167,83 +163,74 @@ class PowerGaugeExterior extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SfRadialGauge(
-        //   title: const GaugeTitle(text: 'Principal', textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-        enableLoadingAnimation: true,
-        animationDuration: 1000,
-        axes: <RadialAxis>[
-          RadialAxis(
-            minimum: 0,
-            maximum: 12000,
-            showTicks: false,
-            interval: 4000,
-            majorTickStyle: const MinorTickStyle(color: Colors.black, length: 1),
-            labelsPosition: ElementsPosition.outside,
-            showLabels: false,
-            //radiusFactor: 0,
-            labelOffset: 20,
-            axisLineStyle: const AxisLineStyle(thickness: 10, color: Colors.blue),
-            pointers: <GaugePointer>[
-              RangePointer(
-                value: jsonMap['ActivePower'] != null ? jsonMap['ActivePower'].toDouble() : 0,
-                color: Colors.red,
-                width: 5,
-                pointerOffset: 2,
-              )
-            ],
-          )
-        ]);
-  }
-}
-
-class PowerGaugeInterior extends StatelessWidget {
-  const PowerGaugeInterior({
-    Key? key,
-    required this.jsonMap,
-  }) : super(key: key);
-
-  final Map jsonMap;
-
-  @override
-  Widget build(BuildContext context) {
-    return SfRadialGauge(
-        // title: const GaugeTitle(text: 'Principal', textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-        enableLoadingAnimation: true,
-        animationDuration: 1000,
-        axes: <RadialAxis>[
-          RadialAxis(
+    return Stack(alignment: Alignment.center, children: [
+      SfRadialGauge(
+          //   title: const GaugeTitle(text: 'Principal', textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          enableLoadingAnimation: true,
+          animationDuration: 1000,
+          axes: <RadialAxis>[
+            RadialAxis(
               minimum: 0,
               maximum: 12000,
-              axisLineStyle: const AxisLineStyle(thickness: 0),
-              radiusFactor: .8,
-              showLabels: false,
-              labelsPosition: ElementsPosition.outside,
-              majorTickStyle: const MajorTickStyle(color: Colors.black),
+              showTicks: true,
+              tickOffset: -11,
+              backgroundImage: const AssetImage("images/dark_theme_gauge_wip.png"),
               interval: 2000,
-              minorTicksPerInterval: 5,
+              onLabelCreated: axisLabelCreated,
+              labelsPosition: ElementsPosition.outside,
+              showLabels: true,
+              showFirstLabel: true,
+              showLastLabel: true,
+              canRotateLabels: true,
+              radiusFactor: .93,
+              labelOffset: 15,
+              axisLineStyle: const AxisLineStyle(thickness: 15, color: Colors.blue),
               pointers: <GaugePointer>[
-                NeedlePointer(
+                RangePointer(
                   value: jsonMap['ActivePower'] != null ? jsonMap['ActivePower'].toDouble() : 0,
-                  enableAnimation: true,
-                  needleColor: Colors.red,
-                  needleLength: 0.8,
-                  needleEndWidth: 1,
-                  needleStartWidth: 1,
-                  knobStyle: const KnobStyle(color: Colors.red),
-                  tailStyle: const TailStyle(
-                    width: 1,
-                    length: .2,
-                    color: Colors.red,
-                  ),
+                  color: Colors.red,
+                  width: 11,
+                  pointerOffset: 2,
                 ),
               ],
               annotations: <GaugeAnnotation>[
                 GaugeAnnotation(
-                  widget: Text("${jsonMap['ActivePower']}", style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                  positionFactor: 0.8,
-                  angle: 90,
-                )
-              ]),
-        ]);
+                  positionFactor: 0.1,
+                  widget: jsonMap['ActivePower'] != null
+                      ? Text(
+                          textAlign: TextAlign.center,
+                          "${jsonMap['ActivePower']}",
+                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.red),
+                        )
+                      : const Text(''),
+                ),
+              ],
+            ),
+          ]),
+      CircularText(
+        radius: 58,
+        position: CircularTextPosition.inside,
+        children: [
+          TextItem(
+              text: const Text(
+                'WATTS',
+                style: TextStyle(fontSize: 14, color: Colors.blue),
+              ),
+              startAngle: 110,
+              direction: CircularTextDirection.anticlockwise),
+        ],
+      ),
+    ]);
+  }
+}
+
+void axisLabelCreated(AxisLabelCreatedArgs args) {
+  String newText = "";
+  int length;
+  if (args.text != '0') {
+    length = args.text.length;
+    newText = args.text.substring(0, length - 3);
+    newText += 'k';
+    args.text = newText;
   }
 }

@@ -8,11 +8,11 @@ import 'm_json.dart';
 
 MQTTClientManager appMqttClientManager = MQTTClientManager(server: '82.64.178.10', name: 'admob', port: 1883);
 // mqtt topic for configuring mobile application
-const String subscribConfigTopic = "app_config/$client/$lieu/#";
-const String publishConfigTopic = "app_config/$client/$lieu";
+const String subscribConfigTopic = "app_config/$client/$ville/#";
+const String publishConfigTopic = "app_config/$client/$ville";
 // mqtt topic when running application
-const String subscribGatewayTopic = "gw/$client/$lieu/#";
-const String publishGatewayTopic = "gw/$client/$lieu";
+const String subscribGatewayTopic = "gw/$client/$ville/#";
+const String publishGatewayTopic = "gw/$client/$ville";
 
 /// ************************************root initialisation gestor ****************************
 void app_initialisation() {

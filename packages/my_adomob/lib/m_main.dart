@@ -73,6 +73,11 @@ class InitializationApp extends StatelessWidget {
       title: 'INITIALISATION APPLICATION',
       theme: ThemeData(
         colorScheme: const ColorScheme.dark(),
+        dividerTheme: const DividerThemeData(
+          space: 10,
+          thickness: 1,
+          color: Colors.yellow,
+        ),
       ),
       debugShowCheckedModeBanner: false,
       home: FutureBuilder(

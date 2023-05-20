@@ -31,14 +31,14 @@ class JsonForMqtt with _$JsonForMqtt {
 
   //* commande allumage chauffage (mode manuel)
   void classSwitchToggle() {
-    String topic = "gw/$client/$lieu/cmnd/GW/ZbSend";
+    String topic = "gw/$client/$ville/cmnd/GW/ZbSend";
     String payload = '{"Device":"$deviceId","send":{"Power":"Toggle"}}';
     publishMqtt(topic, payload);
   }
 
   //* envoi du setup thermostat: away, semaine, week-end
   void classSendThermostat(String targetDevice, String period, Map<String, dynamic> tab) {
-    String topic = "gw/$client/$lieu/$targetDevice/tele/$period";
+    String topic = "gw/$client/$ville/$targetDevice/tele/$period";
     String payload = tab.toString();
     payload = jsonEncode(tab);
     publishMqtt(topic, payload);

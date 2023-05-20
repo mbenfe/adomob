@@ -22,9 +22,16 @@ class RootHomeWidget extends ConsumerWidget {
           children: [
             SizedBox(
               width: MediaQuery.of(context).size.width,
+              height: 100,
+              child: const Text('vide'),
+            ),
+            const Divider(),
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
               height: 300,
               child: const SubMeteoWidget(),
             ),
+            const Divider(),
             // SizedBox(
             //   width: MediaQuery.of(context).size.width,
             //   height: 300,

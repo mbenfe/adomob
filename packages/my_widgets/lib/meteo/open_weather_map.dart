@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather/weather.dart';
+import 'package:my_adomob/m_define.dart';
 
 import 'meteo.dart';
 
@@ -44,7 +45,7 @@ class SubMeteoState extends State<SubMeteo> {
     setState(() {
       etatJour = DownloadState.downloading;
     });
-    Weather jour = await webSocket.currentWeatherByCityName('seignosse');
+    Weather jour = await webSocket.currentWeatherByCityName(ville);
     setState(() {
       donneesJour = jour;
       etatJour = DownloadState.finishedDownloading;
@@ -56,7 +57,7 @@ class SubMeteoState extends State<SubMeteo> {
     setState(() {
       etatPrevisions = DownloadState.downloading;
     });
-    List<Weather> previsions = await webSocket.fiveDayForecastByCityName('seignosse');
+    List<Weather> previsions = await webSocket.fiveDayForecastByCityName(ville);
     setState(() {
       donneesPrevisions = previsions;
       etatPrevisions = DownloadState.finishedDownloading;

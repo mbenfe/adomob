@@ -27,5 +27,8 @@ List<AppGroups> preDefinedAppBar = [
   AppGroups(13, Icons.settings, 'Setup'),
 ];
 
-const String client = "benfeghoul";
-const String lieu = "marcq";
+//const String client = "benfeghoul";
+//const String ville = "marcq-en-baroeul";
+
+const String client = "bauduin";
+const String ville = "seignosse";

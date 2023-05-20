@@ -5,7 +5,7 @@ import 'package:my_mqtt/mqtt_handler.dart';
 void commande(bool isOn, List<bool> fanSpeed, List<bool> modeSelected, double temperature, List<String> listDeviceId) {
   int i;
   String token = "";
-  String topic = "gw/$client/$lieu/cmnd/GW/ZbSend";
+  String topic = "gw/$client/$ville/cmnd/GW/ZbSend";
   String payload = "";
 
   int eqFanSpeed = 0;
