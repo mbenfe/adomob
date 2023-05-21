@@ -59,6 +59,7 @@ class AppInit {
     do {
       await Future.delayed(const Duration(seconds: 1));
     } while (//listBundles.isEmpty ||
-        mapDevices.isEmpty || listBundles.isEmpty);
+//        mapDevices.isEmpty || listBundles.isEmpty);
+        listBundles.isEmpty);
   }
 }

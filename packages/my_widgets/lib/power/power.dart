@@ -1,13 +1,22 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_adomob/m_build_from_json.dart';
 import 'package:my_models/complex_state_fz.dart';
 
 import '../state_notifier.dart';
 import 'periodical_barchart.dart';
 import 'gauge.dart';
 
+//********************************************************************************/
+//*  le widget power est soir 'reel' soit 'virtuel'                              */
+//*  reel: un maitre pas d'esclaves: traitement normal a partir du mqtt json     */
+//*  virtuel: un maitre et des esclaves                                          */
+//*           le maitre ne recoit jamais de mqtt json                            */
+//*           le premier esclaves et un maitre: donc on ecoute les messages mqtt */
+//*           les esclaves suivant sont a soustraire au maitre pour l'affichage  */
+//*           exemple bauduin: virtuel soustrait les mesures du spa au mesure du */
+//*           boitier principal, ce aui donne la mesure de la maison + piscine   */
+//********************************************************************************/
 /// ConsumerWidget for riverpod
 class RootConsomationWidget extends ConsumerWidget {
   const RootConsomationWidget({Key? key, required this.master, required this.listSlaves, required this.location, required this.listStateProviders})
@@ -19,14 +28,31 @@ class RootConsomationWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+    // final key = mapGlobalKeys[master];
+
+    // var intermediate;
+    // var intermediate2;
+    // var keys;
+
+    if (kDebugMode) {
+      print('master:$master');
+    }
+    JsonForMqtt state;
     //* recoit l'etat qui contient le json telemetry et une list supplementaire de json
     //* pour l'affichages de cumuls heures, jours, mois
-    JsonForMqtt state = ref.watch(listStateProviders[0]);
+    if (listSlaves.isEmpty) {
+      state = ref.watch(listStateProviders[0]); //* boitier réel 1 seul provider
+    } else {
+      state = ref.watch(listStateProviders[1]); //* boitier virtuel premier provider ne recoit rien, second est le maitre
+      // intermediate = mapAllDevicesStateProvider[listSlaves[0]];
+      // state = ref.watch(intermediate);
+      // intermediate2 = mapAllDevicesSubStateNotifier[listSlaves[0]];
+      // keys = mapGlobalKeys[listSlaves[0]];
 
-    if (listSlaves.isNotEmpty) {
-      if (kDebugMode) {
-        print('Compteur esclave: $listSlaves[0]');
-      }
+      // if (state.teleJsonMap.isNotEmpty) {
+      //   print('virtuel');
+      // }
+//      state = ref.watch(intermetiate2);
     }
     //* la telemetry est traitée directment dans la widgets avec test null-safety
     Map<String, dynamic> teleJsonMap = state.teleJsonMap;

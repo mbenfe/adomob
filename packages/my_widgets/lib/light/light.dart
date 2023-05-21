@@ -59,22 +59,4 @@ class RootLightWidget extends ConsumerWidget {
       // containter frame
     );
   }
-
-  // Set<Set<Set<void>>> publish(Map<dynamic, dynamic> decode, WidgetMqttChangeNotifier provider) {
-  //   return {
-  //     decode['status']
-  //         ? {
-  //             for (int i = 0; i < listDevices.length; i++)
-  //               {
-  //                 provider.sendJsonCommand(clientMqtt, listDevices[i], '{"command":"setOutput", "value":false}'),
-  //               },
-  //           }
-  //         : {
-  //             for (int i = 0; i < listDevices.length; i++)
-  //               {
-  //                 provider.sendJsonCommand(clientMqtt, listDevices[i], '{"command":"setOutput", "value":true}'),
-  //               },
-  //           }
-  //   };
-  // }
 }

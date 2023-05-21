@@ -23,10 +23,6 @@ class RootRoomWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    // if (kDebugMode) {
-    //   print('Widget room:$listDevices hash:${widgetProviders.hashCode}');
-    // }
-
     final Map<String, IconData> slotMapIcons = {
       'Matin': MdiIcons.weatherSunset,
       'Journee': MdiIcons.weatherSunny,

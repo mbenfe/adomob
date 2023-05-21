@@ -28,21 +28,21 @@
                 "color": 0
             },           
             {
-                "location": "Garage-virtuel",
-                "column": 1,
-                "row": 2,
-                "master": "pwVirtuel",
-                "slave": ["pwPrincipal","pwLegrand"],
-                "color": 0
-            },           
-            {
                 "location": "Bureau",
                 "column": 1,
-                "row": 3,
+                "row": 2,
                 "master": "pwLegrand",
                 "slave": [],
                 "color": 0
-            }
+            },
+            {
+                "location": "Garage-virtuel",
+                "column": 1,
+                "row": 3,
+                "master": "pwVirtuel",
+                "slave": ["gateway","pwLegrand"],
+                "color": 0
+            }          
         ]
     },
     {

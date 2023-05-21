@@ -39,8 +39,8 @@ const int GLOBAL_THEME_DARK = 1;
 int globalTheme = GLOBAL_THEME_LIGHT;
 
 //* direction appli
-const String client = "benfeghoul";
-const String ville = "marcq-en-baroeul";
+//const String client = "benfeghoul";
+//const String ville = "marcq-en-baroeul";
 
-//const String client = "bauduin";
-//const String ville = "seignosse";
+const String client = "bauduin";
+const String ville = "seignosse";

@@ -40,9 +40,9 @@ void appAnalyseReceivedMqtt(String topic, String payload) {
       if (kDebugMode) print("topic: $topic: payload : ${message.payload}");
       analyseReceivedAppCfgJson2(message.payload);
       break;
-    case "devicesCfg": // client/lieu/dummy/devicesCfg
-      analyseReceivedDevicesCfgJson(message.payload);
-      break;
+    // case "devicesCfg": // client/lieu/dummy/devicesCfg
+    //   analyseReceivedDevicesCfgJson(message.payload);
+    //   break;
     case "tele":
       switch (message.mesureFlag) {
         case 'SENSOR':
