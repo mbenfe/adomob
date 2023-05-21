@@ -6,17 +6,17 @@ import 'package:my_adomob/m_define.dart';
 
 part 'complex_state_fz.freezed.dart';
 
-@freezed
-class ComplexState with _$ComplexState {
-  const ComplexState._();
+// @freezed
+// class ComplexState with _$ComplexState {
+//   const ComplexState._();
 
-  const factory ComplexState({
-    required String var1,
-    required double var2,
-    required bool var3,
-    required int var4,
-  }) = _ComplexState;
-}
+//   const factory ComplexState({
+//     required String var1,
+//     required double var2,
+//     required bool var3,
+//     required int var4,
+//   }) = _ComplexState;
+// }
 
 @unfreezed
 class JsonForMqtt with _$JsonForMqtt {

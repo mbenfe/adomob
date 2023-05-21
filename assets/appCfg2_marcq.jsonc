@@ -1,3 +1,7 @@
+//!
+//!  ATTENTION row et column doivent etre coherents sinon bug a la construction
+//!
+//!  ATENTION tous les devices doivent etres declarés dans lr appDevices.json
 [
     {
         "type": "Home",
@@ -16,10 +20,26 @@
         "type": "Consommation",
         "data": [
             {
-                "location": "MAISON",
+                "location": "Garage",
                 "column": 1,
                 "row": 1,
                 "master": "gateway",
+                "slave": [],
+                "color": 0
+            },           
+            {
+                "location": "Garage-virtuel",
+                "column": 1,
+                "row": 2,
+                "master": "pwVirtuel",
+                "slave": ["pwPrincipal","pwLegrand"],
+                "color": 0
+            },           
+            {
+                "location": "Bureau",
+                "column": 1,
+                "row": 3,
+                "master": "pwLegrand",
                 "slave": [],
                 "color": 0
             }

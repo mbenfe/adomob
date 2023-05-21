@@ -1,4 +1,6 @@
 // -------------------- pre defined icon-text pour appBar -----------------------------
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -27,8 +29,18 @@ List<AppGroups> preDefinedAppBar = [
   AppGroups(13, Icons.settings, 'Setup'),
 ];
 
-//const String client = "benfeghoul";
-//const String ville = "marcq-en-baroeul";
+const int CONSOMATION_MODE_EUROS = 0;
+const int CONSOMATION_MODE_KWH = 1;
+double globalPrixHeuresPleines = 0.22;
+double globalPrixHeuresCreuses = 0.17;
 
-const String client = "bauduin";
-const String ville = "seignosse";
+const int GLOBAL_THEME_LIGHT = 0;
+const int GLOBAL_THEME_DARK = 1;
+int globalTheme = GLOBAL_THEME_LIGHT;
+
+//* direction appli
+const String client = "benfeghoul";
+const String ville = "marcq-en-baroeul";
+
+//const String client = "bauduin";
+//const String ville = "seignosse";

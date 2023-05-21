@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'm_initialisation.dart';
+import 'm_init_mqtt_devices_app.dart';
 import 'm_mobile_application.dart';
 
 class AppHomePage extends StatefulWidget {

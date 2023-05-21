@@ -20,8 +20,8 @@
         ]},
     {"type":"Consommation",
     "data":[
-        {"location":"Garage 2","column":1,"row":1,"master":"pwPrincipale","slave":[],"color":0},
-        {"location":"Garage 1","column":1,"row":2,"master":"pwSecondaire","slave":[],"color":0}
+        {"location":"Total","column":1,"row":1,"master":"pwPrincipale","slave":[],"color":0},
+        {"location":"Spa","column":1,"row":2,"master":"pwSecondaire","slave":[],"color":0}
        ]},
     {"type":"Thermostat",
     "data":[
@@ -30,3 +30,4 @@
 ]
 
 // a envoyer sur        app_config/bauduin/seignosse/dummy/appCfg2
+//         {"location":"Maison","column":1,"row":1,"master":"pwPrincipale","slave":["pwSecondaire"],"color":0},

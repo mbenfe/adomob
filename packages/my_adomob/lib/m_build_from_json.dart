@@ -8,10 +8,14 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_models/adomob_app_cfg.dart';
 import 'package:my_models/complex_state_fz.dart';
 import 'package:my_widgets/state_notifier.dart';
+
+//Map<String, List<Key>> mapGlobalKeys = {};
+Map<String, List<GlobalKey<State<StatefulWidget>>>> mapGlobalKeys = {};
 
 List<Bundle> listBundles = [];
 List<String> listApplications = [];
@@ -65,6 +69,26 @@ void analyseReceivedAppCfgJson2(String jsonString) {
     listApplications.add(mapApplications.type);
     for (j = 0; j < mapApplications.data.length; j++) {
       Bundle bundle = Bundle();
+      //* construit la liste des keys pour les widgets ayant des escalves dont elles veules avoir accés aux donnéées
+      //* example: Tableau electrique pricipale pour retrancher les donnees du tableau secondaire (baudin seignosse)
+
+      GlobalKey<State<StatefulWidget>> newKey;
+      if (mapApplications.data[j].master != "") {
+//        bundle.widgetKey.add(GlobalKey(debugLabel: mapApplications.data[j].master));
+
+        // si deja dans la map (declaré précédement comme master -> ajout des esclaves
+        if (mapGlobalKeys.containsKey(mapApplications.data[j].master)) {
+          for (int slave = 0; slave < mapApplications.data[j].slave.length; slave++) {
+            newKey = GlobalKey(debugLabel: mapApplications.data[j].slave[slave]);
+            mapGlobalKeys[mapApplications.data[j].master]?.add(newKey);
+          }
+        } else {
+          newKey = GlobalKey(debugLabel: mapApplications.data[j].master);
+          mapGlobalKeys.addAll({
+            mapApplications.data[j].master: [newKey]
+          });
+        }
+      }
       final StateProvider1 = getStateProvider(mapApplications.data[j].master);
       bundle.listStateProviders.add(StateProvider1);
       mapAllDevicesStateProvider.addAll({mapApplications.data[j].master: StateProvider1}); // master

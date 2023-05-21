@@ -1,5 +1,9 @@
+//
+//  
 {
     "gateway":{"location":"Garage","profile":"PW-01","function":"Consommation"},
+    "pwLegrand":{"location":"Garage","profile":"PW-01","function":"Consommation"},
+    "pwVirtuel":{"location":"Garage","profile":"PW-Virtuel","function":"Consommation"},
     "irClim":{"location":"Garage","profile":"PW-01","function":"Climatisation"},
     "thMarcq1":{"location":"Unknown1","profile":"PW-01","function":"Climatisation"},
     "thMarcq2":{"location":"Unknown2","profile":"PW-01","function":"Climatisation"}

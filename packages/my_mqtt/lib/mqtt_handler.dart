@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
-import 'package:my_adomob/m_initialisation.dart';
+import 'package:my_adomob/m_init_mqtt_devices_app.dart';
 
 class MqttTelegram {
   String topicRoot = ""; // gw = tasmota gateway, app = application, adomelec = gestion

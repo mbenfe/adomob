@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:my_mqtt/mqtt_handler.dart';
 import 'package:my_widgets/state_notifier.dart';
 
-import 'm_json.dart';
+import 'm_build_from_json.dart';
 
 int countMqttMessages = 0, countTeleMessages = 0, countOtherMessages = 0;
 

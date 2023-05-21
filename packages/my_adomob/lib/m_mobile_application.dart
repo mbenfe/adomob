@@ -23,7 +23,7 @@ import 'package:my_widgets/climatisation/climatisation.dart';
 import 'package:my_widgets/setup/setup.dart';
 
 import 'm_define.dart';
-import 'm_json.dart';
+import 'm_build_from_json.dart';
 import 'm_notifier.dart';
 
 /// ConsumerWidget for riverpod - ref for interaction with providers
@@ -183,7 +183,7 @@ class GeneratedWidget extends ConsumerWidget {
       case 'THERMOSTAT':
         return RootThermostatWidget(master: master, listSlaves: listSlaves, listStateProviders: listStateProviders, location: location);
       case 'CONSOMMATION':
-        return RootCourantWidget(master: master, listSlaves: listSlaves, listStateProviders: listStateProviders, location: location);
+        return RootConsomationWidget(master: master, listSlaves: listSlaves, listStateProviders: listStateProviders, location: location);
       case 'CLIMATISATION':
         return RootClimatisationWidget(master: master, listSlaves: listSlaves, listStateProviders: listStateProviders, location: location);
       case 'SETUP':
