@@ -1,10 +1,3 @@
-// //* globales variables initialisées par mqtt
-// //* STATE PROVIDER
-// final Map<String, StateNotifierProvider<WidgetMqttStateNotifier, Map>> mapAllDevicesStateProvider = {};
-// final Map<String, WidgetMqttStateNotifier> mapAllDevicesSubStateProvider = {};
-// //* CHANGE PROVIDER
-// final Map<String, ChangeNotifierProvider<WidgetMqttChangeNotifier>> mapAllDevicesChangeProvider = {};
-// final Map<String, WidgetMqttChangeNotifier> mapAllDevicesSubChangeProvider = {};
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -18,12 +11,6 @@ import 'package:my_widgets/state_notifier.dart';
 
 List<Bundle> listBundles = [];
 List<String> listApplications = [];
-// //* globales variables initialisées par mqtt
-// dynamic mapDevices = {};
-//List<String> listApplications = [];
-
-// //* globales variables
-// List<String> listDevices = [];
 
 class Bundle {
   String type = "";
@@ -32,16 +19,8 @@ class Bundle {
   List<String> listSlaves = [];
   int column = 0;
   int row = 0;
-  List<StateNotifierProvider<WidgetMqttStateNotifier, JsonForMqtt>> listStateProviders = [];
+  final List<StateNotifierProvider<WidgetMqttStateNotifier, JsonForMqtt>> listStateProviders = [];
 }
-
-// //*---------------------------------------------------------
-// //* initialisation des devices recu par mqtt json
-// //*---------------------------------------------------------
-// void analyseReceivedDevicesCfgJson(String jsonString) {
-//   mapDevices = json.decode(jsonString);
-//   mapDevices.forEach((k, v) => listDevices.add((k).toString()));
-// }
 
 //*---------------------------------------------------------
 //* initialisation des devices recu par mqtt json
@@ -59,13 +38,35 @@ void analyseReceivedAppCfgJson2(String jsonString) {
   var jsonDecoded = (json.decode(jsonString) as List).cast<Map<String, dynamic>>();
 
   ListElementApp mapApplications;
-  // * etape 1 :build la list des bundle pour chaque application sachant que seul chauffage application a un master et un/plusieurs slave(s)
-  // * cela pourait evoluer dans le future
-  // * cette liste est utilisée par le fonction appBuildSelectedView (m_mobile_aalication.dart)
-  // * etape 2 : build la map des notifiers par device
+  // * etape 1 : build la map des notifiers par device
   for (i = 0; i < jsonDecoded.length; i++) {
     mapApplications = ListElementApp.fromJson(jsonDecoded[i]);
     listApplications.add(mapApplications.type);
+    for (j = 0; j < mapApplications.data.length; j++) {
+      //* device maitres
+      final StateNotifierProvider<WidgetMqttStateNotifier, JsonForMqtt> StateProvider1;
+      if (!mapAllDevicesStateProvider.containsKey(mapApplications.data[j].master)) {
+        StateProvider1 = getStateProvider(mapApplications.data[j].master);
+        mapAllDevicesStateProvider.addAll({mapApplications.data[j].master: StateProvider1}); // master
+      } //* devices esclaves
+      for (k = 0; k < mapApplications.data[j].slave.length; k++) {
+        final StateNotifierProvider<WidgetMqttStateNotifier, JsonForMqtt> StateProvider2;
+        if (!mapAllDevicesStateProvider.containsKey(mapApplications.data[j].slave[k])) {
+          //* si n'existe pas dans la liste globale
+          StateProvider2 = getStateProvider(mapApplications.data[j].slave[k]);
+          mapAllDevicesStateProvider.addAll({mapApplications.data[j].slave[k]: StateProvider2}); // slave
+        }
+      }
+    }
+  }
+
+  printHashCode();
+
+  // * etape 2 :build la list des bundle pour chaque application
+  //*    exemple chauffage application a un master et un/plusieurs slave(s)
+  // * cette liste est utilisée par le fonction appBuildSelectedView (m_mobile_aalication.dart)
+  for (i = 0; i < jsonDecoded.length; i++) {
+    mapApplications = ListElementApp.fromJson(jsonDecoded[i]);
     for (j = 0; j < mapApplications.data.length; j++) {
       Bundle bundle = Bundle();
       //* construit la liste des keys pour les widgets ayant des escalves dont elles veules avoir accés aux donnéées
@@ -75,14 +76,13 @@ void analyseReceivedAppCfgJson2(String jsonString) {
       // if (mapApplications.data[j].master != "") {
       //   mapGlobalKeys.addAll({mapApplications.data[j].master: newKey});
       // }
-      final StateProvider1 = getStateProvider(mapApplications.data[j].master);
-      bundle.listStateProviders.add(StateProvider1);
-      mapAllDevicesStateProvider.addAll({mapApplications.data[j].master: StateProvider1}); // master
+      final stateProvider1 = mapAllDevicesStateProvider[mapApplications.data[j].master];
+      bundle.listStateProviders.add(stateProvider1!);
       for (k = 0; k < mapApplications.data[j].slave.length; k++) {
         bundle.listSlaves.add(mapApplications.data[j].slave[k]);
-        final StateProvider2 = getStateProvider(mapApplications.data[j].slave[k]);
+        final StateNotifierProvider<WidgetMqttStateNotifier, JsonForMqtt> StateProvider2;
+        StateProvider2 = mapAllDevicesStateProvider[mapApplications.data[j].slave[k]]!;
         bundle.listStateProviders.add(StateProvider2);
-        mapAllDevicesStateProvider.addAll({mapApplications.data[j].slave[k]: StateProvider2}); // slave
       }
       bundle.master = mapApplications.data[j].master;
       bundle.location = mapApplications.data[j].location;
@@ -92,8 +92,71 @@ void analyseReceivedAppCfgJson2(String jsonString) {
       listBundles.add(bundle);
     }
   }
+
+  finalizeVirtuelWidget();
+
   if (kDebugMode) {
     print("ADOMOB: configuration received");
+  }
+}
+
+void printHashCode() {
+  int i, j;
+  if (kDebugMode) {
+    print('------------- bundle -------------------');
+  }
+  for (i = 0; i < listBundles.length; i++) {
+    for (j = 0; j < listBundles[i].listStateProviders.length; j++) {
+      if (kDebugMode) {
+        print('Master:${listBundles[i].master} ${listBundles[i].listStateProviders[j].hashCode}');
+      }
+    }
+  }
+  if (kDebugMode) {
+    print('------------- liste -------------------');
+  }
+  mapAllDevicesStateProvider.forEach((key, value) {
+    if (kDebugMode) {
+      print('key:$key ${value.hashCode}');
+    }
+  });
+}
+
+void finalizeVirtuelWidget() {
+  if (kDebugMode) {
+    print("ADOMOB: analyze virtuels");
+  }
+
+  // cherche toute les esclaves qui sont des maitres
+  int i, j, k;
+  List<Bundle> listBundleVirtuel = [];
+
+  //* construit la liste de Bundle Virtuel
+  for (i = 0; i < listBundles.length; i++) {
+    for (j = 0; j < listBundles[i].listSlaves.length; j++) {
+      for (k = 0; k < listBundles.length; k++) {
+        if (listBundles[k].master == listBundles[i].listSlaves[j]) {
+          listBundleVirtuel.add(listBundles[i]);
+          //* sort de la boucle pour ne pas ajouter plusieurs fois le meme bundle a la liste
+          j = listBundles[i].listSlaves.length;
+          break; // ajoute et passe au suivan
+        }
+      }
+    }
+  }
+
+  //* reconstuit la liste des providers
+  //* parcours la liste des bundles virtuels et efface la liste des providers
+  //* pour la remplacer avec ceux des esclaves listés
+  for (i = 0; i < listBundleVirtuel.length; i++) {
+    for (j = 0; j < listBundles.length; j++) {
+      if (listBundles[j].master == listBundleVirtuel[i].master) {
+        listBundles[j].listStateProviders.clear();
+        for (k = 0; k < listBundles[j].listSlaves.length; k++) {
+          listBundles[j].listStateProviders.add(mapAllDevicesStateProvider[listBundles[j].listSlaves[k]]!);
+        }
+      }
+    }
   }
 }
 

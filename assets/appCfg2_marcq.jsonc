@@ -10,7 +10,7 @@
                 "location": "MAISON",
                 "column": 1,
                 "row": 1,
-                "master": "",
+                "master": "virtuelHome",
                 "slave": [],
                 "color": 0
             }
@@ -53,9 +53,7 @@
                 "column": 1,
                 "row": 1,
                 "master": "thMarcq1",
-                "slave": [
-                    "irClim"
-                ],
+                "slave": ["irClim"],
                 "color": 0
             }
         ]
@@ -67,7 +65,7 @@
                 "location": "MAISON",
                 "column": 1,
                 "row": 1,
-                "master": "",
+                "master": "virtuelSetup",
                 "slave": [],
                 "color": 0
             }
@@ -75,3 +73,76 @@
     }
 ]
 // a envoyer sur        app_config/benfeghoul/marcq-en-baroeul/dummy/appCfg2
+
+// [
+//     {
+//         "type": "Home",
+//         "data": [
+//             {
+//                 "location": "MAISON",
+//                 "column": 1,
+//                 "row": 1,
+//                 "master": "virtuelHome",
+//                 "slave": [],
+//                 "color": 0
+//             }
+//         ]
+//     },
+//     {
+//         "type": "Consommation",
+//         "data": [
+//             {
+//                 "location": "Garage",
+//                 "column": 1,
+//                 "row": 1,
+//                 "master": "gateway",
+//                 "slave": [],
+//                 "color": 0
+//             },           
+//             {
+//                 "location": "Bureau",
+//                 "column": 1,
+//                 "row": 2,
+//                 "master": "pwLegrand",
+//                 "slave": [],
+//                 "color": 0
+//             },
+//             {
+//                 "location": "Garage-virtuel",
+//                 "column": 1,
+//                 "row": 3,
+//                 "master": "pwVirtuel",
+//                 "slave": ["gateway","pwLegrand"],
+//                 "color": 0
+//             }          
+//         ]
+//     },
+//     {
+//         "type": "Climatisation",
+//         "data": [
+//             {
+//                 "location": "SALON",
+//                 "column": 1,
+//                 "row": 1,
+//                 "master": "thMarcq1",
+//                 "slave": [
+//                     "irClim"
+//                 ],
+//                 "color": 0
+//             }
+//         ]
+//     },
+//     {
+//         "type": "Setup",
+//         "data": [
+//             {
+//                 "location": "MAISON",
+//                 "column": 1,
+//                 "row": 1,
+//                 "master": "",
+//                 "slave": [],
+//                 "color": 0
+//             }
+//         ]
+//     }
+// ]

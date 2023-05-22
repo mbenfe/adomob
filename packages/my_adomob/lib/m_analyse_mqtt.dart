@@ -23,12 +23,11 @@ void appAnalyseReceivedMqtt(String topic, String payload) {
   }
   message.payload = payload;
 
-  /// format messages adomob = nom/lieu/device/tele/XXXX etc ....
-  /// format message gestor = adomelec/marcq/listeCustomers
+  /// format messages adomob = [gw/app_cfg]]/nom/lieu/[device]/tele/[XXXX etc ....
 
   //print('$countTeleMessages + $countOtherMessages : $countMqttMessages - Buffer:$countBufferMqtt');
   //! filter print
-  //if (kDebugMode) print("topic: $topic: payload : ${message.payload}");
+//  if (kDebugMode) print("topic: $topic: payload : ${message.payload}");
   // filtre
   if (payload == "") return;
 
@@ -40,9 +39,6 @@ void appAnalyseReceivedMqtt(String topic, String payload) {
       if (kDebugMode) print("topic: $topic: payload : ${message.payload}");
       analyseReceivedAppCfgJson2(message.payload);
       break;
-    // case "devicesCfg": // client/lieu/dummy/devicesCfg
-    //   analyseReceivedDevicesCfgJson(message.payload);
-    //   break;
     case "tele":
       switch (message.mesureFlag) {
         case 'SENSOR':
@@ -190,9 +186,6 @@ void emptyAssociatedNotifierFromBufferMqtt(Map<String, dynamic> json, WidgetMqtt
 
 void emptyMqttBuffer(String deviceId, WidgetMqttStateNotifier myStateNotifier) {
   int i;
-  if (kDebugMode) {
-    print('emptying..');
-  }
   //*  consomme tous les précents associé a ce 'notifier'
   for (i = 0; i < bufferMqtt.length; i++) {
     if (bufferMqtt[i]['Name'] == deviceId) {

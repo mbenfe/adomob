@@ -21,11 +21,16 @@ class WidgetGauge extends StatelessWidget {
           //  PowerGaugeInterior(jsonMap: jsonMap),
           PowerGaugeExterior(jsonMap: jsonMap),
           Positioned(
-              width: 50,
-              height: 50,
-              right: 20,
-              top: 20,
-              child: jsonMap['ActivePower'] != null ? AnimationRipplePower(jsonMap['ActivePower']!.toDouble()) : const Placeholder())
+            width: 50,
+            height: 50,
+            right: 20,
+            top: 20,
+            child: jsonMap['ActivePower'] != null
+                ? AnimationRipplePower(
+                    jsonMap['ActivePower']!.toDouble(),
+                  )
+                : const Placeholder(),
+          ),
         ],
       ),
     );

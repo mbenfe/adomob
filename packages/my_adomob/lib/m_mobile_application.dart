@@ -183,7 +183,11 @@ class GeneratedWidget extends ConsumerWidget {
       case 'THERMOSTAT':
         return RootThermostatWidget(master: master, listSlaves: listSlaves, listStateProviders: listStateProviders, location: location);
       case 'CONSOMMATION':
-        return RootConsomationWidget(master: master, listSlaves: listSlaves, listStateProviders: listStateProviders, location: location);
+        if (listSlaves.isEmpty) {
+          return RootConsomationWidgetMaitre(master: master, listSlaves: listSlaves, listStateProviders: listStateProviders, location: location);
+        } else {
+          return RootConsomationWidgetVirtuel(master: master, listSlaves: listSlaves, listStateProviders: listStateProviders, location: location);
+        }
       case 'CLIMATISATION':
         return RootClimatisationWidget(master: master, listSlaves: listSlaves, listStateProviders: listStateProviders, location: location);
       case 'SETUP':
