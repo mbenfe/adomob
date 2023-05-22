@@ -193,7 +193,7 @@ class GeneratedWidget extends ConsumerWidget {
       case 'SETUP':
         return RootSetupWidget(master: master, listSlaves: listSlaves, listStateProviders: listStateProviders, location: location);
       default:
-        return Container();
+        return const Placeholder();
     }
   }
 }

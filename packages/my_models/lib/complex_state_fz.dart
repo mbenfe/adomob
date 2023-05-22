@@ -69,6 +69,12 @@ class JsonForMqtt with _$JsonForMqtt {
       return;
     });
   }
+
+  void copyTeleJsonTo(Map<String, dynamic> newJsonMap) {
+    teleJsonMap.forEach((key, value) {
+      newJsonMap[key] = value;
+    });
+  }
 }
 
 //* class json message setup away parameters

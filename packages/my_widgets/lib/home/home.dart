@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_models/complex_state_fz.dart';
 
-import '../meteo/meteo.dart';
+import '../sub_widgets/mini_dashboard_conso/conso.dart';
+import '../sub_widgets/prevision_meteo/meteo.dart';
 import '../state_notifier.dart';
+import '../sub_widgets/temperature_exterieur/gauge_exterieur.dart';
 
 /// ConsumerWidget for riverpod
 class RootHomeWidget extends ConsumerWidget {
@@ -18,28 +20,30 @@ class RootHomeWidget extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        return Column(
-          children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: 100,
-              child: const Text('vide'),
-            ),
-            const Divider(),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: 300,
-              child: const SubMeteoWidget(),
-            ),
-            const Divider(),
-            // SizedBox(
-            //   width: MediaQuery.of(context).size.width,
-            //   height: 300,
-            //   child: WebViewWidget(
-            //     controller: webController2,
-            //   ),
-            // )
-          ],
+        return SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            children: [
+              SizedBox(
+                height: 150,
+                child: SubGaugeExterieureWidget(
+                  master: '',
+                  stateProvider: listStateProviders[1],
+                ),
+              ),
+              const Divider(),
+              const SizedBox(
+                height: 300,
+                child: SubMeteoWidget(),
+              ),
+              const Divider(),
+              SizedBox(
+                height: 100,
+                child: SubDashboardConsoWidget(master: '', stateProvider: listStateProviders[1]),
+              ),
+              const Divider(),
+            ],
+          ),
         );
       },
       // containter frame
