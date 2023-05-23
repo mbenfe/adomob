@@ -1,0 +1,1 @@
+regler le problem ROOM_WIDGET_SIZE -> definition automatique plutot que dand m_define.dart

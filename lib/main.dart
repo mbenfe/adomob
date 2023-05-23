@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_adomob/m_main.dart';
+
+import 'm_main.dart';
 
 /// @nodoc
 void main() {
