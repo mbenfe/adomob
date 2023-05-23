@@ -5,7 +5,6 @@ import 'package:my_widgets/setup/tarifs.dart';
 
 import '../state_notifier.dart';
 import 'heures_creuses_pleines.dart';
-import 'mode_dark_light.dart';
 
 /// ConsumerWidget for riverpod
 class RootSetupWidget extends ConsumerWidget {
@@ -24,8 +23,6 @@ class RootSetupWidget extends ConsumerWidget {
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(height: 10),
-            const SelectionLightDark(),
             const Divider(
               thickness: 10,
             ),

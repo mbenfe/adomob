@@ -60,6 +60,8 @@ class SubGaugeExterieureWidget extends ConsumerWidget {
               GaugeRange(startValue: 80, endValue: 100, color: Colors.red, startWidth: 10, endWidth: 10)
             ], pointers: <GaugePointer>[
               NeedlePointer(
+                needleStartWidth: 1,
+                needleEndWidth: 2,
                 value: teleJsonMap['Humidity'] != null ? teleJsonMap['Humidity'].toDouble() : 0,
               )
             ], annotations: <GaugeAnnotation>[

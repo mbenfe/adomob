@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:my_adomob/theme/theme_manager.dart';
 
 import 'm_init_mqtt_devices_app.dart';
 import 'm_mobile_application.dart';
+import 'theme/theme_constants.dart';
 
 class AppHomePage extends StatefulWidget {
   const AppHomePage({Key? key}) : super(key: key);
@@ -31,7 +33,7 @@ class _AppHomePageState extends State<AppHomePage> {
   Widget build(BuildContext context) {
     //  WidgetsBinding.instance.addPostFrameCallback((_) => initialisation(ref));
     // var reference = ref.watch;
-    return InitializationApp();
+    return const InitializationApp();
   }
 }
 
@@ -59,26 +61,47 @@ class SplashScreen extends StatelessWidget {
   }
 }
 
-/*****************************************************************************************/
-/* root du programme Application mobile                                                  */
-/* attend FUTUR que la liste des clients soit lue de puis MQTT/JSON data                 */
-/// **************************************************************************************
-class InitializationApp extends StatelessWidget {
-  InitializationApp({super.key});
+ThemeManager themeManager = ThemeManager();
+
+//*****************************************************************************************/
+//* root du programme Application mobile                                                  */
+//* attend FUTUR que la liste des clients soit lue de puis MQTT/JSON data                 */
+// **************************************************************************************
+class InitializationApp extends StatefulWidget {
+  const InitializationApp({super.key});
+
+  @override
+  State<InitializationApp> createState() => _InitializationAppState();
+}
+
+class _InitializationAppState extends State<InitializationApp> {
   final Future _initFuture = AppInit.initialize();
+
+  @override
+  void dispose() {
+    themeManager.removeListener(themeListener);
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    themeManager.addListener(themeListener);
+    super.initState();
+  }
+
+  themeListener() {
+    if (mounted) {
+      setState(() {});
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'INITIALISATION APPLICATION',
-      theme: ThemeData(
-        colorScheme: const ColorScheme.dark(),
-        dividerTheme: const DividerThemeData(
-          space: 10,
-          thickness: 1,
-          color: Colors.yellow,
-        ),
-      ),
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: themeManager.themeMode,
       debugShowCheckedModeBanner: false,
       home: FutureBuilder(
         future: _initFuture,
@@ -86,7 +109,7 @@ class InitializationApp extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.done) {
             appMqttClientManager.subscribe(subscribGatewayTopic);
 
-            return const AppWidgetLayout();
+            return PagePrincipale();
           } else {
             return const SplashScreen();
           }

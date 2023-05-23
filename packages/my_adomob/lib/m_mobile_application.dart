@@ -24,11 +24,12 @@ import 'package:my_widgets/setup/setup.dart';
 
 import 'm_define.dart';
 import 'm_build_from_json.dart';
+import 'm_main.dart';
 import 'm_notifier.dart';
 
 /// ConsumerWidget for riverpod - ref for interaction with providers
-class AppWidgetLayout extends ConsumerWidget {
-  const AppWidgetLayout({
+class PagePrincipale extends ConsumerWidget {
+  PagePrincipale({
     Key? key,
   }) : super(key: key);
 
@@ -54,12 +55,30 @@ class AppWidgetLayout extends ConsumerWidget {
       appBuildSelectedView('Setup'),
     ];
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(ville),
+        actions: [
+          Switch(
+            value: themeManager.themeMode == ThemeMode.dark,
+            onChanged: (newValue) {
+              themeManager.toggleTheme(newValue);
+            },
+          )
+        ],
+      ),
       body: screens[appGetPageIndex(appIndex)],
-      bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          currentIndex: appIndex,
-          onTap: (value) => currentIndex.setAppBarIndex(value),
-          items: appGetListBottomNavigationBarItem()),
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+          border: Border(
+            top: BorderSide(width: 1),
+          ),
+        ),
+        child: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            currentIndex: appIndex,
+            onTap: (value) => currentIndex.setAppBarIndex(value),
+            items: appGetListBottomNavigationBarItem()),
+      ),
     );
   }
 }

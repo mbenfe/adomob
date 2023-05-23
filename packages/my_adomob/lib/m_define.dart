@@ -34,10 +34,6 @@ const int CONSOMATION_MODE_KWH = 1;
 double globalPrixHeuresPleines = 0.22;
 double globalPrixHeuresCreuses = 0.17;
 
-const int GLOBAL_THEME_LIGHT = 0;
-const int GLOBAL_THEME_DARK = 1;
-int globalTheme = GLOBAL_THEME_LIGHT;
-
 //* direction appli
 const String client = "benfeghoul";
 const String ville = "marcq-en-baroeul";
