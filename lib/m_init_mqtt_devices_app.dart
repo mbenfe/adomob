@@ -15,7 +15,7 @@ const String subscribGatewayTopic = "gw/$client/$ville/#";
 const String publishGatewayTopic = "gw/$client/$ville";
 
 /// ************************************root initialisation gestor ****************************
-void app_initialisation() {
+void appInitialisation() {
   /// async call connection mqtt
   asyncSetMqttClient();
 

@@ -18,7 +18,7 @@ class _AppHomePageState extends State<AppHomePage> {
   void initState() {
     super.initState();
     WidgetsFlutterBinding.ensureInitialized();
-    app_initialisation();
+    appInitialisation();
   }
 
   @override
