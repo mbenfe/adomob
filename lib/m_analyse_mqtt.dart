@@ -76,7 +76,6 @@ void appAnalyseReceivedMqtt(String topic, String payload) {
 
 //*  ANALYSE JSON telemetry ***************************/
 void analyseTeleJsonPayload(String jsonText) {
-//  var mesure = ref.watch(mapWidgetMqtt[payload.Name]!.notifier);
   Map<String, dynamic> jsonMap = json.decode(jsonText);
   if (jsonMap['Device'] == null) {
     return;

@@ -7,6 +7,7 @@ import 'package:weather/weather.dart';
 import 'package:weather_icons/weather_icons.dart';
 
 import '../../../m_define.dart';
+import '../../../utils/helper_widgets.dart';
 import 'icons.dart';
 import 'open_weather_map.dart';
 
@@ -96,12 +97,13 @@ class JourWidgetState extends State<JourWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100,
+      height: 120,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: const [
-          WidgetDayLong(),
-          WidgetDayGraphe(),
+        children: [
+          const WidgetDayLong(),
+          const WidgetDayGraphe(),
+          addVerticalSpace(10),
         ],
       ),
     );
@@ -121,12 +123,13 @@ class _PrevisionsWidgetState extends State<PrevisionsWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200,
+      height: 150,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          for (i = 0; i < donneesPrevisions.length; i += 8)
+          for (i = 8; i < donneesPrevisions.length; i += 8)
             SizedBox(
-              //  height: MediaQuery.of(context).size.width / 5,
+              height: 120,
               width: MediaQuery.of(context).size.width / 5,
               child: WidgetDayShort(index: i),
             ),
@@ -151,21 +154,29 @@ class WidgetDayShort extends StatelessWidget {
       tempMax = max(tempMax, donneesPrevisions[index + i].tempMax?.celsius ?? 0);
     }
     String jour = jourSemaine[donneesPrevisions[index].date?.weekday ?? 0];
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(jour),
-        tabIcons[donneesPrevisions[index].weatherConditionCode.toString()]['icon'],
-        Text(textAlign: TextAlign.center, textScaleFactor: 0.8, donneesPrevisions[index].weatherDescription ?? ""), // verification non null
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(textScaleFactor: 0.8, '${tempMin.toStringAsFixed(1)}°C'),
-            Text(textScaleFactor: 0.8, '${tempMax.toStringAsFixed(1)}°C'),
-          ],
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(width: 2),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(5),
         ),
-      ],
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(jour),
+          tabIcons[donneesPrevisions[index].weatherConditionCode.toString()]['icon'],
+          Text(textAlign: TextAlign.center, textScaleFactor: 0.8, donneesPrevisions[index].weatherDescription ?? ""), // verification non null
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(textScaleFactor: 0.8, '${tempMin.toStringAsFixed(1)}°C'),
+              Text(textScaleFactor: 0.8, '${tempMax.toStringAsFixed(1)}°C'),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
@@ -180,21 +191,29 @@ class WidgetDayLong extends StatelessWidget {
     String jour = jourSemaine[donneesJour.date?.weekday ?? 0];
     jour += ' ';
     jour += donneesJour.date?.day.toString() ?? "";
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(jour),
-        tabIcons[donneesJour.weatherConditionCode.toString()]['icon'],
-        Text(textAlign: TextAlign.center, textScaleFactor: 0.8, donneesJour.weatherDescription ?? ""), // verification non null
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(textScaleFactor: 0.8, '${donneesJour.temperature?.celsius?.toStringAsFixed(1)}°C'),
-            Text(textScaleFactor: 0.8, '${donneesJour.humidity.toString()}%'),
-          ],
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(width: 2),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(5),
         ),
-      ],
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(jour),
+          tabIcons[donneesJour.weatherConditionCode.toString()]['icon'],
+          Text(textAlign: TextAlign.center, textScaleFactor: 0.8, donneesJour.weatherDescription ?? ""), // verification non null
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(textScaleFactor: 0.8, '${donneesJour.temperature?.celsius?.toStringAsFixed(1)}°C'),
+              Text(textScaleFactor: 0.8, '${donneesJour.humidity.toString()}%'),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
@@ -210,14 +229,14 @@ class WidgetDayGraphe extends StatefulWidget {
 
 class _WidgetDayGrapheState extends State<WidgetDayGraphe> {
   List<ChartData> chartData = [
-    ChartData(0, 0),
-    ChartData(0, 0),
-    ChartData(0, 0),
-    ChartData(0, 0),
-    ChartData(0, 0),
-    ChartData(0, 0),
-    ChartData(0, 0),
-    ChartData(0, 0),
+    ChartData('0', 0),
+    ChartData('0', 0),
+    ChartData('0', 0),
+    ChartData('0', 0),
+    ChartData('0', 0),
+    ChartData('0', 0),
+    ChartData('0', 0),
+    ChartData('0', 0),
   ];
 
   @override
@@ -229,22 +248,30 @@ class _WidgetDayGrapheState extends State<WidgetDayGraphe> {
     tempMin = min(tempMin, donneesJour.tempMin?.celsius ?? 0);
     tempMax = max(tempMax, donneesJour.tempMax?.celsius ?? 0);
     for (i = 0; i < 8; i++) {
-      chartData[i] = ChartData(i * 3, donneesPrevisions[i].temperature?.celsius);
+      chartData[i] = ChartData(donneesPrevisions[i].date!.hour.toString(), donneesPrevisions[i].temperature?.celsius);
     }
     return SizedBox(
       height: 150,
       width: 200,
-      child: SfCartesianChart(series: <ChartSeries>[
-        // Renders spline chart
-        SplineSeries<ChartData, int>(dataSource: chartData, xValueMapper: (ChartData data, _) => data.x, yValueMapper: (ChartData data, _) => data.y)
-      ]),
+      child: SfCartesianChart(
+        primaryXAxis: CategoryAxis(),
+        series: <ChartSeries>[
+          // Renders spline chart
+          SplineSeries<ChartData, String>(
+              markerSettings: const MarkerSettings(isVisible: true, height: 2, width: 2),
+              dataLabelSettings: const DataLabelSettings(isVisible: true),
+              dataSource: chartData,
+              xValueMapper: (ChartData data, _) => data.x,
+              yValueMapper: (ChartData data, _) => data.y),
+        ],
+      ),
     );
   }
 }
 
 class ChartData {
   ChartData(this.x, this.y);
-  final int x;
+  final String x;
   final double? y;
 }
 

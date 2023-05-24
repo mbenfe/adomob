@@ -11,7 +11,7 @@
                 "column": 1,
                 "row": 1,
                 "master": "virtuelHome",
-                "slave": ["gateway"],
+                "slave": ["thMarcq2","gateway"],
                 "color": 0
             }
         ]

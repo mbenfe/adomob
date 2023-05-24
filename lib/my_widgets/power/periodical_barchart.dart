@@ -7,15 +7,16 @@ import '../../m_define.dart';
 int modeKwhEuros = CONSOMATION_MODE_EUROS;
 
 class WidgetPeriodicalCharts extends StatefulWidget {
-  final Map<String, double> heures;
-  final Map<String, double> jours;
-  final Map<String, double> mois;
   const WidgetPeriodicalCharts({
     required this.heures,
     required this.jours,
     required this.mois,
     Key? key,
   }) : super(key: key);
+
+  final Map<String, double> heures;
+  final Map<String, double> jours;
+  final Map<String, double> mois;
 
   @override
   State<WidgetPeriodicalCharts> createState() => _WidgetPeriodicalChartsState();
@@ -78,7 +79,29 @@ class _WidgetPeriodicalChartsState extends State<WidgetPeriodicalCharts> {
 
 class PowerBarCharts extends StatelessWidget {
   const PowerBarCharts({required this.consomation, super.key});
+
   final Map<String, double> consomation;
+
+  List<ChartData> convertConsomation(Map<String, double> consomation) {
+    List<ChartData> list = [];
+    if (modeKwhEuros == CONSOMATION_MODE_EUROS) {
+      consomation.forEach((key, value) => list.add(ChartData(x: key, y: value * globalPrixHeuresCreuses)));
+    } else {
+      consomation.forEach((key, value) => list.add(ChartData(x: key, y: value)));
+    }
+    return list;
+  }
+
+  List<ColumnSeries<ChartData, String>> _getDefaultColumnSeries() {
+    return <ColumnSeries<ChartData, String>>[
+      ColumnSeries<ChartData, String>(
+        dataSource: convertConsomation(consomation),
+        xValueMapper: (ChartData sales, _) => sales.x,
+        yValueMapper: (ChartData sales, _) => sales.y,
+        dataLabelSettings: const DataLabelSettings(isVisible: true, textStyle: TextStyle(fontSize: 10)),
+      )
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,31 +119,11 @@ class PowerBarCharts extends StatelessWidget {
       series: _getDefaultColumnSeries(),
     );
   }
-
-  List<ColumnSeries<ChartData, String>> _getDefaultColumnSeries() {
-    return <ColumnSeries<ChartData, String>>[
-      ColumnSeries<ChartData, String>(
-        dataSource: convertConsomation(consomation),
-        xValueMapper: (ChartData sales, _) => sales.x,
-        yValueMapper: (ChartData sales, _) => sales.y,
-        dataLabelSettings: const DataLabelSettings(isVisible: true, textStyle: TextStyle(fontSize: 10)),
-      )
-    ];
-  }
-
-  List<ChartData> convertConsomation(Map<String, double> consomation) {
-    List<ChartData> list = [];
-    if (modeKwhEuros == CONSOMATION_MODE_EUROS) {
-      consomation.forEach((key, value) => list.add(ChartData(x: key, y: value * globalPrixHeuresCreuses)));
-    } else {
-      consomation.forEach((key, value) => list.add(ChartData(x: key, y: value)));
-    }
-    return list;
-  }
 }
 
 class ChartData {
   ChartData({required this.x, required this.y});
+
   final String x;
   final double y;
 }

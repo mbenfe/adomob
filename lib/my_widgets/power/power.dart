@@ -117,7 +117,9 @@ class RootConsomationWidgetVirtuel extends ConsumerWidget {
       teleJsonMap.addAll(stateMaster.teleJsonMap);
       //      stateMaster.copyTeleJsonTo(teleJsonMap);
       for (int i = 0; i < listStateSlaves.length; i++) {
-        teleJsonMap['ActivePower'] -= listStateSlaves[i].teleJsonMap['ActivePower'];
+        if (listStateSlaves[i].teleJsonMap.isNotEmpty) {
+          teleJsonMap['ActivePower'] -= listStateSlaves[i].teleJsonMap['ActivePower'];
+        }
       }
       if (kDebugMode) {
         print(
@@ -136,6 +138,47 @@ class RootConsomationWidgetVirtuel extends ConsumerWidget {
     final Map<String, double> heures = {};
     final Map<String, double> jours = {};
     final Map<String, double> mois = {};
+    Map<String, double> heuresSoustraction = {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 0,
+      "15": 0,
+      "16": 0,
+      "17": 0,
+      "18": 0,
+      "19": 0,
+      "20": 0,
+      "21": 0,
+      "22": 0,
+      "23": 0
+    };
+    Map<String, double> joursSoustraction = {"Lun": 0, "Mar": 0, "Mer": 0, "Jeu": 0, "Ven": 0, "Sam": 0, "Dim": 0};
+    Map<String, double> moisSoustraction = {
+      "Jan": 0,
+      "Fev": 0,
+      "Mars": 0,
+      "Avr": 0,
+      "Mai": 0,
+      "Juin": 0,
+      "Juil": 0,
+      "Aout": 0,
+      "Sept": 0,
+      "Oct": 0,
+      "Nov": 0,
+      "Dec": 0
+    };
 
     //* l'affichage des cumuls se fait si ils existent
     if (listOtherJsonMap.isNotEmpty) {
@@ -143,85 +186,52 @@ class RootConsomationWidgetVirtuel extends ConsumerWidget {
       for (index = 0; index < listOtherJsonMap.length; index++) {
         //**************************************PWHOURS */
         if (listOtherJsonMap[index]['TYPE'] == 'PWHOURS') {
-          Map<String, double> heuresSoustraction = {
-            "0": 0,
-            "1": 0,
-            "2": 0,
-            "3": 0,
-            "4": 0,
-            "5": 0,
-            "6": 0,
-            "7": 0,
-            "8": 0,
-            "9": 0,
-            "10": 0,
-            "11": 0,
-            "12": 0,
-            "13": 0,
-            "14": 0,
-            "15": 0,
-            "16": 0,
-            "17": 0,
-            "18": 0,
-            "19": 0,
-            "20": 0,
-            "21": 0,
-            "22": 0,
-            "23": 0
-          };
           //* base compteur principal/maitre
           for (int i = 0; i < listStateSlaves.length; i++) {
-            listSlavesOtherJsonMap[i][index]['DATA'].forEach((key, value) {
-              if (heuresSoustraction[key] == null) {
-                if (kDebugMode) {
-                  print('json->${listSlavesOtherJsonMap[i][index]['DATA']}');
+            if (listSlavesOtherJsonMap.isNotEmpty && listSlavesOtherJsonMap[i].isNotEmpty) {
+              listSlavesOtherJsonMap[i][index]['DATA'].forEach((key, value) {
+                if (heuresSoustraction[key] == null) {
+                  if (kDebugMode) {
+                    print('json->${listSlavesOtherJsonMap[i][index]['DATA']}');
+                  }
                 }
-              }
-              heuresSoustraction.addAll({key: heuresSoustraction[key]! + value.toDouble()});
-            });
+                heuresSoustraction.addAll({key: heuresSoustraction[key]! + value.toDouble()});
+              });
+            }
           }
           listOtherJsonMap[index]['DATA'].forEach((key, value) => heures[key] = value.toDouble() - heuresSoustraction[key]);
         }
         //**************************************PWDAYS */
         if (listOtherJsonMap[index]['TYPE'] == 'PWDAYS') {
-          Map<String, double> joursSoustraction = {"Lun": 0, "Mar": 0, "Mer": 0, "Jeu": 0, "Ven": 0, "Sam": 0, "Dim": 0};
           for (int i = 0; i < listStateSlaves.length; i++) {
-            listSlavesOtherJsonMap[i][index]['DATA'].forEach((key, value) {
-              if (joursSoustraction[key] == null) {
-                if (kDebugMode) {
-                  print('json->${listSlavesOtherJsonMap[i][index]['DATA']}');
+            if (listSlavesOtherJsonMap.isNotEmpty && listSlavesOtherJsonMap[i].isNotEmpty) {
+              listSlavesOtherJsonMap[i][index]['DATA'].forEach((key, value) {
+                if (joursSoustraction[key] == null) {
+                  if (kDebugMode) {
+                    print('json->${listSlavesOtherJsonMap[i][index]['DATA']}');
+                  }
                 }
-              }
-              joursSoustraction.addAll({key: joursSoustraction[key]! + value.toDouble()});
-            });
+                joursSoustraction.addAll({key: joursSoustraction[key]! + value.toDouble()});
+              });
+            }
           }
           listOtherJsonMap[index]['DATA'].forEach((key, value) => jours[key] = value.toDouble() - joursSoustraction[key]);
         }
         //**************************************PWMONTHS */
         if (listOtherJsonMap[index]['TYPE'] == 'PWMONTHS') {
-          Map<String, double> moisSoustraction = {
-            "Jan": 0,
-            "Fev": 0,
-            "Mars": 0,
-            "Avr": 0,
-            "Mai": 0,
-            "Juin": 0,
-            "Juil": 0,
-            "Aout": 0,
-            "Sept": 0,
-            "Oct": 0,
-            "Nov": 0,
-            "Dec": 0
-          };
           for (int i = 0; i < listStateSlaves.length; i++) {
-            listSlavesOtherJsonMap[i][index]['DATA'].forEach((key, value) {
-              if (moisSoustraction[key] == null) {
-                if (kDebugMode) {
-                  print('json->${listSlavesOtherJsonMap[i][index]['DATA']}');
+            if (listSlavesOtherJsonMap.isNotEmpty && listSlavesOtherJsonMap[i].isNotEmpty) {
+              listSlavesOtherJsonMap[i][index]['DATA'].forEach((key, value) {
+                if (moisSoustraction[key] == null) {
+                  if (kDebugMode) {
+                    print('json->${listSlavesOtherJsonMap[i][index]['DATA']}');
+                  }
                 }
-              }
-              moisSoustraction.addAll({key: moisSoustraction[key]! + value.toDouble()});
-            });
+                if (moisSoustraction[key] != null) {
+                  moisSoustraction.addAll({key: moisSoustraction[key]! + value.toDouble()});
+                }
+              });
+            }
           }
           listOtherJsonMap[index]['DATA'].forEach((key, value) => mois[key] = value.toDouble() - moisSoustraction[key]);
         }
