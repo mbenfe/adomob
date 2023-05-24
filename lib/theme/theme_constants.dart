@@ -1,16 +1,16 @@
-// ignore_for_file: constant_identifier_names
+// ignore_for_file: constant_identifier_names, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 
-const LIGHT_PRIMARY_COLOR = Colors.deepOrange;
-const DARK_PRIMARY_COLOR = Colors.amberAccent;
-
 ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
-  primaryColor: LIGHT_PRIMARY_COLOR,
+  colorSchemeSeed: Colors.blue,
+//  useMaterial3: true,
 );
 
 ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
-  primaryColor: DARK_PRIMARY_COLOR,
+//  colorScheme: const ColorScheme.dark(),
+  colorSchemeSeed: Colors.white,
+//  useMaterial3: true,
 );

@@ -18,23 +18,23 @@ dependencies:
   flutter_form_builder: ^7.0.0
   flutter_launcher_icons: ^0.13.1
   flutter_riverpod: ^2.3.6
-  freezed: ^2.3.4
+  freezed: ^2.3.2
   freezed_annotation: ^2.2.0
   json_annotation: ^4.8.1
   material_design_icons_flutter: ^6.0.7096
   mqtt_client: ^9.8.1
   sleek_circular_slider: ^2.0.1
   syncfusion_flutter_charts: ^21.2.4
+  syncfusion_flutter_core: ^21.2.6
   syncfusion_flutter_gauges: ^21.1.41
   toggle_switch: ^2.1.0
   weather: ^2.0.1
   weather_icons: ^3.0.0
-  
-  
+
 dev_dependencies:
+  flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
 
 flutter:
   uses-material-design: true
@@ -42,7 +42,9 @@ flutter:
     - assets/
     - images/dark_theme_gauge.png
     - images/dark_theme_gauge_wip.png
-   
+    - images/temperature_gauge.png
+    - images/humidity_gauge.png
+
 flutter_icons:
   android: true
   ios: true

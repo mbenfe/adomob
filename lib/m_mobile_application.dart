@@ -8,8 +8,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'm_define.dart';
 import 'm_build_from_json.dart';
-import 'm_main.dart';
+
 import 'm_notifier.dart';
+import 'main.dart';
 import 'my_models/complex_state_fz.dart';
 import 'my_widgets/arrosage/arrosage.dart';
 import 'my_widgets/blinder/blinder.dart';

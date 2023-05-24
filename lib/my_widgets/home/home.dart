@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../my_models/complex_state_fz.dart';
-import '../sub_widgets/mini_dashboard_conso/conso.dart';
+import '../sub_widgets/mini_dashboard_conso/dashboard_conso.dart';
 import '../sub_widgets/prevision_meteo/meteo.dart';
 import '../state_notifier.dart';
 import '../sub_widgets/temperature_exterieur/gauge_exterieur.dart';
