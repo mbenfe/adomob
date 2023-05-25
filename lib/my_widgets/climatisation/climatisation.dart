@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:adomob/utils/helper_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -35,17 +36,15 @@ class RootClimatisationWidget extends ConsumerWidget {
 
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        return Container(
-          width: MediaQuery.of(context).size.width,
-//          height: MediaQuery.of(context).size.height - 100,
-          decoration: const BoxDecoration(
-            border: Border(bottom: BorderSide(width: 5, color: Colors.blueGrey)),
-          ),
-          // gauge
+        return Card(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Header(location: location, listSlaves: listSlaves),
+              Row(
+                children: [
+                  Header(location: location, listSlaves: listSlaves),
+                ],
+              ),
               SelectionMode(listSlaves: listSlaves),
               SelectionTemperature(listSlaves: listSlaves),
               SelectionFan(listSlaves: listSlaves),
@@ -68,8 +67,8 @@ class Header extends StatefulWidget {
     required this.listSlaves,
   }) : super(key: key);
 
-  final String location;
   final List<String> listSlaves;
+  final String location;
 
   @override
   State<Header> createState() => _HeaderState();
@@ -78,60 +77,21 @@ class Header extends StatefulWidget {
 class _HeaderState extends State<Header> {
   @override
   Widget build(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      Text(widget.location),
-      const Text('10'),
-      Switch(
-        value: isOn,
-        onChanged: (value) {
-          setState(() {
-            isOn = value;
-            commande(isOn, fanSpeed, modeSelected, temperature, widget.listSlaves);
-          });
-        },
-      ),
-    ]);
-  }
-}
-
-class SelectionFan extends StatefulWidget {
-  const SelectionFan({
-    required this.listSlaves,
-    super.key,
-  });
-  final List<String> listSlaves;
-
-  @override
-  State<SelectionFan> createState() => _SelectionFanState();
-}
-
-class _SelectionFanState extends State<SelectionFan> {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        const Text('Ventilation:'),
-        ToggleButtons(
-          selectedColor: Colors.green,
-          onPressed: (int index) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        Text(widget.location),
+        const Text('10'),
+        Switch(
+          value: isOn,
+          onChanged: (value) {
             setState(() {
-              for (int i = 0; i < fanSpeed.length; i++) {
-                fanSpeed[i] = i == index;
-              }
+              isOn = value;
               commande(isOn, fanSpeed, modeSelected, temperature, widget.listSlaves);
             });
           },
-          isSelected: fanSpeed,
-          children: const [
-            Icon(MdiIcons.refreshAuto, size: 30),
-            Icon(MdiIcons.fan, size: 20),
-            Icon(MdiIcons.fan, size: 30),
-            Icon(MdiIcons.fan, size: 40),
-            Icon(MdiIcons.fan, size: 50),
-          ],
         ),
-      ],
+      ]),
     );
   }
 }
@@ -141,6 +101,7 @@ class SelectionTemperature extends StatefulWidget {
     required this.listSlaves,
     super.key,
   });
+
   final List<String> listSlaves;
 
   @override
@@ -151,8 +112,8 @@ class _SelectionTemperatureState extends State<SelectionTemperature> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 300,
-      width: 300,
+      height: 200,
+      width: MediaQuery.of(context).size.width,
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: SleekCircularSlider(
@@ -161,7 +122,8 @@ class _SelectionTemperatureState extends State<SelectionTemperature> {
             startAngle: 135,
             customColors: CustomSliderColors(
               dynamicGradient: false,
-              progressBarColors: [Colors.blue.shade50, Colors.blue.shade900],
+              progressBarColors: [Theme.of(context).primaryColor, Theme.of(context).primaryColor],
+              trackColor: Theme.of(context).disabledColor,
             ),
           ),
           initialValue: temperature,
@@ -199,6 +161,7 @@ class SelectionMode extends StatefulWidget {
     required this.listSlaves,
     super.key,
   });
+
   final List<String> listSlaves;
 
   @override
@@ -212,8 +175,9 @@ class _SelectionModeState extends State<SelectionMode> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         const Text('Mode:'),
+        addHorizontalSpace(10),
         ToggleButtons(
-          selectedColor: Colors.green,
+          borderRadius: BorderRadius.zero,
           onPressed: (int index) {
             setState(() {
               for (int i = 0; i < modeSelected.length; i++) {
@@ -231,6 +195,54 @@ class _SelectionModeState extends State<SelectionMode> {
           ],
         ),
       ],
+    );
+  }
+}
+
+class SelectionFan extends StatefulWidget {
+  const SelectionFan({
+    required this.listSlaves,
+    super.key,
+  });
+
+  final List<String> listSlaves;
+
+  @override
+  State<SelectionFan> createState() => _SelectionFanState();
+}
+
+class _SelectionFanState extends State<SelectionFan> {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 70,
+      width: MediaQuery.of(context).size.width,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text('Ventilation:'),
+          addHorizontalSpace(10),
+          ToggleButtons(
+            borderRadius: BorderRadius.zero,
+            onPressed: (int index) {
+              setState(() {
+                for (int i = 0; i < fanSpeed.length; i++) {
+                  fanSpeed[i] = i == index;
+                }
+                commande(isOn, fanSpeed, modeSelected, temperature, widget.listSlaves);
+              });
+            },
+            isSelected: fanSpeed,
+            children: const [
+              SizedBox(height: 50, width: 50, child: Icon(MdiIcons.refreshAuto, size: 30)),
+              SizedBox(height: 50, width: 50, child: Icon(MdiIcons.fan, size: 20)),
+              SizedBox(height: 50, width: 50, child: Icon(MdiIcons.fan, size: 30)),
+              SizedBox(height: 50, width: 50, child: Icon(MdiIcons.fan, size: 40)),
+              SizedBox(height: 50, width: 50, child: Icon(MdiIcons.fan, size: 50)),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

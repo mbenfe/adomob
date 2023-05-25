@@ -26,20 +26,25 @@ class RootHomeWidget extends ConsumerWidget {
             children: [
               SizedBox(
                 height: 140,
-                child: SubGaugeExterieureWidget(
-                  master: '',
-                  stateProvider: listStateProviders[0],
+                child: Card(
+                  //      shape: const CircleBorder(),
+                  child: SubGaugeExterieureWidget(
+                    master: '',
+                    stateProvider: listStateProviders[0],
+                  ),
                 ),
               ),
-              const Divider(thickness: 1),
-              const SizedBox(
-                height: 270,
-                child: SubMeteoWidget(),
+              const Card(
+                child: SizedBox(
+                  height: 270,
+                  child: SubMeteoWidget(),
+                ),
               ),
-              const Divider(thickness: 1),
-              SizedBox(
-                height: 100,
-                child: SubDashboardConsoWidget(master: '', stateProvider: listStateProviders[1]),
+              Card(
+                child: SizedBox(
+                  height: 100,
+                  child: SubDashboardConsoWidget(master: '', stateProvider: listStateProviders[1]),
+                ),
               ),
             ],
           ),

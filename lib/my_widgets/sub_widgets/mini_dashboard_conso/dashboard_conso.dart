@@ -4,7 +4,6 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../../m_define.dart';
 import '../../../my_models/complex_state_fz.dart';
-import '../../power/gauge.dart';
 import '../../power/periodical_barchart.dart';
 import '../../state_notifier.dart';
 
@@ -29,9 +28,11 @@ class SubDashboardConsoWidget extends ConsumerWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Text(teleJsonMap['ActivePower'] != null ? '${teleJsonMap['ActivePower']} Watts' : ''),
-        Flexible(
-          flex: 1,
+        Card(
+            elevation: 5,
+            color: Theme.of(context).colorScheme.primaryContainer,
+            child: Text(teleJsonMap['ActivePower'] != null ? '${teleJsonMap['ActivePower']} Watts' : '')),
+        Expanded(
           child: SubConsomationSummary(
             master: master,
             stateProvider: stateProvider,
@@ -94,9 +95,19 @@ class myPowerBarCharts extends StatelessWidget {
   List<ChartData> convertConsomation(Map<String, double> consomation) {
     const List<String> weekDay = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
     var day = DateTime.now().weekday;
+    var pastDay = 0;
+    if (day > 0) {
+      pastDay = day - 1;
+    } else {
+      pastDay = 6;
+    }
+
     List<ChartData> list = [];
+    if (consomation[weekDay[pastDay]] != null) {
+      list.add(ChartData(x: 'hier', y: consomation[weekDay[pastDay]]! * globalPrixHeuresCreuses));
+    }
     if (consomation[weekDay[day]] != null) {
-      list.add(ChartData(x: weekDay[day], y: consomation[weekDay[day]]! * globalPrixHeuresCreuses));
+      list.add(ChartData(x: "aujourd'hui", y: consomation[weekDay[day]]! * globalPrixHeuresCreuses));
     }
     return list;
   }
@@ -122,7 +133,7 @@ class myPowerBarCharts extends StatelessWidget {
       ),
       primaryYAxis: NumericAxis(
         axisLine: const AxisLine(width: 1),
-        labelFormat: modeKwhEuros == CONSOMATION_MODE_EUROS ? '{value}€' : '{value}Kwh',
+        labelFormat: '{value}€',
         majorTickLines: const MajorTickLines(size: 1),
       ),
       series: _getDefaultColumnSeries(),

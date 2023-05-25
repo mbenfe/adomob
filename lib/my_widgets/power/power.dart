@@ -77,8 +77,12 @@ class RootConsomationWidgetMaitre extends ConsumerWidget {
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              WidgetGauge(jsonMap: teleJsonMap),
-              WidgetPeriodicalCharts(heures: heures, jours: jours, mois: mois),
+              Card(
+                child: WidgetGauge(jsonMap: teleJsonMap),
+              ),
+              Card(
+                child: WidgetPeriodicalCharts(heures: heures, jours: jours, mois: mois),
+              ),
               const Divider(),
             ],
           ),

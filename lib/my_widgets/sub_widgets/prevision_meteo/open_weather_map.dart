@@ -17,14 +17,14 @@ var donneesPrevisionsDecodees = [];
 DownloadState etatJour = DownloadState.notDownloaded;
 DownloadState etatPrevisions = DownloadState.notDownloaded;
 
-class SubMeteo extends StatefulWidget {
-  const SubMeteo({super.key});
+class OpenWeatherMapCall extends StatefulWidget {
+  const OpenWeatherMapCall({super.key});
 
   @override
-  SubMeteoState createState() => SubMeteoState();
+  OpenWeatherMapCallState createState() => OpenWeatherMapCallState();
 }
 
-class SubMeteoState extends State<SubMeteo> {
+class OpenWeatherMapCallState extends State<OpenWeatherMapCall> {
   @override
   initState() {
     super.initState();

@@ -76,65 +76,57 @@ class SubMeteoWidgetState extends State<SubMeteoWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: const <Widget>[
-        SubMeteo(),
-      ],
-    );
+    return const OpenWeatherMapCall();
   }
 }
 
-class JourWidget extends StatefulWidget {
-  const JourWidget({super.key});
+class RowJourWidget extends StatefulWidget {
+  const RowJourWidget({super.key});
 
   @override
-  State<JourWidget> createState() => JourWidgetState();
+  State<RowJourWidget> createState() => RowJourWidgetState();
 }
 
-class JourWidgetState extends State<JourWidget> {
+class RowJourWidgetState extends State<RowJourWidget> {
   String code = donneesJour.weatherConditionCode.toString();
   BoxedIcon icon = tabIcons['802']['icon'];
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 120,
+      height: 160, //! a reajuster
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          const WidgetDayLong(),
-          const WidgetDayGraphe(),
-          addVerticalSpace(10),
+        children: const [
+          WidgetDayLong(),
+          WidgetDayGraphe(),
         ],
       ),
     );
   }
 }
 
-class PrevisionsWidget extends StatefulWidget {
-  const PrevisionsWidget({super.key});
+class RowPrevisionsWidget extends StatefulWidget {
+  const RowPrevisionsWidget({super.key});
 
   @override
-  State<PrevisionsWidget> createState() => _PrevisionsWidgetState();
+  State<RowPrevisionsWidget> createState() => _RowPrevisionsWidgetState();
 }
 
-class _PrevisionsWidgetState extends State<PrevisionsWidget> {
+class _RowPrevisionsWidgetState extends State<RowPrevisionsWidget> {
   int i = 0;
   String code = "";
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 150,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          for (i = 8; i < donneesPrevisions.length; i += 8)
-            SizedBox(
-              height: 120,
-              width: MediaQuery.of(context).size.width / 5,
-              child: WidgetDayShort(index: i),
-            ),
-        ],
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        for (i = 8; i < donneesPrevisions.length; i += 8)
+          SizedBox(
+            height: 100,
+            width: MediaQuery.of(context).size.width / 5,
+            child: Card(elevation: 5, child: WidgetDayShort(index: i)),
+          ),
+      ],
     );
   }
 }
@@ -154,29 +146,21 @@ class WidgetDayShort extends StatelessWidget {
       tempMax = max(tempMax, donneesPrevisions[index + i].tempMax?.celsius ?? 0);
     }
     String jour = jourSemaine[donneesPrevisions[index].date?.weekday ?? 0];
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(width: 2),
-        borderRadius: const BorderRadius.all(
-          Radius.circular(5),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(jour),
+        tabIcons[donneesPrevisions[index].weatherConditionCode.toString()]['icon'],
+        Text(textAlign: TextAlign.center, textScaleFactor: 0.8, donneesPrevisions[index].weatherDescription ?? ""), // verification non null
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(textScaleFactor: 0.8, '${tempMin.toStringAsFixed(1)}°C'),
+            Text(textScaleFactor: 0.8, '${tempMax.toStringAsFixed(1)}°C'),
+          ],
         ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(jour),
-          tabIcons[donneesPrevisions[index].weatherConditionCode.toString()]['icon'],
-          Text(textAlign: TextAlign.center, textScaleFactor: 0.8, donneesPrevisions[index].weatherDescription ?? ""), // verification non null
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(textScaleFactor: 0.8, '${tempMin.toStringAsFixed(1)}°C'),
-              Text(textScaleFactor: 0.8, '${tempMax.toStringAsFixed(1)}°C'),
-            ],
-          ),
-        ],
-      ),
+      ],
     );
   }
 }
@@ -191,28 +175,29 @@ class WidgetDayLong extends StatelessWidget {
     String jour = jourSemaine[donneesJour.date?.weekday ?? 0];
     jour += ' ';
     jour += donneesJour.date?.day.toString() ?? "";
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(width: 2),
-        borderRadius: const BorderRadius.all(
-          Radius.circular(5),
+    return SizedBox(
+      width: 100,
+      child: Card(
+        color: Theme.of(context).colorScheme.primaryContainer,
+        elevation: 5,
+        shadowColor: Theme.of(context).colorScheme.primary,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            addVerticalSpace(5),
+            Text(jour),
+            tabIcons[donneesJour.weatherConditionCode.toString()]['icon'],
+            Text(textAlign: TextAlign.center, textScaleFactor: 0.8, donneesJour.weatherDescription ?? ""), // verification non null
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(textScaleFactor: 0.8, '${donneesJour.temperature?.celsius?.toStringAsFixed(1)}°C'),
+                Text(textScaleFactor: 0.8, '${donneesJour.humidity.toString()}%'),
+              ],
+            ),
+          ],
         ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(jour),
-          tabIcons[donneesJour.weatherConditionCode.toString()]['icon'],
-          Text(textAlign: TextAlign.center, textScaleFactor: 0.8, donneesJour.weatherDescription ?? ""), // verification non null
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(textScaleFactor: 0.8, '${donneesJour.temperature?.celsius?.toStringAsFixed(1)}°C'),
-              Text(textScaleFactor: 0.8, '${donneesJour.humidity.toString()}%'),
-            ],
-          ),
-        ],
       ),
     );
   }
@@ -248,22 +233,30 @@ class _WidgetDayGrapheState extends State<WidgetDayGraphe> {
     tempMin = min(tempMin, donneesJour.tempMin?.celsius ?? 0);
     tempMax = max(tempMax, donneesJour.tempMax?.celsius ?? 0);
     for (i = 0; i < 8; i++) {
-      chartData[i] = ChartData(donneesPrevisions[i].date!.hour.toString(), donneesPrevisions[i].temperature?.celsius);
+      String stringToken;
+      double? mesure = donneesPrevisions[i].temperature?.celsius;
+      stringToken = mesure!.toStringAsFixed(1);
+      mesure = double.parse(stringToken);
+      chartData[i] = ChartData(donneesPrevisions[i].date!.hour.toString(), mesure);
     }
-    return SizedBox(
-      height: 150,
-      width: 200,
-      child: SfCartesianChart(
-        primaryXAxis: CategoryAxis(),
-        series: <ChartSeries>[
-          // Renders spline chart
-          SplineSeries<ChartData, String>(
-              markerSettings: const MarkerSettings(isVisible: true, height: 2, width: 2),
-              dataLabelSettings: const DataLabelSettings(isVisible: true),
-              dataSource: chartData,
-              xValueMapper: (ChartData data, _) => data.x,
-              yValueMapper: (ChartData data, _) => data.y),
-        ],
+    return Expanded(
+      child: Card(
+        child: SizedBox(
+          height: 150,
+          width: 200,
+          child: SfCartesianChart(
+            primaryXAxis: CategoryAxis(),
+            series: <ChartSeries>[
+              // Renders spline chart
+              SplineSeries<ChartData, String>(
+                  markerSettings: const MarkerSettings(isVisible: true, height: 2, width: 2),
+                  dataLabelSettings: const DataLabelSettings(isVisible: true),
+                  dataSource: chartData,
+                  xValueMapper: (ChartData data, _) => data.x,
+                  yValueMapper: (ChartData data, _) => data.y),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -286,7 +279,7 @@ Widget contentDownloading() {
 
 Widget affichageResultatsJour() {
   if (etatJour == DownloadState.finishedDownloading && etatPrevisions == DownloadState.finishedDownloading) {
-    return const JourWidget();
+    return const RowJourWidget();
   } else {
     return contentDownloading();
   }
@@ -294,7 +287,7 @@ Widget affichageResultatsJour() {
 
 Widget affichageResultatsPrevisions() {
   if (etatPrevisions == DownloadState.finishedDownloading) {
-    return const PrevisionsWidget();
+    return const RowPrevisionsWidget();
   } else {
     return contentDownloading();
   }
