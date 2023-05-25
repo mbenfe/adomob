@@ -21,10 +21,10 @@ packages:
     dependency: "direct main"
     description:
       name: animator
-      sha256: b443e888b72b77a96d1e57a2190e42a0d46948e942fcfd7aed9c47dde2f446c6
+      sha256: "8abee840f02254eecbdf05524f2cb41c8fce3063c125e5408c51b18acddaf529"
       url: "https://pub.dev"
     source: hosted
-    version: "3.3.0"
+    version: "3.1.0"
   archive:
     dependency: transitive
     description:
@@ -257,6 +257,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  flex_color_scheme:
+    dependency: "direct main"
+    description:
+      name: flex_color_scheme
+      sha256: "92e55a32cb0cbcde333c2169612785ed236a7b136534de983b3037b39d06e96c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.0.5"
+  flex_seed_scheme:
+    dependency: transitive
+    description:
+      name: flex_seed_scheme
+      sha256: e4168a6fc88a3e5bc3d6b7a748c6a6083eedc193d343ddc26bbad7fb1b258555
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.3.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -294,11 +310,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
-  flutter_localizations:
-    dependency: transitive
-    description: flutter
-    source: sdk
-    version: "0.0.0"
   flutter_riverpod:
     dependency: "direct main"
     description:
@@ -496,14 +507,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "9.8.1"
-  navigation_builder:
-    dependency: transitive
-    description:
-      name: navigation_builder
-      sha256: "95e25150191d9cd4e4b86504f33cd9e786d1e6732edb2e3e635bbedc5ef0dea7"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.3"
   package_config:
     dependency: transitive
     description:
@@ -641,10 +644,10 @@ packages:
     dependency: transitive
     description:
       name: states_rebuilder
-      sha256: bf1a5ab5c543acdefce35e60f482eb7ab592339484fe3266d147ee597f18dc92
+      sha256: e2debaf1378edf623bc9943fd74de268d9cf76b2f2734b6d1b3b3ac372e2c05c
       url: "https://pub.dev"
     source: hosted
-    version: "6.3.0"
+    version: "4.4.0"
   stream_channel:
     dependency: transitive
     description:
