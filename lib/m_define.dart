@@ -1,4 +1,4 @@
-// -------------------- pre defined icon-text pour appBar -----------------------------
+// -------------------- pre defined icon-text pour bottomNavigationBar -----------------------------
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
@@ -11,7 +11,7 @@ class AppGroups {
   AppGroups(this.index, this.icon, this.text);
 }
 
-List<AppGroups> preDefinedAppBar = [
+List<AppGroups> preDefinedBottomNavigationBar = [
   AppGroups(0, MdiIcons.homeOutline, 'Home'),
   AppGroups(1, Icons.water, 'Arrosage'),
   AppGroups(2, Icons.door_sliding, 'Blinder'),
@@ -41,8 +41,8 @@ const double MIN_TEMP = 15;
 const double MAX_TEMP = 25;
 
 //* direction appli
-const String client = "benfeghoul";
-const String ville = "marcq-en-baroeul";
+//const String client = "benfeghoul";
+//const String ville = "marcq-en-baroeul";
 
-//const String client = "bauduin";
-//const String ville = "seignosse";
+const String client = "bauduin";
+const String ville = "seignosse";

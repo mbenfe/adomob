@@ -9,8 +9,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'm_define.dart';
 import 'm_build_from_json.dart';
 
-import 'm_notifier.dart';
-import 'main.dart';
 import 'my_models/complex_state_fz.dart';
 import 'my_widgets/arrosage/arrosage.dart';
 import 'my_widgets/blinder/blinder.dart';
@@ -23,66 +21,10 @@ import 'my_widgets/power/power.dart';
 import 'my_widgets/room/room.dart';
 import 'my_widgets/setup/setup.dart';
 import 'my_widgets/state/state.dart';
-import 'my_widgets/state_notifier.dart';
+import 'my_notifiers/widgets_manager.dart';
 import 'my_widgets/switch/switch.dart';
 import 'my_widgets/temperature/temperature.dart';
 import 'my_widgets/thermostat/thermostat.dart';
-
-/// ConsumerWidget for riverpod - ref for interaction with providers
-class PagePrincipale extends ConsumerWidget {
-  PagePrincipale({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context, ref) {
-    final currentIndex = ref.watch(appBarIndexProvider);
-    final appIndex = currentIndex.appBarIndex;
-
-    final screens = [
-      appBuildSelectedView('Home'),
-      appBuildSelectedView('Arrosage'),
-      appBuildSelectedView('Blinder'),
-      appBuildSelectedView('Contact'),
-      appBuildSelectedView('Extender'),
-      appBuildSelectedView('Light'),
-      appBuildSelectedView('Chauffage'),
-      appBuildSelectedView('State'),
-      appBuildSelectedView('Switch'),
-      appBuildSelectedView('Temperature'),
-      appBuildSelectedView('Thermostat'),
-      appBuildSelectedView('Consommation'),
-      appBuildSelectedView('Climatisation'),
-      appBuildSelectedView('Setup'),
-    ];
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(ville),
-        actions: [
-          Switch(
-            value: themeManager.themeMode == ThemeMode.dark,
-            onChanged: (newValue) {
-              themeManager.toggleTheme(newValue);
-            },
-          )
-        ],
-      ),
-      body: screens[appGetPageIndex(appIndex)],
-      bottomNavigationBar: Container(
-        decoration: const BoxDecoration(
-          border: Border(
-            top: BorderSide(width: 1),
-          ),
-        ),
-        child: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            currentIndex: appIndex,
-            onTap: (value) => currentIndex.setAppBarIndex(value),
-            items: appGetListBottomNavigationBarItem()),
-      ),
-    );
-  }
-}
 
 /// ---------------------------------------------------------------------------
 /// build ONE appplication widget list
@@ -246,7 +188,7 @@ int appGetPageIndex(int appIndex) {
 
   listAllApps = appGetListBottomNavigationBarItem();
   String appName = listAllApps[appIndex].label.toString();
-  index = preDefinedAppBar.indexWhere((element) => element.text == appName);
+  index = preDefinedBottomNavigationBar.indexWhere((element) => element.text == appName);
   return index;
 }
 
@@ -255,7 +197,7 @@ List<BottomNavigationBarItem> appGetListBottomNavigationBarItem() {
   int i;
   List<BottomNavigationBarItem> list = [];
   for (i = 0; i < listApplications.length; i++) {
-    var bundle = preDefinedAppBar.firstWhere((element) => element.text == listApplications[i]);
+    var bundle = preDefinedBottomNavigationBar.firstWhere((element) => element.text == listApplications[i]);
     list.add(BottomNavigationBarItem(icon: Icon(bundle.icon), label: bundle.text));
   }
   if (list.length < 2) {

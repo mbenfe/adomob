@@ -5,7 +5,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import '../../../m_define.dart';
 import '../../../my_models/complex_state_fz.dart';
 import '../../power/periodical_barchart.dart';
-import '../../state_notifier.dart';
+import '../../../my_notifiers/widgets_manager.dart';
 
 /// ConsumerWidget for riverpod
 class SubDashboardConsoWidget extends ConsumerWidget {
@@ -58,7 +58,6 @@ class SubConsomationSummary extends ConsumerWidget {
     state = ref.watch(stateProvider); //* boitier virtuel premier provider ne recoit rien, second est le maitre
 
     //* la telemetry est traitée directment dans la widgets avec test null-safety
-    Map<String, dynamic> teleJsonMap = state.teleJsonMap;
 
     List<Map<String, dynamic>> listJsonMap = state.listOtherJsonMap;
     final Map<String, double> jours = {};
@@ -79,7 +78,7 @@ class SubConsomationSummary extends ConsumerWidget {
           alignment: Alignment.topCenter,
           //        height: POWER_VERTICAL_WIDGET_SIZE,
           width: MediaQuery.of(context).size.width,
-          child: myPowerBarCharts(consomation: jours),
+          child: PowerTodayYesterday(consomation: jours),
         );
       },
       // containter frame
@@ -87,8 +86,8 @@ class SubConsomationSummary extends ConsumerWidget {
   }
 }
 
-class myPowerBarCharts extends StatelessWidget {
-  const myPowerBarCharts({required this.consomation, super.key});
+class PowerTodayYesterday extends StatelessWidget {
+  const PowerTodayYesterday({required this.consomation, super.key});
 
   final Map<String, double> consomation;
 
@@ -107,7 +106,7 @@ class myPowerBarCharts extends StatelessWidget {
       list.add(ChartData(x: 'hier', y: consomation[weekDay[pastDay]]! * globalPrixHeuresCreuses));
     }
     if (consomation[weekDay[day]] != null) {
-      list.add(ChartData(x: "aujourd'hui", y: consomation[weekDay[day]]! * globalPrixHeuresCreuses));
+      list.add(ChartData(x: 'aujourd\'hui', y: consomation[weekDay[day]]! * globalPrixHeuresCreuses));
     }
     return list;
   }

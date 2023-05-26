@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../m_define.dart';
 import '../../my_models/complex_state_fz.dart';
-import '../state_notifier.dart';
+import '../../my_notifiers/widgets_manager.dart';
 
 /// ConsumerWidget for riverpod
 class RootContactWidget extends ConsumerWidget {

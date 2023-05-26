@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'my_models/adomob_app_cfg.dart';
 import 'my_models/complex_state_fz.dart';
-import 'my_widgets/state_notifier.dart';
+import 'my_notifiers/widgets_manager.dart';
 
 //Map<String, List<Key>> mapGlobalKeys = {};
 //Map<String, GlobalKey<State<StatefulWidget>>> mapGlobalKeys = {};

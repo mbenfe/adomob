@@ -1,4 +1,4 @@
-import 'package:adomob/my_widgets/state_notifier.dart';
+import 'package:adomob/my_notifiers/widgets_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

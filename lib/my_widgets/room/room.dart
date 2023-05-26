@@ -10,7 +10,9 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import '../../m_define.dart';
 import '../../my_animations/my_animations.dart';
 import '../../my_models/complex_state_fz.dart';
-import '../state_notifier.dart';
+import '../../my_notifiers/theme_manager.dart';
+import '../../my_notifiers/widgets_manager.dart';
+import '../../utils/theme/theme_constants.dart';
 
 /// ConsumerWidget for riverpod
 class RootRoomWidget extends ConsumerWidget {
@@ -24,6 +26,8 @@ class RootRoomWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+    bool darkMode = ref.watch(darkModeProvider);
+
     final Map<String, IconData> slotMapIcons = {
       'Matin': MdiIcons.weatherSunset,
       'Journee': MdiIcons.weatherSunny,
@@ -126,73 +130,76 @@ class RootRoomWidget extends ConsumerWidget {
               mapState[listSlaves[i]]?.classSwitchToggle();
             }
           },
-          child: Container(
-            width: ROOM_WIDGET_SIZE,
-            height: ROOM_WIDGET_SIZE,
-            decoration: BoxDecoration(
-                border: Border.all(color: couleurBordure, width: 5),
-                borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(60),
-                  topLeft: Radius.circular(60),
-                  bottomRight: Radius.circular(60 / 2),
-                  bottomLeft: Radius.circular(60 / 2),
-                )),
-            // gauge
-            child: Stack(
-              alignment: Alignment.center,
-              children: <Widget>[
-                if (teleJsonMapMaster != null && teleListJsonSlave.isNotEmpty) ...[
-                  Positioned(
-                    top: INSET_GAUGE,
-                    child: RoomGauge(
-                        gWidth: ROOM_WIDGET_SIZE - 2 * 5 - 2 * INSET_GAUGE,
-                        gHeight: ROOM_WIDGET_SIZE / 2,
-                        color: Colors.red,
-                        trim: false,
-                        radius: 60,
-                        epaisseur: 10,
-                        targetTemp: targetTemp,
-                        //                    temperature: decodeSensor['temp']),
-                        temperature: teleJsonMapMaster['Temperature'].toDouble()),
-                  ),
-                  // text temperature
-                  //                 Positioned(top: 40, left: 60, child: Text(teleJsonMapMaster['LinkQuality'].toString(), style: const TextStyle(fontSize: 10))),
-                  Positioned(
-                      top: 70,
-                      child: Text(teleJsonMapMaster['Temperature'] != null ? teleJsonMapMaster['Temperature'].toStringAsFixed(2) + '°C' : '--°C',
-                          style: const TextStyle(fontSize: 20))),
-                  Positioned(
-                      top: 50,
-                      right: 40,
-                      child: Text(teleJsonMapMaster['Humidity'] != null ? teleJsonMapMaster['Humidity'].toStringAsFixed(0) + '%' : '--%',
-                          style: const TextStyle(fontSize: 14))),
-                  // etat du chauffage
-                  Positioned(top: 105, child: Text(location, style: const TextStyle(fontSize: 12))),
-                  Positioned(
-                      top: 67,
-                      right: 69,
-                      child: teleListJsonSlave[0]['Power'] == 1 ? const IconHeaterAnimated(etat: true) : const IconHeaterAnimated(etat: false)),
-                  Positioned(
-                    top: 125,
-                    left: 50,
-                    child: Icon(
-                      slotIcon,
-                      size: 35,
-                      color: Colors.deepPurple,
+          child: Padding(
+            padding: const EdgeInsets.all(2),
+            child: Container(
+              width: ROOM_WIDGET_SIZE,
+              height: ROOM_WIDGET_SIZE,
+              decoration: BoxDecoration(
+                  border: Border.all(color: couleurBordure, width: 5),
+                  borderRadius: const BorderRadius.only(
+                    topRight: Radius.circular(60),
+                    topLeft: Radius.circular(60),
+                    bottomRight: Radius.circular(60 / 2),
+                    bottomLeft: Radius.circular(60 / 2),
+                  )),
+              // gauge
+              child: Stack(
+                alignment: Alignment.center,
+                children: <Widget>[
+                  if (teleJsonMapMaster != null && teleListJsonSlave.isNotEmpty) ...[
+                    Positioned(
+                      top: INSET_GAUGE,
+                      child: RoomGauge(
+                          gWidth: ROOM_WIDGET_SIZE - 2 * 5 - 2 * INSET_GAUGE,
+                          gHeight: ROOM_WIDGET_SIZE / 2,
+                          color: Colors.red,
+                          trim: false,
+                          radius: 60,
+                          epaisseur: 10,
+                          targetTemp: targetTemp,
+                          //                    temperature: decodeSensor['temp']),
+                          temperature: teleJsonMapMaster['Temperature'].toDouble()),
                     ),
-                  ),
-                  Positioned(
-                    top: 127,
-                    left: 85,
-                    child: Icon(periodIcon, size: 35, color: Colors.blueAccent),
-                  ),
-                  const Positioned(
-                    top: 120,
-                    right: 6,
-                    child: BuildIcons(),
-                  )
-                ]
-              ],
+                    // text temperature
+                    //                 Positioned(top: 40, left: 60, child: Text(teleJsonMapMaster['LinkQuality'].toString(), style: const TextStyle(fontSize: 10))),
+                    Positioned(
+                        top: 70,
+                        child: Text(teleJsonMapMaster['Temperature'] != null ? teleJsonMapMaster['Temperature'].toStringAsFixed(2) + '°C' : '--°C',
+                            style: const TextStyle(fontSize: 20))),
+                    Positioned(
+                        top: 50,
+                        right: 40,
+                        child: Text(teleJsonMapMaster['Humidity'] != null ? teleJsonMapMaster['Humidity'].toStringAsFixed(0) + '%' : '--%',
+                            style: const TextStyle(fontSize: 14))),
+                    // etat du chauffage
+                    Positioned(top: 105, child: Text(location, style: const TextStyle(fontSize: 12))),
+                    Positioned(
+                        top: 67,
+                        right: 69,
+                        child: teleListJsonSlave[0]['Power'] == 1 ? const IconHeaterAnimated(etat: true) : const IconHeaterAnimated(etat: false)),
+                    Positioned(
+                      top: 125,
+                      left: 50,
+                      child: Icon(
+                        slotIcon,
+                        size: 35,
+                        color: Colors.deepPurple,
+                      ),
+                    ),
+                    Positioned(
+                      top: 127,
+                      left: 85,
+                      child: Icon(periodIcon, size: 35, color: Colors.blueAccent),
+                    ),
+                    const Positioned(
+                      top: 120,
+                      right: 6,
+                      child: BuildIcons(),
+                    )
+                  ]
+                ],
+              ),
             ),
           ),
         );
@@ -229,6 +236,8 @@ class RoomGauge extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+    bool darkMode = ref.watch(darkModeProvider);
+
     return Column(
       children: [
         Stack(
@@ -240,7 +249,7 @@ class RoomGauge extends ConsumerWidget {
             ),
             CustomPaint(
               size: Size(gWidth, gHeight),
-              painter: GaugePainter(color, trim, 60 - INSET_GAUGE * 1.5, epaisseur, temperature), // 60 <- radius angle widget
+              painter: GaugePainter(color, trim, 60 - INSET_GAUGE * 1.5, epaisseur, temperature, darkMode), // 60 <- radius angle widget
             ),
           ],
         ),
@@ -272,13 +281,14 @@ class BuildIcons extends StatelessWidget {
 
 /// *************************** GAUGE **************************************
 class GaugePainter extends CustomPainter {
-  GaugePainter(this.color, this.trim, this.radius, this.epaisseur, this.temperature);
+  GaugePainter(this.color, this.trim, this.radius, this.epaisseur, this.temperature, this.darkMode);
 
   final Color color;
   final double epaisseur;
   final double radius;
   final double temperature;
   final bool trim;
+  final bool darkMode;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -376,7 +386,10 @@ class GaugePainter extends CustomPainter {
 
           offset = offset.translate(shrink * sin(angle), shrink * cos(angle));
 
-          TextSpan span = TextSpan(style: const TextStyle(color: Colors.white, fontSize: 10), text: '${(i + MIN_TEMP).toInt()}°');
+          TextSpan span = TextSpan(style: const TextStyle(color: Colors.black, fontSize: 10), text: '${(i + MIN_TEMP).toInt()}°');
+          if (darkMode) {
+            span = TextSpan(style: const TextStyle(color: Colors.white, fontSize: 10), text: '${(i + MIN_TEMP).toInt()}°');
+          }
           TextPainter textPainter = TextPainter(text: span, textAlign: TextAlign.center, textDirection: TextDirection.ltr);
 
           textPainter.layout(minWidth: 0, maxWidth: 50);

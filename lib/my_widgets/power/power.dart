@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../my_models/complex_state_fz.dart';
-import '../state_notifier.dart';
+import '../../my_notifiers/settable_manager.dart';
+import '../../my_notifiers/widgets_manager.dart';
 import 'periodical_barchart.dart';
 import 'gauge.dart';
 
@@ -30,6 +31,12 @@ class RootConsomationWidgetMaitre extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+    //*  noditification de 'reglabilité' de la widget
+    IsPageReglableNotifier reglableNotifier = ref.read(pageReglableProvider.notifier);
+    Future.delayed(Duration.zero, () {
+      reglableNotifier.setReglable(IsReglable(true));
+    });
+
     JsonForMqtt state = JsonForMqtt(deviceId: "", teleJsonMap: {}, listOtherJsonMap: [], listCmdJsonMap: []);
     //* recoit l'etat qui contient le json telemetry et une list supplementaire de json
     //* pour l'affichages de cumuls heures, jours, mois

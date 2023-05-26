@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../my_models/complex_state_fz.dart';
-import '../state_notifier.dart';
+import '../../my_notifiers/widgets_manager.dart';
 import 'heures_creuses_pleines.dart';
 
 /// ConsumerWidget for riverpod
