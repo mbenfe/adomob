@@ -103,7 +103,7 @@ class PagePrincipale extends ConsumerWidget {
       appBuildSelectedView('Setup'),
     ];
 
-    bool darkMode = ref.watch(darkModeProvider);
+    bool darkMode = ref.watch(themeModeProvider);
 
     return MaterialApp(
       theme: lightTheme,
@@ -118,7 +118,7 @@ class PagePrincipale extends ConsumerWidget {
             Switch(
               value: darkMode,
               onChanged: (newValue) {
-                ref.read(darkModeProvider.notifier).toggle();
+                ref.read(themeModeProvider.notifier).toggle();
               },
             )
           ],
@@ -150,7 +150,7 @@ class OptionelReglage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.watch(pageReglableProvider);
 
-    return notifier.status == true
+    return notifier.reglable == true
         ? IconButton(
             onPressed: () {},
             icon: const Icon(Icons.settings),

@@ -12,7 +12,6 @@ import '../../my_animations/my_animations.dart';
 import '../../my_models/complex_state_fz.dart';
 import '../../my_notifiers/theme_manager.dart';
 import '../../my_notifiers/widgets_manager.dart';
-import '../../utils/theme/theme_constants.dart';
 
 /// ConsumerWidget for riverpod
 class RootRoomWidget extends ConsumerWidget {
@@ -26,8 +25,6 @@ class RootRoomWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    bool darkMode = ref.watch(darkModeProvider);
-
     final Map<String, IconData> slotMapIcons = {
       'Matin': MdiIcons.weatherSunset,
       'Journee': MdiIcons.weatherSunny,
@@ -236,7 +233,7 @@ class RoomGauge extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    bool darkMode = ref.watch(darkModeProvider);
+    bool darkMode = ref.watch(themeModeProvider);
 
     return Column(
       children: [

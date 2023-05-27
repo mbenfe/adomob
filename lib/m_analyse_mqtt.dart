@@ -44,7 +44,7 @@ void appAnalyseReceivedMqtt(String topic, String payload) {
         case 'SENSOR':
           analyseTeleJsonPayload(message.payload);
           break;
-        case 'AWAY':
+        case 'ABSENCE':
         case 'SEMAINE':
         case 'WEEKEND':
           if (message.topicDevice == 'gateway') {

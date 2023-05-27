@@ -19,6 +19,7 @@ dependencies:
   flutter_form_builder: ^8.0.0
   flutter_launcher_icons: ^0.13.1
   flutter_riverpod: ^2.3.6
+  flutter_switch: ^0.3.2
   freezed: ^2.3.0
   freezed_annotation: ^2.2.0
   json_annotation: ^4.8.1
@@ -28,6 +29,7 @@ dependencies:
   syncfusion_flutter_charts: ^21.2.4
   syncfusion_flutter_core: ^21.2.6
   syncfusion_flutter_gauges: ^21.1.41
+  syncfusion_flutter_sliders: ^21.2.4
   toggle_switch: ^2.1.0
   weather: ^2.0.1
   weather_icons: ^3.0.0

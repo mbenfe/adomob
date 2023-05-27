@@ -8,26 +8,26 @@ void publishSettings(List<String> listSlaves) {
   }
   //* publie les setting en semaine
   for (int index = 0; index < listSlaves.length; index++) {
-    tabSemaine.update('Name', (value) => listSlaves[index], ifAbsent: () => listSlaves[index]);
-    tabSemaine.update('TYPE', (value) => 'SEMAINE', ifAbsent: () => 'SEMAINE');
-    mapState[listSlaves[index]]?.classSendThermostat(listSlaves[index], 'SEMAINE', tabSemaine);
+    tabSetup['SEMAINE']?.update('Name', (value) => listSlaves[index], ifAbsent: () => listSlaves[index]);
+    tabSetup['SEMAINE']?.update('TYPE', (value) => 'SEMAINE', ifAbsent: () => 'SEMAINE');
+    mapState[listSlaves[index]]?.classSendThermostat(listSlaves[index], 'SEMAINE', tabSetup['SEMAINE']!);
   }
-  tabSemaine.update('Name', (value) => 'gateway', ifAbsent: () => 'gateway');
-  mapState['gateway']?.classSendThermostat('gateway', 'SEMAINE', tabSemaine); //* se le renvoi a lui meme
+  tabSetup['SEMAINE']?.update('Name', (value) => 'gateway', ifAbsent: () => 'gateway');
+  mapState['gateway']?.classSendThermostat('gateway', 'SEMAINE', tabSetup['SEMAINE']!); //* se le renvoi a lui meme
   //* publie les setting en week end
   for (int index = 0; index < listSlaves.length; index++) {
-    tabWeekend.update('Name', (value) => listSlaves[index], ifAbsent: () => listSlaves[index]);
-    tabWeekend.update('TYPE', (value) => 'WEEKEND', ifAbsent: () => 'WEEKEND');
-    mapState[listSlaves[index]]?.classSendThermostat(listSlaves[index], 'WEEKEND', tabWeekend);
+    tabSetup['WEEKEND']?.update('Name', (value) => listSlaves[index], ifAbsent: () => listSlaves[index]);
+    tabSetup['WEEKEND']?.update('TYPE', (value) => 'WEEKEND', ifAbsent: () => 'WEEKEND');
+    mapState[listSlaves[index]]?.classSendThermostat(listSlaves[index], 'WEEKEND', tabSetup['WEEKEND']!);
   }
-  tabWeekend.update('Name', (value) => 'gateway', ifAbsent: () => 'gateway');
-  mapState['gateway']?.classSendThermostat('gateway', 'WEEKEND', tabWeekend); //* se le renvoi a lui meme
+  tabSetup['WEEKEND']?.update('Name', (value) => 'gateway', ifAbsent: () => 'gateway');
+  mapState['gateway']?.classSendThermostat('gateway', 'WEEKEND', tabSetup['WEEKEND']!); //* se le renvoi a lui meme
   //* publie les setting en absence
   for (int index = 0; index < listSlaves.length; index++) {
-    tabAway.update('Name', (value) => listSlaves[index], ifAbsent: () => listSlaves[index]);
-    tabAway.update('TYPE', (value) => 'AWAY', ifAbsent: () => 'AWAY');
-    mapState[listSlaves[index]]?.classSendThermostat(listSlaves[index], 'AWAY', tabAway);
+    tabSetup['ABSENCE']?.update('Name', (value) => listSlaves[index], ifAbsent: () => listSlaves[index]);
+    tabSetup['ABSENCE']?.update('TYPE', (value) => 'ABSENCE', ifAbsent: () => 'ABSENCE');
+    mapState[listSlaves[index]]?.classSendThermostat(listSlaves[index], 'ABSENCE', tabSetup['ABSENCE']!);
   }
-  tabAway.update('Name', (value) => 'gateway', ifAbsent: () => 'gateway');
-  mapState['gateway']?.classSendThermostat('gateway', 'AWAY', tabAway); //* se le renvoi a lui meme
+  tabSetup['ABSENCE']?.update('Name', (value) => 'gateway', ifAbsent: () => 'gateway');
+  mapState['gateway']?.classSendThermostat('gateway', 'ABSENCE', tabSetup['ABSENCE']!); //* se le renvoi a lui meme
 }

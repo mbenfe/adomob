@@ -37,7 +37,7 @@ class JsonForMqtt with _$JsonForMqtt {
     publishMqtt(topic, payload);
   }
 
-  //* envoi du setup thermostat: away, semaine, week-end
+  //* envoi du setup thermostat: absence, semaine, week-end
   void classSendThermostat(String targetDevice, String period, Map<String, dynamic> tab) {
     String topic = "gw/$client/$ville/$targetDevice/tele/$period";
     String payload = tab.toString();
@@ -78,17 +78,14 @@ class JsonForMqtt with _$JsonForMqtt {
   }
 }
 
-//* class json message setup away parameters
+//* class json message setup absence parameters
 @freezed
-class ThermostatAway with _$ThermostatAway {
-  factory ThermostatAway({
+class ThermostatAbsence with _$ThermostatAbsence {
+  factory ThermostatAbsence({
     required int temperature,
     required int humidity,
     String? name,
-  }) = _ThermostatAway;
-
-//  factory ThermostatAway.fromJson(Map<String, dynamic> json) => _$ThermostatAwayFromJson(json);
-//  Map<String, dynamic> toJson() => _$ThermostatAwayToJson(this);
+  }) = _ThermostatAbsence;
 }
 
 // command: flutter pub run build_runner build --delete-conflicting-outputs

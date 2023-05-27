@@ -197,29 +197,29 @@ abstract class _JsonForMqtt extends JsonForMqtt {
 }
 
 /// @nodoc
-mixin _$ThermostatAway {
+mixin _$ThermostatAbsence {
   int get temperature => throw _privateConstructorUsedError;
   int get humidity => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ThermostatAwayCopyWith<ThermostatAway> get copyWith =>
+  $ThermostatAbsenceCopyWith<ThermostatAbsence> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ThermostatAwayCopyWith<$Res> {
-  factory $ThermostatAwayCopyWith(
-          ThermostatAway value, $Res Function(ThermostatAway) then) =
-      _$ThermostatAwayCopyWithImpl<$Res, ThermostatAway>;
+abstract class $ThermostatAbsenceCopyWith<$Res> {
+  factory $ThermostatAbsenceCopyWith(
+          ThermostatAbsence value, $Res Function(ThermostatAbsence) then) =
+      _$ThermostatAbsenceCopyWithImpl<$Res, ThermostatAbsence>;
   @useResult
   $Res call({int temperature, int humidity, String? name});
 }
 
 /// @nodoc
-class _$ThermostatAwayCopyWithImpl<$Res, $Val extends ThermostatAway>
-    implements $ThermostatAwayCopyWith<$Res> {
-  _$ThermostatAwayCopyWithImpl(this._value, this._then);
+class _$ThermostatAbsenceCopyWithImpl<$Res, $Val extends ThermostatAbsence>
+    implements $ThermostatAbsenceCopyWith<$Res> {
+  _$ThermostatAbsenceCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -251,22 +251,22 @@ class _$ThermostatAwayCopyWithImpl<$Res, $Val extends ThermostatAway>
 }
 
 /// @nodoc
-abstract class _$$_ThermostatAwayCopyWith<$Res>
-    implements $ThermostatAwayCopyWith<$Res> {
-  factory _$$_ThermostatAwayCopyWith(
-          _$_ThermostatAway value, $Res Function(_$_ThermostatAway) then) =
-      __$$_ThermostatAwayCopyWithImpl<$Res>;
+abstract class _$$_ThermostatAbsenceCopyWith<$Res>
+    implements $ThermostatAbsenceCopyWith<$Res> {
+  factory _$$_ThermostatAbsenceCopyWith(_$_ThermostatAbsence value,
+          $Res Function(_$_ThermostatAbsence) then) =
+      __$$_ThermostatAbsenceCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int temperature, int humidity, String? name});
 }
 
 /// @nodoc
-class __$$_ThermostatAwayCopyWithImpl<$Res>
-    extends _$ThermostatAwayCopyWithImpl<$Res, _$_ThermostatAway>
-    implements _$$_ThermostatAwayCopyWith<$Res> {
-  __$$_ThermostatAwayCopyWithImpl(
-      _$_ThermostatAway _value, $Res Function(_$_ThermostatAway) _then)
+class __$$_ThermostatAbsenceCopyWithImpl<$Res>
+    extends _$ThermostatAbsenceCopyWithImpl<$Res, _$_ThermostatAbsence>
+    implements _$$_ThermostatAbsenceCopyWith<$Res> {
+  __$$_ThermostatAbsenceCopyWithImpl(
+      _$_ThermostatAbsence _value, $Res Function(_$_ThermostatAbsence) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -276,7 +276,7 @@ class __$$_ThermostatAwayCopyWithImpl<$Res>
     Object? humidity = null,
     Object? name = freezed,
   }) {
-    return _then(_$_ThermostatAway(
+    return _then(_$_ThermostatAbsence(
       temperature: null == temperature
           ? _value.temperature
           : temperature // ignore: cast_nullable_to_non_nullable
@@ -295,8 +295,8 @@ class __$$_ThermostatAwayCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ThermostatAway implements _ThermostatAway {
-  _$_ThermostatAway(
+class _$_ThermostatAbsence implements _ThermostatAbsence {
+  _$_ThermostatAbsence(
       {required this.temperature, required this.humidity, this.name});
 
   @override
@@ -308,14 +308,14 @@ class _$_ThermostatAway implements _ThermostatAway {
 
   @override
   String toString() {
-    return 'ThermostatAway(temperature: $temperature, humidity: $humidity, name: $name)';
+    return 'ThermostatAbsence(temperature: $temperature, humidity: $humidity, name: $name)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ThermostatAway &&
+            other is _$_ThermostatAbsence &&
             (identical(other.temperature, temperature) ||
                 other.temperature == temperature) &&
             (identical(other.humidity, humidity) ||
@@ -329,15 +329,16 @@ class _$_ThermostatAway implements _ThermostatAway {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ThermostatAwayCopyWith<_$_ThermostatAway> get copyWith =>
-      __$$_ThermostatAwayCopyWithImpl<_$_ThermostatAway>(this, _$identity);
+  _$$_ThermostatAbsenceCopyWith<_$_ThermostatAbsence> get copyWith =>
+      __$$_ThermostatAbsenceCopyWithImpl<_$_ThermostatAbsence>(
+          this, _$identity);
 }
 
-abstract class _ThermostatAway implements ThermostatAway {
-  factory _ThermostatAway(
+abstract class _ThermostatAbsence implements ThermostatAbsence {
+  factory _ThermostatAbsence(
       {required final int temperature,
       required final int humidity,
-      final String? name}) = _$_ThermostatAway;
+      final String? name}) = _$_ThermostatAbsence;
 
   @override
   int get temperature;
@@ -347,6 +348,6 @@ abstract class _ThermostatAway implements ThermostatAway {
   String? get name;
   @override
   @JsonKey(ignore: true)
-  _$$_ThermostatAwayCopyWith<_$_ThermostatAway> get copyWith =>
+  _$$_ThermostatAbsenceCopyWith<_$_ThermostatAbsence> get copyWith =>
       throw _privateConstructorUsedError;
 }

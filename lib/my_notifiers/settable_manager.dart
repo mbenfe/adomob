@@ -13,6 +13,6 @@ class IsPageReglableNotifier extends StateNotifier<IsReglable> {
 }
 
 class IsReglable {
-  IsReglable(this.status);
-  final bool status;
+  IsReglable(this.reglable);
+  final bool reglable;
 }
