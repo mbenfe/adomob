@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../my_models/complex_state_fz.dart';
 import '../../my_notifiers/setup_manager.dart';
 import '../../my_notifiers/widgets_manager.dart';
+import '../../utils/helper_widgets.dart';
 import 'periodical_barchart.dart';
 import 'gauge.dart';
 
@@ -71,31 +72,33 @@ class RootConsomationWidgetMaitre extends ConsumerWidget {
       }
     }
 
-    return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        return Container(
-          alignment: Alignment.topCenter,
-          //        height: POWER_VERTICAL_WIDGET_SIZE,
-          width: MediaQuery.of(context).size.width,
-          child: Column(
-            children: [
-              Text(
-                location,
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              Card(
-                child: WidgetGauge(jsonMap: teleJsonMap),
-              ),
-              Card(
-                child: WidgetPeriodicalCharts(heures: heures, jours: jours, mois: mois),
-              ),
-              const Divider(),
-            ],
+    return SizedBox(
+      height: getBodyHeight(context) - 40,
+      width: MediaQuery.of(context).size.width,
+      child: Column(
+        children: [
+          Flexible(
+            flex: 10,
+            child: Text(
+              location,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
           ),
-        );
-      },
-      // containter frame
+          Flexible(
+            flex: 35,
+            child: Card(
+              child: WidgetGauge(jsonMap: teleJsonMap),
+            ),
+          ),
+          Flexible(
+            flex: 55,
+            child: Card(
+              child: WidgetPeriodicalCharts(heures: heures, jours: jours, mois: mois),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

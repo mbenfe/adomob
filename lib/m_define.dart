@@ -25,7 +25,7 @@ List<AppGroups> preDefinedBottomNavigationBar = [
   AppGroups(9, Icons.thermostat, 'Temperature', 0),
   // not from database/ json
   AppGroups(10, MdiIcons.homeThermometerOutline, 'Thermostat', 0),
-  AppGroups(11, MdiIcons.lightningBoltOutline, 'Consommation', 0),
+  AppGroups(11, MdiIcons.lightningBoltOutline, 'Consommation', 10),
   AppGroups(12, MdiIcons.airConditioner, 'Climatisation', 0),
   AppGroups(13, Icons.settings, 'Setup', 0),
 ];

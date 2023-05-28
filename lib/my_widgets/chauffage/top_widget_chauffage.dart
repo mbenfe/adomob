@@ -7,7 +7,7 @@ import '../../m_build_from_json.dart';
 import '../../my_models/complex_state_fz.dart';
 import '../../my_notifiers/thermostat_selected_period_manager.dart';
 import '../../my_notifiers/widgets_manager.dart';
-import '../sub_widgets/thermostat/thermostat.dart';
+import '../sub_widgets/setup_thermostat/thermostat.dart';
 
 List<String> labels = ['MANUEL', 'AUTO', 'ABSENCE'];
 

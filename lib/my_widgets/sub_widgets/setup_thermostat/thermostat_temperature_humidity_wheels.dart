@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../my_models/complex_state_fz.dart';
 import '../../../my_notifiers/thermostat_selected_period_manager.dart';
-import 'data_management.dart';
+import 'thermostat_data_management.dart';
 
 // ****************************************************************************
 // *          WHEELS PICKERS PRESENCE

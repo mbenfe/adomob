@@ -17,14 +17,14 @@ import 'my_widgets/contact/contact.dart';
 import 'my_widgets/extender/extender.dart';
 import 'my_widgets/home/home.dart';
 import 'my_widgets/light/light.dart';
-import 'my_widgets/power/power.dart';
+import 'my_widgets/consomation/consomation_main.dart';
 import 'my_widgets/chauffage/chauffage.dart';
-import 'my_widgets/setup/setup.dart';
+import 'my_widgets/sub_widgets/setup_consomation/consomation_setup.dart';
 import 'my_widgets/state/state.dart';
 import 'my_notifiers/widgets_manager.dart';
 import 'my_widgets/switch/switch.dart';
 import 'my_widgets/temperature/temperature.dart';
-import 'my_widgets/sub_widgets/thermostat/thermostat.dart';
+import 'my_widgets/sub_widgets/setup_thermostat/thermostat.dart';
 
 /// ---------------------------------------------------------------------------
 /// build ONE appplication widget list
@@ -81,18 +81,16 @@ Widget appBuildSelectedView(String selectedApplication) {
       listAllSelectedAppWidgets.add(appBuildRow(listRowWidgets));
     }
 
-    selectedAppRootWidget = SafeArea(
-      child: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        primary: false,
-        controller: ScrollController(keepScrollOffset: true),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            for (int i = 0; i < listAllSelectedAppWidgets.length; i++) listAllSelectedAppWidgets[i],
-          ],
-        ),
+    selectedAppRootWidget = SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      primary: false,
+      controller: ScrollController(keepScrollOffset: true),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          for (int i = 0; i < listAllSelectedAppWidgets.length; i++) listAllSelectedAppWidgets[i],
+        ],
       ),
     );
   } else {
@@ -141,6 +139,7 @@ class GeneratedWidget extends ConsumerWidget {
         return RootTemperatureWidget(master: master, listSlaves: listSlaves, listStateProviders: listStateProviders, location: location);
       case 'THERMOSTAT':
         return RootThermostatWidget(listSlaves: listSlaves, listStateProviders: listStateProviders);
+//! changer l'orthographe
       case 'CONSOMMATION':
         if (listSlaves.isEmpty) {
           return RootConsomationWidgetMaitre(master: master, listSlaves: listSlaves, listStateProviders: listStateProviders, location: location);
@@ -149,8 +148,9 @@ class GeneratedWidget extends ConsumerWidget {
         }
       case 'CLIMATISATION':
         return RootClimatisationWidget(master: master, listSlaves: listSlaves, listStateProviders: listStateProviders, location: location);
+      //! a supprimer
       case 'SETUP':
-        return RootSetupWidget(master: master, listSlaves: listSlaves, listStateProviders: listStateProviders, location: location);
+        return RootSetupWidget();
       default:
         return const Placeholder();
     }

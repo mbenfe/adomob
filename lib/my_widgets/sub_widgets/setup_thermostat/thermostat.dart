@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-import 'package:adomob/my_widgets/sub_widgets/thermostat/publish_settings.dart';
-import 'package:adomob/my_widgets/sub_widgets/thermostat/slider.dart';
-import 'package:adomob/my_widgets/sub_widgets/thermostat/temperature_humidity_wheels.dart';
+import 'package:adomob/my_widgets/sub_widgets/setup_thermostat/thermostat_publish_settings.dart';
+import 'package:adomob/my_widgets/sub_widgets/setup_thermostat/thermostat_slider.dart';
+import 'package:adomob/my_widgets/sub_widgets/setup_thermostat/thermostat_temperature_humidity_wheels.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../my_models/complex_state_fz.dart';
 import '../../../my_notifiers/thermostat_selected_period_manager.dart';
 import '../../../my_notifiers/widgets_manager.dart';
-import 'data_management.dart';
+import 'thermostat_data_management.dart';
 
 class RootThermostatWidget extends ConsumerWidget {
   const RootThermostatWidget({required this.listSlaves, required this.listStateProviders, Key? key}) : super(key: key);

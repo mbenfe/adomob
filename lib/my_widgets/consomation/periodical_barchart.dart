@@ -30,8 +30,8 @@ class _WidgetPeriodicalChartsState extends State<WidgetPeriodicalCharts> {
       length: 3,
       child: Column(
         children: [
-          const SizedBox(
-            height: 50,
+          const Flexible(
+            flex: 1,
             child: TabBar(
               tabs: [
                 Tab(text: '24 Heures'),
@@ -40,8 +40,8 @@ class _WidgetPeriodicalChartsState extends State<WidgetPeriodicalCharts> {
               ],
             ),
           ),
-          SizedBox(
-            height: 300,
+          Flexible(
+            flex: 3,
             child: TabBarView(
               children: [
                 PowerBarCharts(consomation: widget.heures),
@@ -50,26 +50,29 @@ class _WidgetPeriodicalChartsState extends State<WidgetPeriodicalCharts> {
               ],
             ),
           ),
-          ToggleSwitch(
-            inactiveBgColor: Colors.white,
-            activeBgColor: const [Colors.blue, Colors.blue],
-            customIcons: const [
-              Icon(
-                Icons.euro,
-                color: Colors.black,
-              ),
-              Icon(
-                Icons.electric_meter,
-                color: Colors.black,
-              )
-            ],
-            totalSwitches: 2,
-            initialLabelIndex: modeKwhEuros,
-            onToggle: (value) {
-              setState(() {
-                modeKwhEuros = value!;
-              });
-            },
+          Flexible(
+            flex: 1,
+            child: ToggleSwitch(
+              inactiveBgColor: Colors.white,
+              activeBgColor: const [Colors.blue, Colors.blue],
+              customIcons: const [
+                Icon(
+                  Icons.euro,
+                  color: Colors.black,
+                ),
+                Icon(
+                  Icons.electric_meter,
+                  color: Colors.black,
+                )
+              ],
+              totalSwitches: 2,
+              initialLabelIndex: modeKwhEuros,
+              onToggle: (value) {
+                setState(() {
+                  modeKwhEuros = value!;
+                });
+              },
+            ),
           ),
         ],
       ),

@@ -4,7 +4,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../../m_define.dart';
 import '../../../my_models/complex_state_fz.dart';
-import '../../power/periodical_barchart.dart';
+import '../../consomation/periodical_barchart.dart';
 import '../../../my_notifiers/widgets_manager.dart';
 
 /// ConsumerWidget for riverpod

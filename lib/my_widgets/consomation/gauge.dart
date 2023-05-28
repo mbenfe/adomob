@@ -15,26 +15,23 @@ class WidgetGauge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 180,
-      child: Stack(
-        alignment: Alignment.center,
-        children: <Widget>[
-          //  PowerGaugeInterior(jsonMap: jsonMap),
-          PowerGaugeExterior(jsonMap: jsonMap),
-          Positioned(
-            width: 50,
-            height: 50,
-            right: 20,
-            top: 20,
-            child: jsonMap['ActivePower'] != null
-                ? AnimationRipplePower(
-                    jsonMap['ActivePower']!.toDouble(),
-                  )
-                : const Placeholder(),
-          ),
-        ],
-      ),
+    return Stack(
+      alignment: Alignment.center,
+      children: <Widget>[
+        //  PowerGaugeInterior(jsonMap: jsonMap),
+        PowerGaugeExterior(jsonMap: jsonMap),
+        Positioned(
+          width: 50,
+          height: 50,
+          right: 20,
+          top: 20,
+          child: jsonMap['ActivePower'] != null
+              ? AnimationRipplePower(
+                  jsonMap['ActivePower']!.toDouble(),
+                )
+              : const Placeholder(),
+        ),
+      ],
     );
   }
 }

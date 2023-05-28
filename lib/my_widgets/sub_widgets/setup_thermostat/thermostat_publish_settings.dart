@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-import 'data_management.dart';
+import 'thermostat_data_management.dart';
 
 void publishSettings(List<String> listSlaves) {
   if (kDebugMode) {

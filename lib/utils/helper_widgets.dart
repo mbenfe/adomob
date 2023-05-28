@@ -11,3 +11,12 @@ Widget addHorizontalSpace(double width) {
     width: width,
   );
 }
+
+double getBodyHeight(BuildContext context) {
+  double height = MediaQuery.of(context).size.height - // total height
+      kToolbarHeight - // top AppBar height
+      MediaQuery.of(context).padding.top - // top padding
+      MediaQuery.of(context).padding.bottom -
+      kBottomNavigationBarHeight;
+  return height;
+}

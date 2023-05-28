@@ -126,7 +126,7 @@ class PagePrincipale extends ConsumerWidget {
         body: Column(
           children: [
             Flexible(flex: flexFactor, child: TopWidget(selectedApplication: listApplications[appIndex])),
-            Flexible(flex: 85, child: screens[appGetPageIndex(appIndex)]),
+            Flexible(flex: 100, child: screens[appGetPageIndex(appIndex)]),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(

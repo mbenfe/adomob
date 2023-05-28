@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../my_models/complex_state_fz.dart';
 import '../../my_notifiers/setup_manager.dart';
+import '../../utils/helper_widgets.dart';
 import '../sub_widgets/mini_dashboard_conso/dashboard_conso.dart';
 import '../sub_widgets/prevision_meteo/meteo.dart';
 import '../../my_notifiers/widgets_manager.dart';
@@ -26,11 +27,7 @@ class RootHomeWidget extends ConsumerWidget {
     });
 
     return SizedBox(
-      height: MediaQuery.of(context).size.height - // total height
-          kToolbarHeight - // top AppBar height
-          MediaQuery.of(context).padding.top - // top padding
-          MediaQuery.of(context).padding.bottom -
-          kBottomNavigationBarHeight, // BottomNavigationBar height
+      height: getBodyHeight(context), // BottomNavigationBar height
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: [
