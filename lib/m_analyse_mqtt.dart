@@ -27,7 +27,7 @@ void appAnalyseReceivedMqtt(String topic, String payload) {
 
   //print('$countTeleMessages + $countOtherMessages : $countMqttMessages - Buffer:$countBufferMqtt');
   //! filter print
-//  if (kDebugMode) print("topic: $topic: payload : ${message.payload}");
+  //if (kDebugMode) print("RECU:topic: $topic: payload : ${message.payload}");
   // filtre
   if (payload == "") return;
 
@@ -47,11 +47,10 @@ void appAnalyseReceivedMqtt(String topic, String payload) {
         case 'ABSENCE':
         case 'SEMAINE':
         case 'WEEKEND':
-          if (message.topicDevice == 'gateway') {
-            if (kDebugMode) {
-              print('THERMOSTAT:$countMqttMessages -------- $topic ------- $payload');
-            }
+          if (kDebugMode) {
+            print('RECU:THERMOSTAT:$countMqttMessages -------- $topic ------- $payload');
           }
+
           analyseOtherJsonPayload(message.payload);
           break;
         case 'PWDAYS':

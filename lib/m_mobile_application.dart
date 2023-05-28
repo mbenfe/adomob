@@ -18,7 +18,7 @@ import 'my_widgets/extender/extender.dart';
 import 'my_widgets/home/home.dart';
 import 'my_widgets/light/light.dart';
 import 'my_widgets/power/power.dart';
-import 'my_widgets/room/room.dart';
+import 'my_widgets/chauffage/chauffage.dart';
 import 'my_widgets/setup/setup.dart';
 import 'my_widgets/state/state.dart';
 import 'my_notifiers/widgets_manager.dart';
@@ -80,21 +80,18 @@ Widget appBuildSelectedView(String selectedApplication) {
       }
       listAllSelectedAppWidgets.add(appBuildRow(listRowWidgets));
     }
+
     selectedAppRootWidget = SafeArea(
-      child: SizedBox(
-        height: 1000,
-        width: 500,
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          primary: false,
-          controller: ScrollController(keepScrollOffset: true),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              for (int i = 0; i < listAllSelectedAppWidgets.length; i++) listAllSelectedAppWidgets[i],
-            ],
-          ),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        primary: false,
+        controller: ScrollController(keepScrollOffset: true),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            for (int i = 0; i < listAllSelectedAppWidgets.length; i++) listAllSelectedAppWidgets[i],
+          ],
         ),
       ),
     );

@@ -1,5 +1,4 @@
-import 'package:adomob/my_notifiers/settable_manager.dart';
-import 'package:adomob/utils/helper_widgets.dart';
+import 'package:adomob/m_build_from_json.dart';
 import 'package:adomob/utils/theme/theme_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,6 +7,7 @@ import 'm_init_mqtt_devices_app.dart';
 import 'm_mobile_application.dart';
 import 'my_notifiers/bottom_navigation_bar_manager.dart';
 import 'my_notifiers/theme_manager.dart';
+import 'my_widgets/sub_widgets/top_widget.dart';
 
 /// @nodoc
 void main() {
@@ -113,8 +113,6 @@ class PagePrincipale extends ConsumerWidget {
       home: Scaffold(
         appBar: AppBar(
           actions: [
-            const OptionelReglage(),
-            addHorizontalSpace(45),
             Switch(
               value: darkMode,
               onChanged: (newValue) {
@@ -123,38 +121,18 @@ class PagePrincipale extends ConsumerWidget {
             )
           ],
         ),
-        body: screens[appGetPageIndex(appIndex)],
-        bottomNavigationBar: Container(
-          decoration: const BoxDecoration(
-            border: Border(
-              top: BorderSide(width: 1),
-            ),
-          ),
-          child: BottomNavigationBar(
-              type: BottomNavigationBarType.fixed,
-              currentIndex: appIndex,
-              onTap: (value) => currentIndex.setBottomNavigationBarIndex(value),
-              items: appGetListBottomNavigationBarItem()),
+        body: Column(
+          children: [
+            Flexible(flex: 15, child: TopWidget(selectedApplication: listApplications[appIndex])),
+            Flexible(flex: 85, child: screens[appGetPageIndex(appIndex)]),
+          ],
         ),
+        bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            currentIndex: appIndex,
+            onTap: (value) => currentIndex.setBottomNavigationBarIndex(value),
+            items: appGetListBottomNavigationBarItem()),
       ),
     );
-  }
-}
-
-class OptionelReglage extends ConsumerWidget {
-  const OptionelReglage({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final notifier = ref.watch(pageReglableProvider);
-
-    return notifier.reglable == true
-        ? IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.settings),
-          )
-        : Container();
   }
 }

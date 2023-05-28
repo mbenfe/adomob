@@ -6,7 +6,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 import '../../my_models/complex_state_fz.dart';
-import '../../my_notifiers/settable_manager.dart';
+import '../../my_notifiers/setup_manager.dart';
 import '../../my_notifiers/widgets_manager.dart';
 import 'commande.dart';
 
@@ -27,11 +27,10 @@ class RootClimatisationWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     //*  noditification de 'reglabilité' de la widget
-    IsPageReglableNotifier reglableNotifier = ref.read(pageReglableProvider.notifier);
+    var reglableNotifier = ref.read(pageReglableProvider.notifier);
     Future.delayed(Duration.zero, () {
-      reglableNotifier.setReglable(IsReglable(true));
+      reglableNotifier.state = true;
     });
-
     int index;
 
     Map<String, JsonForMqtt> mapState = {};

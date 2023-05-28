@@ -9,6 +9,8 @@ void publishSettings(List<String> listSlaves) {
   //* publie les setting en semaine
   for (int index = 0; index < listSlaves.length; index++) {
     tabSetup['SEMAINE']?.update('Name', (value) => listSlaves[index], ifAbsent: () => listSlaves[index]);
+    //* ajout "Device" pour eviter le filtrage en reception
+    tabSetup['SEMAINE']?.update('Device', (value) => listSlaves[index], ifAbsent: () => listSlaves[index]);
     tabSetup['SEMAINE']?.update('TYPE', (value) => 'SEMAINE', ifAbsent: () => 'SEMAINE');
     mapState[listSlaves[index]]?.classSendThermostat(listSlaves[index], 'SEMAINE', tabSetup['SEMAINE']!);
   }
@@ -17,6 +19,8 @@ void publishSettings(List<String> listSlaves) {
   //* publie les setting en week end
   for (int index = 0; index < listSlaves.length; index++) {
     tabSetup['WEEKEND']?.update('Name', (value) => listSlaves[index], ifAbsent: () => listSlaves[index]);
+    //* ajout "Device" pour eviter le filtrage en reception
+    tabSetup['WEEKEND']?.update('Device', (value) => listSlaves[index], ifAbsent: () => listSlaves[index]);
     tabSetup['WEEKEND']?.update('TYPE', (value) => 'WEEKEND', ifAbsent: () => 'WEEKEND');
     mapState[listSlaves[index]]?.classSendThermostat(listSlaves[index], 'WEEKEND', tabSetup['WEEKEND']!);
   }
@@ -25,6 +29,8 @@ void publishSettings(List<String> listSlaves) {
   //* publie les setting en absence
   for (int index = 0; index < listSlaves.length; index++) {
     tabSetup['ABSENCE']?.update('Name', (value) => listSlaves[index], ifAbsent: () => listSlaves[index]);
+    //* ajout "Device" pour eviter le filtrage en reception
+    tabSetup['ABSENCE']?.update('Device', (value) => listSlaves[index], ifAbsent: () => listSlaves[index]);
     tabSetup['ABSENCE']?.update('TYPE', (value) => 'ABSENCE', ifAbsent: () => 'ABSENCE');
     mapState[listSlaves[index]]?.classSendThermostat(listSlaves[index], 'ABSENCE', tabSetup['ABSENCE']!);
   }

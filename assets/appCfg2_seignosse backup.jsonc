@@ -25,7 +25,7 @@
        ]},
     {"type":"Thermostat",
     "data":[
-        {"location":"salon"    ,"column":1,"row":1,"master":"gateway","slave":["sw1erSuite","sw1erDressing","sw1erRouge","sw1erSdb","sw1erWc","swRdcBleue","swRdcMarron","swRdcVerte","swRdcSdb","swRdcWc","swRdcBuanderie","swRdcSalonPiscine","swRdcSalonFront","swRdcSalonCouloir","swRdcEntree","swRdcCuisine"],"color":0}
+        {"location":"salon"    ,"column":1,"row":1,"master":"gateway","slave":[],"color":0}
         ]}
 ]
 

@@ -10,6 +10,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import '../../m_define.dart';
 import '../../my_animations/my_animations.dart';
 import '../../my_models/complex_state_fz.dart';
+import '../../my_notifiers/setup_manager.dart';
 import '../../my_notifiers/theme_manager.dart';
 import '../../my_notifiers/widgets_manager.dart';
 
@@ -25,6 +26,12 @@ class RootRoomWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+    //*  noditification de 'reglabilité' de la widget
+    var reglableNotifier = ref.read(pageReglableProvider.notifier);
+    Future.delayed(Duration.zero, () {
+      reglableNotifier.state = true;
+    });
+
     final Map<String, IconData> slotMapIcons = {
       'Matin': MdiIcons.weatherSunset,
       'Journee': MdiIcons.weatherSunny,
@@ -51,6 +58,17 @@ class RootRoomWidget extends ConsumerWidget {
       }
     }
 
+    var setup = ref.watch(setupLaunchProvider.notifier);
+    if (setup.state == true) {
+      if (kDebugMode) {
+        print("----------------------------- appel setup -----------------------");
+        print('');
+      }
+      //* remet le flag apres le build
+      Future.delayed(Duration.zero, () {
+        ref.read(setupLaunchProvider.notifier).state = false;
+      });
+    }
     teleJsonMapMaster = mapState[master]?.teleJsonMap;
     //! a revoir
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

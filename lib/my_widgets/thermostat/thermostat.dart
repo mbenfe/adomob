@@ -25,7 +25,7 @@ class RootThermostatWidget extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     int index;
 
-    var notifier = ref.watch(selectedPeriodProvider);
+    ref.watch(selectedPeriodProvider);
 
     for (index = 0; index < listStateProviders.length; index++) {
       JsonForMqtt intermediate = ref.watch(listStateProviders[index]);
@@ -36,6 +36,7 @@ class RootThermostatWidget extends ConsumerWidget {
 
     conversionJsonOther();
 
+//    return Dialog(shape: const ContinuousRectangleBorder(), child: Thermostat(listSlaves, mapState));
     return Thermostat(listSlaves, mapState);
   }
 }
@@ -111,7 +112,7 @@ class SetUpRowTemperatureWeekend extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var notifier = ref.watch(selectedPeriodProvider);
+    ref.watch(selectedPeriodProvider);
     return Column(
       children: [
         Container(
@@ -171,7 +172,7 @@ class SetUpRowTemperatureSemaine extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var notifier = ref.watch(selectedPeriodProvider);
+    ref.watch(selectedPeriodProvider);
     return Column(
       children: [
         Container(
