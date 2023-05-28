@@ -3,22 +3,25 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
-import '../../my_notifiers/thermostat_selected_period_manager.dart';
+import '../../../my_notifiers/thermostat_selected_period_manager.dart';
 
-List<String> labels = ['MANUEL', 'AUTO', 'ABSENCE'];
+List<String> labels = ['SEMAINE', 'WEEKEND', 'ABSENCE'];
 
-double _value = 1;
+//String selectedPeriode = 'SEMAINE';
 
-class TopWidgetChauffage extends ConsumerStatefulWidget {
-  const TopWidgetChauffage({super.key});
+double _value = 0;
+
+class PeriodeSelectionSlider extends ConsumerStatefulWidget {
+  const PeriodeSelectionSlider({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _TopWidgetChauffageState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _PeriodSelectionSliderState();
 }
 
-class _TopWidgetChauffageState extends ConsumerState<TopWidgetChauffage> {
+class _PeriodSelectionSliderState extends ConsumerState<PeriodeSelectionSlider> {
   @override
   Widget build(BuildContext context) {
+//    ref.watch(selectedPeriodProvider);
     return Card(
       child: Center(
         child: Padding(
@@ -40,9 +43,9 @@ class _TopWidgetChauffageState extends ConsumerState<TopWidgetChauffage> {
               labelFormatterCallback: (dynamic actualValue, String formattedText) {
                 switch (actualValue) {
                   case 0:
-                    return 'MANUEL';
+                    return 'SEMAINE';
                   case 1:
-                    return 'AUTO';
+                    return 'WEEKEND';
                   case 2:
                     return 'ABSENCE';
                 }
@@ -69,9 +72,9 @@ class _TopWidgetChauffageState extends ConsumerState<TopWidgetChauffage> {
 String formatLabels(dynamic value, String formatted) {
   switch (value) {
     case 0:
-      return 'MANUEL';
+      return 'SEMAINE';
     case 1:
-      return 'AUTO';
+      return 'WEEKEND';
     case 2:
       return 'ABSENCE';
   }

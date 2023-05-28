@@ -3,6 +3,7 @@ import 'package:adomob/utils/theme/theme_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'm_define.dart';
 import 'm_init_mqtt_devices_app.dart';
 import 'm_mobile_application.dart';
 import 'my_notifiers/bottom_navigation_bar_manager.dart';
@@ -104,7 +105,8 @@ class PagePrincipale extends ConsumerWidget {
     ];
 
     bool darkMode = ref.watch(themeModeProvider);
-
+    int index = preDefinedBottomNavigationBar.indexWhere((element) => element.text == listApplications[appIndex]);
+    int flexFactor = preDefinedBottomNavigationBar[index].flexFactor;
     return MaterialApp(
       theme: lightTheme,
       darkTheme: darkTheme,
@@ -123,7 +125,7 @@ class PagePrincipale extends ConsumerWidget {
         ),
         body: Column(
           children: [
-            Flexible(flex: 15, child: TopWidget(selectedApplication: listApplications[appIndex])),
+            Flexible(flex: flexFactor, child: TopWidget(selectedApplication: listApplications[appIndex])),
             Flexible(flex: 85, child: screens[appGetPageIndex(appIndex)]),
           ],
         ),

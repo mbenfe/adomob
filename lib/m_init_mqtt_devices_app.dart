@@ -58,7 +58,6 @@ class AppInit {
   static _loadConfig() async {
     do {
       await Future.delayed(const Duration(seconds: 1));
-    } while (//listBundles.isEmpty ||
-        listBundles.isEmpty);
+    } while (listBundles.isEmpty);
   }
 }

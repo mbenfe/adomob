@@ -24,7 +24,7 @@ import 'my_widgets/state/state.dart';
 import 'my_notifiers/widgets_manager.dart';
 import 'my_widgets/switch/switch.dart';
 import 'my_widgets/temperature/temperature.dart';
-import 'my_widgets/thermostat/thermostat.dart';
+import 'my_widgets/sub_widgets/thermostat/thermostat.dart';
 
 /// ---------------------------------------------------------------------------
 /// build ONE appplication widget list
@@ -44,18 +44,18 @@ Widget appBuildSelectedView(String selectedApplication) {
   int nbColumn = 0, nbRow = 0;
   List<Widget> listAllSelectedAppWidgets = [];
 
-  var myListBundles2 = listBundles.where((element) => element.type == selectedApplication).toList();
-  if (myListBundles2.isNotEmpty) {
+  var listExtractedAppBundles = listBundles.where((element) => element.type == selectedApplication).toList();
+  if (listExtractedAppBundles.isNotEmpty) {
     nbColumn = nbRow = 0;
-    for (int i = 0; i < myListBundles2.length; i++) {
-      nbColumn = max(nbColumn, myListBundles2[i].column);
-      nbRow = max(nbRow, myListBundles2[i].row);
+    for (int i = 0; i < listExtractedAppBundles.length; i++) {
+      nbColumn = max(nbColumn, listExtractedAppBundles[i].column);
+      nbRow = max(nbRow, listExtractedAppBundles[i].row);
     }
 
     Widget selectedWidget;
     for (int indexRow = 0; indexRow < nbRow; indexRow++) {
       List<Widget> listRowWidgets = [];
-      var listRow2 = myListBundles2.where((element) => element.row == indexRow + 1).toList();
+      var listRow2 = listExtractedAppBundles.where((element) => element.row == indexRow + 1).toList();
       // define devices associated with widjet and mqtt providers
       for (int indexColumn = 0; indexColumn < listRow2.length; indexColumn++) {
         //* trouve le bundle associé a l'application la ligne et la colonne
@@ -140,7 +140,7 @@ class GeneratedWidget extends ConsumerWidget {
       case 'TEMPERATURE':
         return RootTemperatureWidget(master: master, listSlaves: listSlaves, listStateProviders: listStateProviders, location: location);
       case 'THERMOSTAT':
-        return RootThermostatWidget(master: master, listSlaves: listSlaves, listStateProviders: listStateProviders, location: location);
+        return RootThermostatWidget(listSlaves: listSlaves, listStateProviders: listStateProviders);
       case 'CONSOMMATION':
         if (listSlaves.isEmpty) {
           return RootConsomationWidgetMaitre(master: master, listSlaves: listSlaves, listStateProviders: listStateProviders, location: location);
