@@ -191,8 +191,8 @@ class WidgetDayLong extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(textScaleFactor: 0.8, '${donneesJour.temperature?.celsius?.toStringAsFixed(1)}°C'),
-                Text(textScaleFactor: 0.8, '${donneesJour.humidity.toString()}%'),
+                Flexible(flex: 1, child: Text(textScaleFactor: 0.8, '${donneesJour.temperature?.celsius?.toStringAsFixed(1)}°C')),
+                Flexible(flex: 1, child: Text(textScaleFactor: 0.8, '${donneesJour.humidity.toString()}%')),
               ],
             ),
           ],
