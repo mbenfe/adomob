@@ -10,7 +10,7 @@ class IconHeaterAnimated extends StatefulWidget {
 class IconHeaterAnimatedState extends State<IconHeaterAnimated> {
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width / 4;
     return SizedBox(
       height: width / 2.7,
       width: width / 2.7,

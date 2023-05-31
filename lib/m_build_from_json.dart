@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'm_data.dart';
 import 'my_models/adomob_app_cfg.dart';
 import 'my_models/complex_state_fz.dart';
 import 'my_notifiers/widgets_manager.dart';
@@ -28,6 +29,7 @@ class Bundle {
 //* deux etapes:
 //*  1 - contruire la liste des bundles pour la mise en place de widgets: listBundle
 //* 2 - constuire le mapping des notifiers pour chaque devices: mapAllDevices
+//* 3 - initialise les données par default des applications ex:chauffage-> listPieces et mapChauffages
 //*---------------------------------------------------------
 void analyseReceivedAppCfgJson2(String jsonString) {
   // 1 - construit la list des applications à parir de appCfg.json recu par mqtt
@@ -39,7 +41,9 @@ void analyseReceivedAppCfgJson2(String jsonString) {
   var jsonDecoded = (json.decode(jsonString) as List).cast<Map<String, dynamic>>();
 
   ListElementApp mapApplications;
-  // * etape 1 : build la map des notifiers par device
+  //****************************************************/
+  //* etape 1 : build la map des notifiers par device
+  //****************************************************/
   for (i = 0; i < jsonDecoded.length; i++) {
     mapApplications = ListElementApp.fromJson(jsonDecoded[i]);
     listApplications.add(mapApplications.type);
@@ -63,9 +67,11 @@ void analyseReceivedAppCfgJson2(String jsonString) {
 
   printHashCode();
 
+  //****************************************************/
   // * etape 2 :build la list des bundle pour chaque application
   //*    exemple chauffage application a un master et un/plusieurs slave(s)
   // * cette liste est utilisée par le fonction appBuildSelectedView (m_mobile_aalication.dart)
+  //****************************************************/
   for (i = 0; i < jsonDecoded.length; i++) {
     mapApplications = ListElementApp.fromJson(jsonDecoded[i]);
     for (j = 0; j < mapApplications.data.length; j++) {
@@ -94,6 +100,14 @@ void analyseReceivedAppCfgJson2(String jsonString) {
     }
   }
 
+  //****************************************************/
+  //* etape 3 : initialiseLes Données par defautl
+  //****************************************************/
+  for (i = 0; i < listApplications.length; i++) {
+    initialiseDefaultData(listApplications[i]);
+  }
+
+  //* widget home par example
   finalizeVirtuelWidget();
 
   if (kDebugMode) {

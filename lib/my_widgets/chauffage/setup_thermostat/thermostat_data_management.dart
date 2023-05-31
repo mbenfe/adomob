@@ -17,7 +17,7 @@ final Map<String, Map<String, int>> tabStartingItems = {
 };
 
 //* tableau dynamique du setup final
-Map<String, Map<String, dynamic>> tabSetup = {
+Map<String, Map<String, dynamic>> tabThermostatSetup = {
   'SEMAINE': {'MATIN': 19, 'JOURNEE': 19, 'SOIR': 19, 'NUIT': 19},
   'WEEKEND': {'MATIN': 19, 'JOURNEE': 19, 'SOIR': 19, 'NUIT': 19},
   'ABSENCE': {'TEMPERATURE': 16, 'HUMIDITE': 65}
@@ -26,9 +26,12 @@ Map<String, Map<String, dynamic>> tabSetup = {
 Map<String, JsonForMqtt> mapState = {};
 List<Map<String, dynamic>> listJsonGateway = [];
 
-void conversionJsonOther() {
-  if (mapState['gateway'] != null && mapState['gateway']?.listOtherJsonMap != null) {
-    listJsonGateway = mapState['gateway']!.listOtherJsonMap;
+void conversionJsonOther(String moduleChauffage) {
+  if (moduleChauffage.toUpperCase() == 'GLOBAL') {
+    moduleChauffage = moduleChauffage.toUpperCase();
+  }
+  if (mapState[moduleChauffage] != null && mapState[moduleChauffage]?.listOtherJsonMap != null) {
+    listJsonGateway = mapState[moduleChauffage]!.listOtherJsonMap;
     if (listJsonGateway.isNotEmpty) {
       for (int i = 0; i < listJsonGateway.length; i++) {
         switch (listJsonGateway[i]['TYPE']) {

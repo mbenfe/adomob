@@ -50,7 +50,13 @@ void appAnalyseReceivedMqtt(String topic, String payload) {
           if (kDebugMode) {
             print('RECU:THERMOSTAT:$countMqttMessages -------- $topic ------- $payload');
           }
-
+          analyseOtherJsonPayload(message.payload);
+          break;
+        case 'LINKED':
+        case 'MODE':
+          if (kDebugMode) {
+            print('RECU:MODE-LINK:$countMqttMessages -------- $topic ------- $payload');
+          }
           analyseOtherJsonPayload(message.payload);
           break;
         case 'PWDAYS':

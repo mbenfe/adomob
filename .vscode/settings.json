@@ -1,4 +1,4 @@
 {
-        "cmake.sourceDirectory": "D:/programming/flutter/seignosse/linux",
+        "cmake.sourceDirectory": "D:/programming/flutter/seignosse/windows",
         "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
 }

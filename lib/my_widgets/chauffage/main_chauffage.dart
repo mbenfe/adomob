@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:adomob/my_widgets/chauffage/setup_thermostat/thermostat_publish_settings.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,9 +11,12 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import '../../m_define.dart';
 import '../../my_animations/my_animations.dart';
 import '../../my_models/complex_state_fz.dart';
-import '../../my_notifiers/setup_manager.dart';
-import '../../my_notifiers/theme_manager.dart';
 import '../../my_notifiers/widgets_manager.dart';
+import 'setup_thermostat/thermostat.dart';
+import 'chauffage_data.dart';
+
+//* define the target temperature
+int targetTemp = 20;
 
 /// ConsumerWidget for riverpod
 class RootRoomWidget extends ConsumerWidget {
@@ -26,11 +30,7 @@ class RootRoomWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    //*  noditification de 'reglabilité' de la widget
-    var reglableNotifier = ref.read(pageReglableProvider.notifier);
-    Future.delayed(Duration.zero, () {
-      reglableNotifier.state = true;
-    });
+    // ref.watch(isValideProvider);
 
     final Map<String, IconData> slotMapIcons = {
       'Matin': MdiIcons.weatherSunset,
@@ -45,35 +45,35 @@ class RootRoomWidget extends ConsumerWidget {
     };
 
     int index;
-    Map<String, dynamic>? teleJsonMapMaster = {}; //* donnée du Master : capteur de temperature
+    Map<String, dynamic>? teleJson = {}; //* donnée du Master : capteur de temperature
     List<Map<String, dynamic>> teleListJsonSlave = []; //* données des Slaves: switch
 
-    Map<String, JsonForMqtt> mapState = {};
+    Map<String, JsonForMqtt> mapGlobalState = {};
 
     //* recuperation des données ETAT -> mapState
     for (index = 0; index < listStateProviders.length; index++) {
       JsonForMqtt intermediate = ref.watch(listStateProviders[index]);
       if (intermediate.teleJsonMap.isNotEmpty && intermediate.teleJsonMap.containsKey('Name')) {
-        mapState.addAll({intermediate.teleJsonMap['Name']: intermediate});
+        mapGlobalState.addAll({intermediate.teleJsonMap['Name']: intermediate});
       }
     }
 
-    var setup = ref.watch(setupLaunchProvider.notifier);
-    if (setup.state == true) {
-      if (kDebugMode) {
-        print("----------------------------- appel setup -----------------------");
-        print('');
+    //* tratitement affichage du linkage ou non
+    bool linkedFlag = true;
+    if (mapGlobalState[master]?.listOtherJsonMap != null) {
+      if (mapGlobalState[master]!.listOtherJsonMap.isNotEmpty) {
+        var rep = (mapGlobalState[master]!.listOtherJsonMap.firstWhere((element) => element['TYPE'] == 'LINKED'));
+        if (rep.isNotEmpty) {
+          linkedFlag = rep['Linked'];
+          mapPiecesLinked[master] = linkedFlag;
+        }
       }
-      //* remet le flag apres le build
-      Future.delayed(Duration.zero, () {
-        ref.read(setupLaunchProvider.notifier).state = false;
-      });
     }
-    teleJsonMapMaster = mapState[master]?.teleJsonMap;
+    teleJson = mapGlobalState[master]?.teleJsonMap;
     //! a revoir
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     for (index = 0; index < listSlaves.length; index++) {
-      var temp = mapState[listSlaves[index]]?.teleJsonMap;
+      var temp = mapGlobalState[listSlaves[index]]?.teleJsonMap;
       if (temp != null) {
         teleListJsonSlave.add(temp);
       }
@@ -111,115 +111,121 @@ class RootRoomWidget extends ConsumerWidget {
       periodIcon = periodMapIcons['Weekend']!;
     }
 
-    //* define the target temperature
-    double targetTemp = 20;
-
+    //*  traitement de l'affichage du setup
     int i;
     bool trouve = false;
-    if (mapState.isNotEmpty) {
+    if (mapGlobalState.isNotEmpty) {
       for (i = 0; i < listSlaves.length; i++) {
-        if (mapState.containsKey(listSlaves[i])) {
+        if (mapGlobalState.containsKey(listSlaves[i])) {
           trouve = true;
           break;
         }
       }
 
       if (trouve == true) {
-        List<Map<String, dynamic>> slave = mapState[listSlaves[i]]?.listOtherJsonMap as List<Map<String, dynamic>>;
+        List<Map<String, dynamic>> slave = mapGlobalState[listSlaves[i]]?.listOtherJsonMap as List<Map<String, dynamic>>;
 
         for (i = 0; i < slave.length; i++) {
           if (slave[i]['TYPE'] == currentPeriod) {
-            targetTemp = slave[i][currentSlot].toDouble();
+            targetTemp = slave[i][currentSlot].toInt();
           }
         }
       }
     }
-    return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        return GestureDetector(
-          onLongPress: () {
-            HapticFeedback.heavyImpact();
-            if (kDebugMode) print('pressed');
-            couleurBordure == Colors.amber ? couleurBordure = Colors.red : couleurBordure = Colors.amber;
-            for (int i = 0; i < listSlaves.length; i++) {
-              mapState[listSlaves[i]]?.classSwitchToggle();
-            }
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(2),
-            child: Container(
-              width: ROOM_WIDGET_SIZE,
-              height: ROOM_WIDGET_SIZE,
-              decoration: BoxDecoration(
-                  border: Border.all(color: couleurBordure, width: 5),
-                  borderRadius: const BorderRadius.only(
-                    topRight: Radius.circular(60),
-                    topLeft: Radius.circular(60),
-                    bottomRight: Radius.circular(60 / 2),
-                    bottomLeft: Radius.circular(60 / 2),
-                  )),
-              // gauge
-              child: Stack(
-                alignment: Alignment.center,
-                children: <Widget>[
-                  if (teleJsonMapMaster != null && teleListJsonSlave.isNotEmpty) ...[
-                    Positioned(
-                      top: INSET_GAUGE,
-                      child: RoomGauge(
-                          gWidth: ROOM_WIDGET_SIZE - 2 * 5 - 2 * INSET_GAUGE,
-                          gHeight: ROOM_WIDGET_SIZE / 2,
-                          color: Colors.red,
-                          trim: false,
-                          radius: 60,
-                          epaisseur: 10,
-                          targetTemp: targetTemp,
-                          //                    temperature: decodeSensor['temp']),
-                          temperature: teleJsonMapMaster['Temperature'].toDouble()),
-                    ),
-                    // text temperature
-                    //                 Positioned(top: 40, left: 60, child: Text(teleJsonMapMaster['LinkQuality'].toString(), style: const TextStyle(fontSize: 10))),
-                    Positioned(
-                        top: 70,
-                        child: Text(teleJsonMapMaster['Temperature'] != null ? teleJsonMapMaster['Temperature'].toStringAsFixed(2) + '°C' : '--°C',
-                            style: const TextStyle(fontSize: 20))),
-                    Positioned(
-                        top: 50,
-                        right: 40,
-                        child: Text(teleJsonMapMaster['Humidity'] != null ? teleJsonMapMaster['Humidity'].toStringAsFixed(0) + '%' : '--%',
-                            style: const TextStyle(fontSize: 14))),
-                    // etat du chauffage
-                    Positioned(top: 105, child: Text(location, style: const TextStyle(fontSize: 12))),
-                    Positioned(
-                        top: 67,
-                        right: 69,
-                        child: teleListJsonSlave[0]['Power'] == 1 ? const IconHeaterAnimated(etat: true) : const IconHeaterAnimated(etat: false)),
-                    Positioned(
-                      top: 125,
-                      left: 50,
-                      child: Icon(
-                        slotIcon,
-                        size: 35,
-                        color: Colors.deepPurple,
+
+    return Padding(
+      padding: const EdgeInsets.all(2),
+      child: Container(
+        width: ROOM_WIDGET_SIZE,
+        height: ROOM_WIDGET_SIZE,
+        decoration: BoxDecoration(
+            border: Border.all(color: tabColors[labels[chauffageModeValue.toInt()]]!, width: 5),
+            borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(60),
+              topLeft: Radius.circular(60),
+              bottomRight: Radius.circular(15),
+              bottomLeft: Radius.circular(15),
+            )),
+        // gauge
+        child: Column(
+          children: [
+            Flexible(
+              flex: 3,
+              child: GestureDetector(
+                onLongPress: () {
+                  HapticFeedback.heavyImpact();
+                  if (kDebugMode) print('pressed');
+                  couleurBordure == Colors.amber ? couleurBordure = Colors.red : couleurBordure = Colors.amber;
+                  for (int i = 0; i < listSlaves.length; i++) {
+                    mapGlobalState[listSlaves[i]]?.classSwitchToggle();
+                  }
+                },
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: <Widget>[
+                    if (teleJson != null && teleListJsonSlave.isNotEmpty) ...[
+                      Positioned(
+                        top: INSET_GAUGE,
+                        child: RoomGauge(
+                            gWidth: ROOM_WIDGET_SIZE - 2 * 5 - 2 * INSET_GAUGE,
+                            gHeight: ROOM_WIDGET_SIZE / 2,
+                            color: Colors.red,
+                            trim: false,
+                            radius: 60,
+                            epaisseur: 10,
+                            //                    temperature: decodeSensor['temp']),
+                            temperature: teleJson['Temperature'].toDouble()),
                       ),
-                    ),
-                    Positioned(
-                      top: 127,
-                      left: 85,
-                      child: Icon(periodIcon, size: 35, color: Colors.blueAccent),
-                    ),
-                    const Positioned(
-                      top: 120,
-                      right: 6,
-                      child: BuildIcons(),
-                    )
-                  ]
+                      // text temperature
+                      //                 Positioned(top: 40, left: 60, child: Text(teleJsonMapMaster['LinkQuality'].toString(), style: const TextStyle(fontSize: 10))),
+                      Positioned(
+                          top: 70,
+                          child: Text(teleJson['Temperature'] != null ? teleJson['Temperature'].toStringAsFixed(2) + '°C' : '--°C',
+                              style: const TextStyle(fontSize: 20))),
+                      Positioned(
+                          top: 50,
+                          right: 40,
+                          child: Text(teleJson['Humidity'] != null ? teleJson['Humidity'].toStringAsFixed(0) + '%' : '--%',
+                              style: const TextStyle(fontSize: 14))),
+                      //! factice workaround to get rebuild
+                      Positioned(
+                        top: 50,
+                        right: 80,
+                        child: Text('$targetTemp', style: const TextStyle(color: Colors.transparent)),
+                      ),
+                      // etat du chauffage
+                      Positioned(top: 105, child: Text(location, style: const TextStyle(fontSize: 12))),
+                    ]
+                  ],
+                ),
+              ),
+            ),
+            Flexible(
+              flex: 1,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  teleListJsonSlave.isEmpty
+                      ? Container()
+                      : teleListJsonSlave[0]['Power'] == 1
+                          ? const IconHeaterAnimated(etat: true)
+                          : const IconHeaterAnimated(etat: false),
+                  Icon(
+                    slotIcon,
+                    size: 35,
+                    color: Colors.deepPurple,
+                  ),
+                  Icon(periodIcon, size: 35, color: Colors.blueAccent),
+                  LinkedIcons(
+                    master: master,
+                    linkedFlag: linkedFlag,
+                  ),
                 ],
               ),
             ),
-          ),
-        );
-      },
-      // containter frame
+          ],
+        ),
+      ),
     );
   }
 }
@@ -236,8 +242,7 @@ class RoomGauge extends ConsumerWidget {
       required this.trim,
       required this.radius,
       required this.epaisseur,
-      required this.temperature,
-      required this.targetTemp})
+      required this.temperature})
       : super(key: key);
 
   final Color color;
@@ -245,13 +250,17 @@ class RoomGauge extends ConsumerWidget {
   final double gHeight;
   final double gWidth;
   final double radius;
-  final double targetTemp;
   final double temperature;
   final bool trim;
 
   @override
   Widget build(BuildContext context, ref) {
-    bool darkMode = ref.watch(themeModeProvider);
+    bool darkMode;
+    if (Theme.of(context).brightness.index == 0) {
+      darkMode = true;
+    } else {
+      darkMode = false;
+    }
 
     return Column(
       children: [
@@ -260,7 +269,7 @@ class RoomGauge extends ConsumerWidget {
             CustomPaint(
               size: Size(gWidth, gHeight),
 //              painter: TickPainter(60 - INSET_GAUGE * 1.5, room.modeThermostat, room.modeManual),
-              painter: TickPainter(60 - INSET_GAUGE * 1.5, targetTemp, false), // 60 <- radius angle widget
+              painter: TickPainter(60 - INSET_GAUGE * 1.5, targetTemp.toDouble(), false), // 60 <- radius angle widget
             ),
             CustomPaint(
               size: Size(gWidth, gHeight),
@@ -273,24 +282,45 @@ class RoomGauge extends ConsumerWidget {
   }
 }
 
-class BuildIcons extends StatelessWidget {
-  const BuildIcons({
-    Key? key,
-  }) : super(key: key);
+class LinkedIcons extends StatefulWidget {
+  const LinkedIcons({super.key, required this.linkedFlag, required this.master});
+  final String master;
+  final bool linkedFlag;
 
   @override
+  State<LinkedIcons> createState() => _LinkedIconsState();
+}
+
+class _LinkedIconsState extends State<LinkedIcons> {
+  @override
   Widget build(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.end, children: [
-      Transform.rotate(
+//    var index = mapChauffages.containsKey(widget.master);
+//    mapChauffages.keys
+
+    return GestureDetector(
+      onTap: () {
+        if (mapPiecesLinked[widget.master] == false) {
+          showModalBottomSheet<void>(
+            context: context,
+            builder: (BuildContext context) {
+              return ModalRootThermostatWidget(
+                master: widget.master,
+              );
+            },
+          );
+        }
+      },
+      onLongPress: () {
+        setState(() {
+          mapPiecesLinked[widget.master] = !mapPiecesLinked[widget.master]!;
+          publishLinked(widget.master);
+        });
+      },
+      child: Transform.rotate(
         angle: -45 * pi / 180,
-        child: IconButton(
-          iconSize: 30,
-          color: Colors.green,
-          icon: const Icon(Icons.link), //room.modeLinked ? const Icon(Icons.link) : const Icon(Icons.link_off),
-          onPressed: () => {}, //room.modeLinked ? roomNotifier.setLink(false) : roomNotifier.setLink(true))),
-        ),
-      )
-    ]);
+        child: widget.linkedFlag == true ? const Icon(Icons.link, color: Colors.green) : const Icon(Icons.link_off, color: Colors.red),
+      ),
+    );
   }
 }
 

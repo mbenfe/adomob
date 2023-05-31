@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../my_models/complex_state_fz.dart';
 import '../../../my_notifiers/thermostat_selected_period_manager.dart';
+import '../chauffage_data.dart';
 import 'thermostat_data_management.dart';
 
 // ****************************************************************************
@@ -13,11 +13,9 @@ class PresenceTemperatureWheel extends ConsumerWidget {
     Key? key,
     required this.slot,
     required this.listSlaves,
-    required this.mapState,
   }) : super(key: key);
   final String slot;
   final List<String> listSlaves;
-  final Map<String, JsonForMqtt> mapState;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -40,21 +38,23 @@ class PresenceTemperatureWheel extends ConsumerWidget {
               magnification: 1.22,
               squeeze: 1.2,
               useMagnifier: true,
-//              scrollController: FixedExtentScrollController(initialItem: startingItems[selectedPeriode]?[widget.slot] ?? 1),
               scrollController: scrollWheelController,
               itemExtent: 22,
               onSelectedItemChanged: (int selectedItem) {
                 //* met a jour la table des temperatures
-                tabSetup[periode]![slot] = itemsTempPresent[selectedItem];
+                tabThermostatSetup[periode]![slot] = itemsTempPresent[selectedItem];
                 tabStartingItems[periode]?[slot] = selectedItem;
-                // switch (periode) {
-                //   case 'SEMAINE':
-                //     tabSemaine[slot] = itemsTempPresent[selectedItem];
-                //     break;
-                //   case 'WEEKEND':
-                //     tabWeekend[slot] = itemsTempPresent[selectedItem];
-                //     break;
-                // }
+                for (int i = 0; i < listSlaves.length; i++) {
+                  switch (periode) {
+                    case 'SEMAINE':
+                      mapChauffages[listSlaves[i]]?.semaine[slot] = itemsTempPresent[selectedItem];
+                      break;
+                    case 'WEEKEND':
+                      mapChauffages[listSlaves[i]]?.weekend[slot] = itemsTempPresent[selectedItem];
+                      break;
+                    default:
+                  }
+                }
               },
               children: const [
                 Text('22°C'),
@@ -78,13 +78,8 @@ class PresenceTemperatureWheel extends ConsumerWidget {
 // *          WHEELS PICKERS ABSENCE
 // ****************************************************************************
 class AbsenceHumidityWheel extends StatefulWidget {
-  const AbsenceHumidityWheel({
-    Key? key,
-    required this.listSlaves,
-    required this.mapState,
-  }) : super(key: key);
+  const AbsenceHumidityWheel({Key? key, required this.listSlaves}) : super(key: key);
   final List<String> listSlaves;
-  final Map<String, JsonForMqtt> mapState;
 
   @override
   State<AbsenceHumidityWheel> createState() => _AbsenceHumidityWheelState();
@@ -112,8 +107,11 @@ class _AbsenceHumidityWheelState extends State<AbsenceHumidityWheel> {
                 scrollController: FixedExtentScrollController(initialItem: tabStartingItems['ABSENCE']?['HUMIDITE'] ?? 1),
                 itemExtent: 22,
                 onSelectedItemChanged: (int selectedItem) {
-                  tabSetup['ABSENCE']!['HUMIDITE'] = itemsHumAbsence[selectedItem];
+                  tabThermostatSetup['ABSENCE']!['HUMIDITE'] = itemsHumAbsence[selectedItem];
                   setState(() => tabStartingItems['ABSENCE']?['HUMIDITE'] = selectedItem);
+                  for (int i = 0; i < widget.listSlaves.length; i++) {
+                    mapChauffages[widget.listSlaves[i]]?.absence['HUMIDITE'] = itemsTempPresent[selectedItem];
+                  }
                 },
                 children: const [
                   Text('80%'),
@@ -137,15 +135,11 @@ class _AbsenceHumidityWheelState extends State<AbsenceHumidityWheel> {
 class AbsenceTemperatureWheel extends StatefulWidget {
   const AbsenceTemperatureWheel({
     Key? key,
-    required this.slot,
     required this.listSlaves,
-    required this.mapState,
-    required this.periode,
+    required this.slot,
   }) : super(key: key);
-  final String slot;
-  final String periode;
   final List<String> listSlaves;
-  final Map<String, JsonForMqtt> mapState;
+  final String slot;
 
   @override
   State<AbsenceTemperatureWheel> createState() => _AbsenceTemperatureWheelState();
@@ -174,8 +168,11 @@ class _AbsenceTemperatureWheelState extends State<AbsenceTemperatureWheel> {
                 scrollController: FixedExtentScrollController(initialItem: tabStartingItems['ABSENCE']?['TEMPERATURE'] ?? 1),
                 itemExtent: 22,
                 onSelectedItemChanged: (int selectedItem) {
-                  tabSetup['ABSENCE']!['TEMPERATURE'] = itemsTempAbsence[selectedItem];
+                  tabThermostatSetup['ABSENCE']!['TEMPERATURE'] = itemsTempAbsence[selectedItem];
                   setState(() => tabStartingItems['ABSENCE']?['TEMPERATURE'] = selectedItem);
+                  for (int i = 0; i < widget.listSlaves.length; i++) {
+                    mapChauffages[widget.listSlaves[i]]?.absence['TEMPERATURE'] = itemsTempPresent[selectedItem];
+                  }
                 },
                 children: const [
                   Text('16°C'),

@@ -16,7 +16,14 @@ class WidgetMqttStateNotifier extends StateNotifier<JsonForMqtt> {
     if (intermediate.isEmpty) {
       intermediate.add(newJsonMap);
     } else {
-      Map exist = intermediate.firstWhere((element) => element['TYPE'] == newJsonMap['TYPE'], orElse: () => {}); // return empty MAP if doesn't exist
+      Map exist = intermediate.firstWhere((element) => element['TYPE'] == newJsonMap['TYPE'], orElse: () => {});
+      // var temp = intermediate.firstWhere((element) {
+      //   if (element['TYPE'] == newJsonMap['TYPE']) {
+      //     return true;
+      //   } else {
+      //     return false;
+      //   }
+      // });
       if (exist.isNotEmpty) {
         // trouvé -> replace
         intermediate.removeWhere((element) => element['TYPE'] == newJsonMap['TYPE']);
@@ -44,3 +51,24 @@ class WidgetMqttStateNotifier extends StateNotifier<JsonForMqtt> {
     //state.updateTeleJsonMap(newJsonMap);
   }
 }
+
+// void stateUpdateOtherJsonMap(Map<String, dynamic> newJsonMap) {
+//     List<Map<String, dynamic>> intermediate = state.listOtherJsonMap;
+
+//     if (intermediate.isEmpty) {
+//       intermediate.add(newJsonMap);
+//     } else {
+//       Map exist = intermediate.firstWhere((element) => element['TYPE'] == newJsonMap['TYPE'], orElse: () => {}); // return empty MAP if doesn't exist
+//       if (exist.isNotEmpty) {
+//         // trouvé -> replace
+//         intermediate.removeWhere((element) => element['TYPE'] == newJsonMap['TYPE']);
+//         intermediate.add(newJsonMap);
+//       } else {
+//         // ajout à la list
+//         intermediate.add(newJsonMap);
+//       }
+//     }
+//     state = state.copyWith(listOtherJsonMap: intermediate);
+
+//     //   state.classUpdateListOtherJson(newJsonMap);
+//   }

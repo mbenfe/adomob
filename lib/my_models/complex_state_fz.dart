@@ -1,23 +1,9 @@
-import 'dart:convert';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../m_define.dart';
 import '../my_mqtt/mqtt_handler.dart';
 
 part 'complex_state_fz.freezed.dart';
-
-// @freezed
-// class ComplexState with _$ComplexState {
-//   const ComplexState._();
-
-//   const factory ComplexState({
-//     required String var1,
-//     required double var2,
-//     required bool var3,
-//     required int var4,
-//   }) = _ComplexState;
-// }
 
 @unfreezed
 class JsonForMqtt with _$JsonForMqtt {
@@ -34,14 +20,6 @@ class JsonForMqtt with _$JsonForMqtt {
   void classSwitchToggle() {
     String topic = "gw/$client/$ville/cmnd/GW/ZbSend";
     String payload = '{"Device":"$deviceId","send":{"Power":"Toggle"}}';
-    publishMqtt(topic, payload);
-  }
-
-  //* envoi du setup thermostat: absence, semaine, week-end
-  void classSendThermostat(String targetDevice, String period, Map<String, dynamic> tab) {
-    String topic = "gw/$client/$ville/$targetDevice/tele/$period";
-    String payload = tab.toString();
-    payload = jsonEncode(tab);
     publishMqtt(topic, payload);
   }
 

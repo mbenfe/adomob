@@ -21,6 +21,6 @@ final pageReglableProvider = StateProvider<bool>((ref) {
   return false;
 });
 
-final setupLaunchProvider = StateProvider<bool>((ref) {
-  return false;
-});
+// final setupLaunchProvider = StateProvider<bool>((ref) {
+//   return false;
+// });

@@ -18,13 +18,12 @@ import 'my_widgets/extender/extender.dart';
 import 'my_widgets/home/home.dart';
 import 'my_widgets/light/light.dart';
 import 'my_widgets/consomation/consomation_main.dart';
-import 'my_widgets/chauffage/chauffage.dart';
+import 'my_widgets/chauffage/main_chauffage.dart';
 import 'my_widgets/sub_widgets/setup_consomation/consomation_setup.dart';
 import 'my_widgets/state/state.dart';
 import 'my_notifiers/widgets_manager.dart';
 import 'my_widgets/switch/switch.dart';
 import 'my_widgets/temperature/temperature.dart';
-import 'my_widgets/sub_widgets/setup_thermostat/thermostat.dart';
 
 /// ---------------------------------------------------------------------------
 /// build ONE appplication widget list
@@ -137,8 +136,9 @@ class GeneratedWidget extends ConsumerWidget {
         return RootSwitchWidget(master: master, listSlaves: listSlaves, listStateProviders: listStateProviders, location: location);
       case 'TEMPERATURE':
         return RootTemperatureWidget(master: master, listSlaves: listSlaves, listStateProviders: listStateProviders, location: location);
+//! a supprimer
       case 'THERMOSTAT':
-        return RootThermostatWidget(listSlaves: listSlaves, listStateProviders: listStateProviders);
+        return const Placeholder();
 //! changer l'orthographe
       case 'CONSOMMATION':
         if (listSlaves.isEmpty) {
@@ -150,7 +150,7 @@ class GeneratedWidget extends ConsumerWidget {
         return RootClimatisationWidget(master: master, listSlaves: listSlaves, listStateProviders: listStateProviders, location: location);
       //! a supprimer
       case 'SETUP':
-        return RootSetupWidget();
+        return const RootSetupWidget();
       default:
         return const Placeholder();
     }

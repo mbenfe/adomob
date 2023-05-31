@@ -1,8 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-import 'package:adomob/my_widgets/sub_widgets/setup_thermostat/thermostat_publish_settings.dart';
-import 'package:adomob/my_widgets/sub_widgets/setup_thermostat/thermostat_slider.dart';
-import 'package:adomob/my_widgets/sub_widgets/setup_thermostat/thermostat_temperature_humidity_wheels.dart';
+import 'package:adomob/my_widgets/chauffage/setup_thermostat/thermostat_data_management.dart';
+import 'package:adomob/my_widgets/chauffage/setup_thermostat/thermostat_publish_settings.dart';
+import 'package:adomob/my_widgets/chauffage/setup_thermostat/thermostat_slider.dart';
+import 'package:adomob/my_widgets/chauffage/setup_thermostat/thermostat_temperature_humidity_wheels.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -11,43 +12,48 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../my_models/complex_state_fz.dart';
 import '../../../my_notifiers/thermostat_selected_period_manager.dart';
 import '../../../my_notifiers/widgets_manager.dart';
-import 'thermostat_data_management.dart';
+import '../top_widget_chauffage.dart';
 
-class RootThermostatWidget extends ConsumerWidget {
-  const RootThermostatWidget({required this.listSlaves, required this.listStateProviders, Key? key}) : super(key: key);
-  final List<String> listSlaves;
-  final List<StateNotifierProvider<WidgetMqttStateNotifier, JsonForMqtt>> listStateProviders;
+class ModalRootThermostatWidget extends ConsumerWidget {
+  const ModalRootThermostatWidget({required this.master, Key? key}) : super(key: key);
+  final String master;
 
   @override
   Widget build(BuildContext context, ref) {
-    int index;
-
+    final List<StateNotifierProvider<WidgetMqttStateNotifier, JsonForMqtt>> listStateProviders;
+    final List<String> listSlaves;
     ref.watch(selectedPeriodProvider);
 
-    for (index = 0; index < listStateProviders.length; index++) {
+    listSlaves = extractListSlaves(master);
+    listStateProviders = extractListProviders(listSlaves);
+
+    for (int index = 0; index < listStateProviders.length; index++) {
       JsonForMqtt intermediate = ref.watch(listStateProviders[index]);
       //  if (intermediate.teleJsonMap.isNotEmpty && intermediate.teleJsonMap.containsKey('Name')) {
       mapState.addAll({intermediate.deviceId: intermediate});
       //  }
     }
 
-    conversionJsonOther();
+    //* consider seulement le premier escalves (les autres sont alignés)
+    conversionJsonOther(listSlaves[0]);
 
 //    return Dialog(shape: const ContinuousRectangleBorder(), child: Thermostat(listSlaves, mapState));
-    return Thermostat(listSlaves, mapState);
+    return ModalThermostat(listSlaves);
   }
 }
 
-class Thermostat extends StatelessWidget {
-  const Thermostat(this.listSlaves, this.mapState, {super.key});
+class ModalThermostat extends ConsumerWidget {
+  const ModalThermostat(this.listSlaves, {super.key});
   final List<String> listSlaves;
-  final Map<String, JsonForMqtt> mapState;
 
+  //final Map<String, JsonForMqtt> mapState;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     if (kDebugMode) {
       print(listSlaves.toString());
     }
+    ref.watch(selectedPeriodProvider);
+
     return SizedBox(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
@@ -55,14 +61,15 @@ class Thermostat extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          const PeriodeSelectionSlider(),
-          DirectToWidget(listSlaves, mapState),
+          const ModalPeriodeSelectionSlider(),
+          ModalDirectToWidget(listSlaves: listSlaves),
           SizedBox(
             height: 50,
             width: double.infinity,
             child: ElevatedButton(
                 onPressed: () {
-                  publishSettings(listSlaves);
+                  publishThermostatSettings(listSlaves);
+                  Navigator.pop(context);
                 },
                 child: const Text('Valider')),
           ),
@@ -72,21 +79,21 @@ class Thermostat extends StatelessWidget {
   }
 }
 
-class DirectToWidget extends StatelessWidget {
-  const DirectToWidget(List<String> listSlaves, Map<String, JsonForMqtt> mapState, {super.key});
+class ModalDirectToWidget extends ConsumerWidget {
+  const ModalDirectToWidget({required this.listSlaves, super.key});
+  final List<String> listSlaves;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(selectedPeriodProvider);
     switch (selectedPeriode) {
       case 'SEMAINE':
-        return const SetUpRowTemperatureSemaine(
-          listSlaves: [],
-          mapState: {},
+        return SetUpRowTemperatureSemaine(
+          listSlaves: listSlaves,
         );
       case 'WEEKEND':
-        return const SetUpRowTemperatureWeekend(
-          listSlaves: [],
-          mapState: {},
+        return SetUpRowTemperatureWeekend(
+          listSlaves: listSlaves,
         );
       case 'ABSENCE':
         return const SetUpRowAbsence(
@@ -99,14 +106,9 @@ class DirectToWidget extends StatelessWidget {
 }
 
 class SetUpRowTemperatureWeekend extends ConsumerWidget {
-  const SetUpRowTemperatureWeekend({
-    Key? key,
-    required this.listSlaves,
-    required this.mapState,
-  }) : super(key: key);
-  final List<String> listSlaves;
-  final Map<String, JsonForMqtt> mapState;
+  const SetUpRowTemperatureWeekend({Key? key, required this.listSlaves}) : super(key: key);
 
+  final List<String> listSlaves;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.watch(selectedPeriodProvider);
@@ -121,33 +123,29 @@ class SetUpRowTemperatureWeekend extends ConsumerWidget {
               Card(
                 color: Theme.of(context).colorScheme.primaryContainer,
                 child: PresenceTemperatureWheel(
+                  listSlaves: listSlaves,
                   slot: 'MATIN',
-                  listSlaves: listSlaves,
-                  mapState: mapState,
                 ),
               ),
               Card(
                 color: Theme.of(context).colorScheme.primaryContainer,
                 child: PresenceTemperatureWheel(
+                  listSlaves: listSlaves,
                   slot: 'JOURNEE',
-                  listSlaves: listSlaves,
-                  mapState: mapState,
                 ),
               ),
               Card(
                 color: Theme.of(context).colorScheme.primaryContainer,
                 child: PresenceTemperatureWheel(
+                  listSlaves: listSlaves,
                   slot: 'SOIR',
-                  listSlaves: listSlaves,
-                  mapState: mapState,
                 ),
               ),
               Card(
                 color: Theme.of(context).colorScheme.primaryContainer,
                 child: PresenceTemperatureWheel(
-                  slot: 'NUIT',
                   listSlaves: listSlaves,
-                  mapState: mapState,
+                  slot: 'NUIT',
                 ),
               ),
             ],
@@ -162,10 +160,8 @@ class SetUpRowTemperatureSemaine extends ConsumerWidget {
   const SetUpRowTemperatureSemaine({
     Key? key,
     required this.listSlaves,
-    required this.mapState,
   }) : super(key: key);
   final List<String> listSlaves;
-  final Map<String, JsonForMqtt> mapState;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -181,33 +177,29 @@ class SetUpRowTemperatureSemaine extends ConsumerWidget {
               Card(
                 color: Theme.of(context).colorScheme.primaryContainer,
                 child: PresenceTemperatureWheel(
+                  listSlaves: listSlaves,
                   slot: 'MATIN',
-                  listSlaves: listSlaves,
-                  mapState: mapState,
                 ),
               ),
               Card(
                 color: Theme.of(context).colorScheme.primaryContainer,
                 child: PresenceTemperatureWheel(
+                  listSlaves: listSlaves,
                   slot: 'JOURNEE',
-                  listSlaves: listSlaves,
-                  mapState: mapState,
                 ),
               ),
               Card(
                 color: Theme.of(context).colorScheme.primaryContainer,
                 child: PresenceTemperatureWheel(
+                  listSlaves: listSlaves,
                   slot: 'SOIR',
-                  listSlaves: listSlaves,
-                  mapState: mapState,
                 ),
               ),
               Card(
                 color: Theme.of(context).colorScheme.primaryContainer,
                 child: PresenceTemperatureWheel(
-                  slot: 'NUIT',
                   listSlaves: listSlaves,
-                  mapState: mapState,
+                  slot: 'NUIT',
                 ),
               ),
             ],
@@ -241,15 +233,10 @@ class SetUpRowAbsence extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           AbsenceTemperatureWheel(
+            listSlaves: listSlaves,
             slot: 'Température',
-            periode: 'ABSENCE',
-            listSlaves: listSlaves,
-            mapState: mapState,
           ),
-          AbsenceHumidityWheel(
-            listSlaves: listSlaves,
-            mapState: mapState,
-          ),
+          AbsenceHumidityWheel(listSlaves: listSlaves),
         ],
       ),
     );

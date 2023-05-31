@@ -11,14 +11,14 @@ List<String> labels = ['SEMAINE', 'WEEKEND', 'ABSENCE'];
 
 double _value = 0;
 
-class PeriodeSelectionSlider extends ConsumerStatefulWidget {
-  const PeriodeSelectionSlider({super.key});
+class ModalPeriodeSelectionSlider extends ConsumerStatefulWidget {
+  const ModalPeriodeSelectionSlider({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _PeriodSelectionSliderState();
 }
 
-class _PeriodSelectionSliderState extends ConsumerState<PeriodeSelectionSlider> {
+class _PeriodSelectionSliderState extends ConsumerState<ModalPeriodeSelectionSlider> {
   @override
   Widget build(BuildContext context) {
 //    ref.watch(selectedPeriodProvider);

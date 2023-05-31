@@ -1,22 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:syncfusion_flutter_core/theme.dart';
-import 'package:syncfusion_flutter_sliders/sliders.dart';
 
-import '../../m_build_from_json.dart';
-import '../../my_models/complex_state_fz.dart';
-import '../../my_notifiers/thermostat_selected_period_manager.dart';
-import '../../my_notifiers/widgets_manager.dart';
 import '../sub_widgets/setup_consomation/consomation_setup.dart';
-import '../sub_widgets/setup_thermostat/thermostat.dart';
+import 'consomation_notifiers.dart';
 
 List<String> labels = ['MANUEL', 'AUTO', 'ABSENCE'];
-
-double _value = 1;
-
-final setupLaunchProvider = StateProvider<bool>((ref) {
-  return false;
-});
 
 class TopWidgetConsomation extends ConsumerStatefulWidget {
   const TopWidgetConsomation({super.key});
@@ -37,7 +25,7 @@ class _TopWidgetConsomationState extends ConsumerState<TopWidgetConsomation> {
           onPressed: () {
             setState(
               () {
-                ref.read(setupLaunchProvider.notifier).state = true;
+                ref.read(consomationsetupLaunchProvider.notifier).state = true;
                 showModalBottomSheet<void>(
                   context: context,
                   builder: (BuildContext context) {

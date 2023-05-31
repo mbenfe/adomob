@@ -105,6 +105,7 @@ class PagePrincipale extends ConsumerWidget {
     ];
 
     bool darkMode = ref.watch(themeModeProvider);
+
     int index = preDefinedBottomNavigationBar.indexWhere((element) => element.text == listApplications[appIndex]);
     int flexFactor = preDefinedBottomNavigationBar[index].flexFactor;
     return MaterialApp(
