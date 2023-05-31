@@ -122,7 +122,7 @@ class _RowPrevisionsWidgetState extends State<RowPrevisionsWidget> {
       children: [
         for (i = 8; i < donneesPrevisions.length; i += 8)
           SizedBox(
-            width: MediaQuery.of(context).size.width / 5,
+            width: MediaQuery.of(context).size.width / 4 - 2,
             child: Card(elevation: 5, child: WidgetDayShort(index: i)),
           ),
       ],
@@ -155,8 +155,8 @@ class WidgetDayShort extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text(textScaleFactor: 0.8, '${tempMin.toStringAsFixed(1)}°C'),
-            Text(textScaleFactor: 0.8, '${tempMax.toStringAsFixed(1)}°C'),
+            Flexible(flex: 1, child: Text(textScaleFactor: 0.8, '${tempMin.toStringAsFixed(1)}°C')),
+            Flexible(flex: 1, child: Text(textScaleFactor: 0.8, '${tempMax.toStringAsFixed(1)}°C')),
           ],
         ),
       ],
@@ -184,7 +184,7 @@ class WidgetDayLong extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            addVerticalSpace(5),
+            addVerticalSpace(2),
             Text(jour),
             tabIcons[donneesJour.weatherConditionCode.toString()]['icon'],
             Text(textAlign: TextAlign.center, textScaleFactor: 0.8, donneesJour.weatherDescription ?? ""), // verification non null
