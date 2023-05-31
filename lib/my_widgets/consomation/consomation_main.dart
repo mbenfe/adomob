@@ -137,7 +137,7 @@ class RootConsomationWidgetVirtuel extends ConsumerWidget {
       }
       if (kDebugMode) {
         print(
-            'Garage:${stateMaster.teleJsonMap['ActivePower']} Bureau:${listStateSlaves[0].teleJsonMap['ActivePower']} Virtuel:${teleJsonMap['ActivePower']}');
+            'Master:${stateMaster.teleJsonMap['ActivePower']} Slave:${listStateSlaves[0].teleJsonMap['ActivePower']} Virtuel:${teleJsonMap['ActivePower']}');
       }
     }
 
@@ -204,6 +204,7 @@ class RootConsomationWidgetVirtuel extends ConsumerWidget {
           for (int i = 0; i < listStateSlaves.length; i++) {
             if (listSlavesOtherJsonMap.isNotEmpty && listSlavesOtherJsonMap[i].isNotEmpty) {
               listSlavesOtherJsonMap[i][index]['DATA'].forEach((key, value) {
+                heures.addAll({key: 0});
                 if (heuresSoustraction[key] == null) {
                   if (kDebugMode) {
                     print('json->${listSlavesOtherJsonMap[i][index]['DATA']}');
@@ -213,13 +214,16 @@ class RootConsomationWidgetVirtuel extends ConsumerWidget {
               });
             }
           }
-          listOtherJsonMap[index]['DATA'].forEach((key, value) => heures[key] = value.toDouble() - heuresSoustraction[key]);
+          if (heures.isNotEmpty) {
+            listOtherJsonMap[index]['DATA'].forEach((key, value) => heures[key] = value.toDouble() - heuresSoustraction[key]);
+          }
         }
         //**************************************PWDAYS */
         if (listOtherJsonMap[index]['TYPE'] == 'PWDAYS') {
           for (int i = 0; i < listStateSlaves.length; i++) {
             if (listSlavesOtherJsonMap.isNotEmpty && listSlavesOtherJsonMap[i].isNotEmpty) {
               listSlavesOtherJsonMap[i][index]['DATA'].forEach((key, value) {
+                jours.addAll({key: 0});
                 if (joursSoustraction[key] == null) {
                   if (kDebugMode) {
                     print('json->${listSlavesOtherJsonMap[i][index]['DATA']}');
@@ -229,13 +233,16 @@ class RootConsomationWidgetVirtuel extends ConsumerWidget {
               });
             }
           }
-          listOtherJsonMap[index]['DATA'].forEach((key, value) => jours[key] = value.toDouble() - joursSoustraction[key]);
+          if (jours.isNotEmpty) {
+            listOtherJsonMap[index]['DATA'].forEach((key, value) => jours[key] = value.toDouble() - joursSoustraction[key]);
+          }
         }
         //**************************************PWMONTHS */
         if (listOtherJsonMap[index]['TYPE'] == 'PWMONTHS') {
           for (int i = 0; i < listStateSlaves.length; i++) {
             if (listSlavesOtherJsonMap.isNotEmpty && listSlavesOtherJsonMap[i].isNotEmpty) {
               listSlavesOtherJsonMap[i][index]['DATA'].forEach((key, value) {
+                mois.addAll({key: 0});
                 if (moisSoustraction[key] == null) {
                   if (kDebugMode) {
                     print('json->${listSlavesOtherJsonMap[i][index]['DATA']}');
@@ -247,7 +254,9 @@ class RootConsomationWidgetVirtuel extends ConsumerWidget {
               });
             }
           }
-          listOtherJsonMap[index]['DATA'].forEach((key, value) => mois[key] = value.toDouble() - moisSoustraction[key]);
+          if (mois.isNotEmpty) {
+            listOtherJsonMap[index]['DATA'].forEach((key, value) => mois[key] = value.toDouble() - moisSoustraction[key]);
+          }
         }
       }
     }

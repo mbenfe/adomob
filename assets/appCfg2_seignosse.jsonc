@@ -1,4 +1,17 @@
-[
+[   
+     {
+    "type": "Home",
+    "data": [
+        {
+            "location": "MAISON",
+            "column": 1,
+            "row": 1,
+            "master": "virtuelHome",
+            "slave": ["thRdcAnnexe","pwPrincipale"],
+            "color": 0
+        }
+    ]
+    },
     {"type" : "Chauffage",
      "data":[ 
         {"location":"1er Suite"    ,"column":1,"row":1,"master":"th1erSuite","slave":["sw1erSuite"],"color":0},
@@ -22,12 +35,43 @@
     "data":[
         {"location":"Total","column":1,"row":1,"master":"pwPrincipale","slave":[],"color":0},
         {"location":"Spa","column":1,"row":2,"master":"pwSecondaire","slave":[],"color":0}
-       ]},
-    {"type":"Thermostat",
-    "data":[
-        {"location":"salon"    ,"column":1,"row":1,"master":"gateway","slave":["sw1erSuite","sw1erDressing","sw1erRouge","sw1erSdb","sw1erWc","swRdcBleue","swRdcMarron","swRdcVerte","swRdcSdb","swRdcWc","swRdcBuanderie","swRdcSalonPiscine","swRdcSalonFront","swRdcSalonCouloir","swRdcEntree","swRdcCuisine"],"color":0}
-        ]}
+       ]},    {
+        "type": "Climatisation",
+        "data": [
+            {
+                "location": "Salon",
+                "column": 1,
+                "row": 1,
+                "master": "thRdcSalon",
+                "slave": ["irSalonPiscine"],
+                "color": 0
+            },
+            {
+                "location": "Salon",
+                "column": 1,
+                "row": 2,
+                "master": "thRdcSalon",
+                "slave": ["irSalonFront"],
+                "color": 0
+            },
+            {
+                "location": "1er Suite",
+                "column": 1,
+                "row": 3,
+                "master": "th1erSuite",
+                "slave": ["ir1erSuite"],
+                "color": 0
+            },
+            {
+                "location": "Annexe",
+                "column": 1,
+                "row": 4,
+                "master": "thRdcAnnexe",
+                "slave": ["irAnnexe"],
+                "color": 0
+            }
+        ]
+    }
 ]
-
 // a envoyer sur        app_config/bauduin/seignosse/dummy/appCfg2
 //         {"location":"Maison","column":1,"row":1,"master":"pwPrincipale","slave":["pwSecondaire"],"color":0},

@@ -13,7 +13,7 @@ import 'commande.dart';
 bool isOn = false;
 List<bool> fanSpeed = [false, true, false, false, false];
 List<bool> modeSelected = [false, false, true, false];
-double temperature = 16;
+double temperature = 21;
 
 class RootClimatisationWidget extends ConsumerWidget {
   const RootClimatisationWidget({Key? key, required this.master, required this.listSlaves, required this.location, required this.listStateProviders})
@@ -48,7 +48,7 @@ class RootClimatisationWidget extends ConsumerWidget {
             children: [
               Row(
                 children: [
-                  Header(location: location, listSlaves: listSlaves),
+                  Header(location: location, listSlaves: listSlaves, master: master, listStateProviders: listStateProviders),
                 ],
               ),
               SelectionMode(listSlaves: listSlaves),
@@ -66,28 +66,40 @@ class RootClimatisationWidget extends ConsumerWidget {
   }
 }
 
-class Header extends StatefulWidget {
+class Header extends ConsumerStatefulWidget {
   const Header({
     Key? key,
     required this.location,
     required this.listSlaves,
+    required this.master,
+    required this.listStateProviders,
   }) : super(key: key);
 
   final List<String> listSlaves;
   final String location;
-
+  final String master;
+  final List<StateNotifierProvider<WidgetMqttStateNotifier, JsonForMqtt>> listStateProviders;
   @override
-  State<Header> createState() => _HeaderState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _HeaderState();
 }
 
-class _HeaderState extends State<Header> {
+class _HeaderState extends ConsumerState<Header> {
   @override
   Widget build(BuildContext context) {
+    Map<String, JsonForMqtt> mapState = {};
+
+    for (int index = 0; index < widget.listStateProviders.length; index++) {
+      JsonForMqtt intermediate = ref.watch(widget.listStateProviders[index]);
+      mapState.addAll({intermediate.deviceId: intermediate});
+    }
+
+    var teleJson = mapState[widget.master]?.teleJsonMap;
+
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         Text(widget.location),
-        const Text('10'),
+        if (teleJson!.isNotEmpty) Text('${teleJson['Temperature'].toStringAsFixed(1)}°C') else const Text('--.-'),
         Switch(
           value: isOn,
           onChanged: (value) {

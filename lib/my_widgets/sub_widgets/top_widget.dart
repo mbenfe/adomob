@@ -16,8 +16,8 @@ class TopWidget extends ConsumerWidget {
     switch (selectedApplication.toUpperCase()) {
       case 'CHAUFFAGE':
         return const TopWidgetChauffage();
-      case 'CONSOMMATION':
-        return const TopWidgetConsomation();
+      // case 'CONSOMMATION':
+      //   return const TopWidgetConsomation();
       default:
         return Container();
     }

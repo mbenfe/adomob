@@ -122,7 +122,6 @@ class _RowPrevisionsWidgetState extends State<RowPrevisionsWidget> {
       children: [
         for (i = 8; i < donneesPrevisions.length; i += 8)
           SizedBox(
-            height: 100,
             width: MediaQuery.of(context).size.width / 5,
             child: Card(elevation: 5, child: WidgetDayShort(index: i)),
           ),
@@ -279,7 +278,7 @@ Widget contentDownloading() {
 
 Widget affichageResultatsJour() {
   if (etatJour == DownloadState.finishedDownloading && etatPrevisions == DownloadState.finishedDownloading) {
-    return const RowJourWidget();
+    return const Flexible(flex: 4, child: RowJourWidget());
   } else {
     return contentDownloading();
   }
@@ -287,7 +286,10 @@ Widget affichageResultatsJour() {
 
 Widget affichageResultatsPrevisions() {
   if (etatPrevisions == DownloadState.finishedDownloading) {
-    return const RowPrevisionsWidget();
+    return const Flexible(
+      flex: 3,
+      child: RowPrevisionsWidget(),
+    );
   } else {
     return contentDownloading();
   }
