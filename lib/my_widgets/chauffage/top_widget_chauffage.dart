@@ -12,6 +12,8 @@ import 'chauffage_data.dart';
 import 'chauffage_notifiers.dart';
 import 'setup_thermostat/thermostat_publish_settings.dart';
 
+List<IconData> sliderIcons = [Icons.swipe, MdiIcons.refreshAuto, Icons.luggage_rounded];
+
 class TopWidgetChauffage extends ConsumerStatefulWidget {
   const TopWidgetChauffage({super.key});
 
@@ -41,32 +43,32 @@ class _TopWidgetChauffageState extends ConsumerState<TopWidgetChauffage> {
           padding: const EdgeInsets.all(5),
           child: SfSliderTheme(
             data: SfSliderThemeData(
-              inactiveTrackColor: Theme.of(context).primaryColor,
-              activeTrackColor: Theme.of(context).primaryColor,
-              activeTrackHeight: 0,
-              inactiveTrackHeight: 0,
+              inactiveTrackColor: tabColors[labels[chauffageModeValue.toInt()]],
+              activeTrackColor: tabColors[labels[chauffageModeValue.toInt()]],
+              activeTrackHeight: 1,
+              inactiveTrackHeight: 1,
+              inactiveTickColor: tabColors[labels[chauffageModeValue.toInt()]],
+              activeTickColor: tabColors[labels[chauffageModeValue.toInt()]],
+              tickOffset: const Offset(0, -5),
+              thumbRadius: 20,
+              thumbStrokeWidth: 2,
+              thumbColor: Colors.white,
+              thumbStrokeColor: tabColors[labels[chauffageModeValue.toInt()]],
             ),
             child: SfSlider(
-              activeColor: tabColors[labels[chauffageModeValue.toInt()]],
+//              activeColor: tabColors[labels[chauffageModeValue.toInt()]],
 
 //              activeColor: Colors.red,
               min: 0,
               max: 2,
+              showTicks: true,
+
               edgeLabelPlacement: EdgeLabelPlacement.auto,
               stepSize: 1,
-              showLabels: true,
+              thumbIcon: Icon(sliderIcons[chauffageModeValue.toInt()], color: tabColors[labels[chauffageModeValue.toInt()]]),
+
+              showLabels: false,
               value: chauffageModeValue,
-              labelFormatterCallback: (dynamic actualValue, String formattedText) {
-                switch (actualValue) {
-                  case 0:
-                    return 'MANUEL';
-                  case 1:
-                    return 'AUTO';
-                  case 2:
-                    return 'ABSENCE';
-                }
-                return actualValue.toString();
-              },
               interval: 1,
               onChanged: (dynamic newValue) {
                 setState(() {

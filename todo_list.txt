@@ -1,3 +1,5 @@
+open ios/runner.xcworkspace
+run to build
 flutter pub upgrade --major-versions
 flutter pub run build_runner build --delete-conflicting-outputs
 
